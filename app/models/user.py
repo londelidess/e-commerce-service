@@ -17,6 +17,7 @@ class User(db.Model, UserMixin):
 
     #relationship one side
     products = db.relationship("Product", back_populates="user")
+    reviews = db.relationship("Review", back_populates="user")
 
     @property
     def password(self):

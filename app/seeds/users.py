@@ -2,15 +2,32 @@ from app.models import db, User, environment, SCHEMA
 from sqlalchemy.sql import text
 
 
-# Adds a demo user, you can add other users here if you want
 def seed_users():
+    owner = User(
+        username='Owner',
+        email='owner@aa.io',
+        password='owner',
+        profile_image_url='https://64.media.tumblr.com/1b92dccaf54b1bed9599a2e97167760d/a8a000f166be391d-d8/s540x810/26bdc54fd0f2c8b556032a871fd43a678d7dd3ed.jpg'
+    )
     demo = User(
-        username='Demo', email='demo@aa.io', password='password')
+        username ='Demo',
+        email ='demo@aa.io',
+        password ='password',
+        profile_image_url = 'https://www.alaska.edu/_resources/images/placeholders/profile.png'
+    )
     marnie = User(
-        username='marnie', email='marnie@aa.io', password='password')
+        username='marnie',
+        email='marnie@aa.io',
+        password='password2',
+        profile_image_url='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTc8L3CLG20ZPsyTPo9mQsD5ZOtnQuelLct1Q&usqp=CAU'
+    )
     bobbie = User(
-        username='bobbie', email='bobbie@aa.io', password='password')
-
+        username='bobbie',
+        email='bobbie@aa.io',
+        password='password3',
+        profile_image_url='https://pbs.twimg.com/media/FrAaUnZacAAxfLq.jpg'
+    )
+    db.session.add(owner)
     db.session.add(demo)
     db.session.add(marnie)
     db.session.add(bobbie)
@@ -28,5 +45,5 @@ def undo_users():
         db.session.execute(f"TRUNCATE table {SCHEMA}.users RESTART IDENTITY CASCADE;")
     else:
         db.session.execute(text("DELETE FROM users"))
-        
+
     db.session.commit()
