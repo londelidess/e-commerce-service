@@ -2,6 +2,12 @@ from flask.cli import AppGroup
 from .users import seed_users, undo_users
 from .categories import seed_categories, undo_categories
 from .products import seed_products, undo_products
+from .reviews import seed_reviews, undo_reviews
+from .medias import seed_medias, undo_medias
+from .shopping_cart_items import seed_shopping_cart_items, undo_shopping_cart_items
+from .transactions import seed_transactions, undo_transactions
+from .transaction_items import seed_transaction_items, undo_transaction_items
+
 
 from app.models.db import db, environment, SCHEMA
 

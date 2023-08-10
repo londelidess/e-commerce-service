@@ -1,4 +1,4 @@
-from app.models import db, Media, Post, environment, SCHEMA
+from app.models import db, Media, environment, SCHEMA
 from sqlalchemy.sql import text
 
 

@@ -1,5 +1,5 @@
-from datetime import datetime
-from app.models import db, ShoppingCartItem, User
+from app.models import db, ShoppingCartItem, User, environment, SCHEMA
+from sqlalchemy.sql import text
 
 def seed_shopping_cart_items():
     marnie_id = User.query.filter_by(username='marnie').first().id

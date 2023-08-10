@@ -1,7 +1,7 @@
 from .db import db, environment, SCHEMA
 
 class Media(db.Model):
-    __tablename__ = 'media'
+    __tablename__ = 'medias'
 
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}

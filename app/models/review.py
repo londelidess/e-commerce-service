@@ -1,5 +1,6 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from datetime import datetime
+from .media import Media
 
 class Review(db.Model):
     __tablename__ = 'reviews'
@@ -14,7 +15,15 @@ class Review(db.Model):
     rating = db.Column(db.Integer)
     review_date = db.Column(db.DateTime, default=datetime.utcnow)
 
+    images = db.relationship(
+        'Media',
+        primaryjoin=db.and_(
+            db.foreign(Media.owner_id) == id,
+            db.foreign(Media.owner_type) == "review"
+        ),
+        backref='review'
+    )
+
     # Relationships - many side
     product = db.relationship("Product", back_populates="reviews")
     user = db.relationship("User", back_populates="reviews")
-

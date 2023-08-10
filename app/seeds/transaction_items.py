@@ -1,5 +1,6 @@
 from datetime import datetime
-from app.models import db, Transaction, User,  TransactionItem, Product
+from app.models import db, Transaction, User,  TransactionItem, Product, environment, SCHEMA
+from sqlalchemy.sql import text
 
 def seed_transaction_items():
     camel_up_id = Product.query.filter_by(name='Camel Up').first().id

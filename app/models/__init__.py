@@ -6,5 +6,5 @@ from .shoppingcartitem import ShoppingCartItem
 from .transaction import Transaction
 from .transactionitem import TransactionItem
 from .media import Media
-from .reviews import Review
+from .review import Review
 from .db import environment, SCHEMA
