@@ -12,3 +12,11 @@ class ShoppingCartItem(db.Model):
 
     # relationship - many side
     product = db.relationship("Product", back_populates="cart_items")
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'product_id': self.product_id,
+            'product_name': self.product.name,
+            'quantity': self.quantity,
+        }

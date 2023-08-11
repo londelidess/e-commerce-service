@@ -1,4 +1,6 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
+from .media import Media
+from datetime import datetime
 
 class Product(db.Model):
     __tablename__ = 'products'
@@ -10,13 +12,40 @@ class Product(db.Model):
     name = db.Column(db.String(255), nullable=False)
     description = db.Column(db.String(255), nullable=False)
     price = db.Column(db.Numeric(10, 2), nullable=False)
-    post_date = db.Column(db.Date, nullable=False)
+    post_date = db.Column(db.Date, nullable=False, default = datetime.utcnow())
     added_by_user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)#fk at the many side
     category_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('categories.id')), nullable=False)
 
+    images = db.relationship(
+        'Media',
+        primaryjoin=db.and_(
+            db.foreign(Media.owner_id) == id,
+            db.foreign(Media.owner_type) == "product"
+        ),
+        backref='product'
+    )
     # relationships - many side
     user = db.relationship("User", back_populates="products")
     category = db.relationship("Category", back_populates="products")
     # relationship - one side
     cart_items = db.relationship("ShoppingCartItem", back_populates="product")
     transaction_items = db.relationship("TransactionItem", back_populates="product")
+    reviews = db.relationship("Review", back_populates="product")
+
+
+    def to_dict(self, include_category=False):
+        data = {
+            'id': self.id,
+            'name': self.name,
+            'description': self.description,
+            'price': self.price if self.price else None,
+            'post_date': self.post_date.strftime('%Y-%m-%d') if self.post_date else None,
+            'added_by_user_id': self.added_by_user_id,
+            'category_id': self.category_id,
+            'images':[image.to_dict() for image in self.images] if self.images else [],
+            'category_name': self.category.name if self.category else None,
+        }
+        # if include_category and self.category:
+        #     data['category_name'] = self.category.name
+
+        return data
