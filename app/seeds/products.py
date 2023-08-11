@@ -18,7 +18,7 @@ def seed_products():
 
     game2 = Product(
         name='Digimon Card Game Starter Decks',
-        description="""The Digimon Card Game is a competitive trading card game. Each player has a companion Digimon in the battle area to attack the opponent. Your Digimon evolves, gets stronger, and gains new power! You win by beating your opponent\’s security (reducing your opponent’s Security Area cards to zero) and delivering a knockout blow!""",
+        description="""The Digimon Card Game is a competitive trading card game. Each player has a companion Digimon in the battle area to attack the opponent. Your Digimon evolves, gets stronger, and gains new power! You win by beating your opponent's security (reducing your opponent's Security Area cards to zero) and delivering a knockout blow!""",
         price=47.97,
         added_by_user_id=1,
         category_id=games_id
@@ -35,7 +35,7 @@ def seed_products():
 
     model1 = Product(
         name='JR BEAT-MAGNUM PREMIUM',
-        description="""This is a Premium release in the Fully Cowled Mini 4WD series of the Beat-Magnum (original Item: 19421). This car was driven by hero Go Seiba in the popular Mini 4WD cartoon series "Let"s & Go!!". It utilizes the AR Chassis, which places great emphasis upon aerodynamics, also offering users a blend of durability, customization and ease of maintenance.""",
+        description="""This is a Premium release in the Fully Cowled Mini 4WD series of the Beat-Magnum. This car was driven by hero Go Seiba in the popular Mini 4WD cartoon series "Let"s & Go!!". It utilizes the AR Chassis, which places great emphasis upon aerodynamics, also offering users a blend of durability, customization and ease of maintenance.""",
         price=49.99,
         added_by_user_id=1,
         category_id=model_kit_id
@@ -43,14 +43,14 @@ def seed_products():
 
     game3 = Product(
         name='JENGA',
-        description="""Jenga is a game of physical and mental skill. Built on the simple premise of stacking blocks, Jenga engages players of all ages, across all cultures. Jenga\'s success rests on its solid play value. Players take turns to remove a block from a tower and balance it on top, creating a taller and increasingly unstable structure as the game progresses.""",
+        description="""Jenga is a game of physical and mental skill. Built on the simple premise of stacking blocks, Jenga engages players of all ages, across all cultures. Jenga's success rests on its solid play value. Players take turns to remove a block from a tower and balance it on top, creating a taller and increasingly unstable structure as the game progresses.""",
         price=15.99,
         added_by_user_id=1,
         category_id=games_id
     )
     game4 = Product(
         name='Throw Throw Avocado',
-        description="""The First Dodgeball Card Game - Collect Matching Sets Of Cards Faster Than Your Opponents While Simultaneously Ducking, Dodging And Throwing New Squishy Airborne Avocados. A Simple And Easy Game For Kids And Adults - Clear Some Space And Put Away The Antiques, Because You\'Ve Never Played A Party Game Quite Like This.""",
+        description="""The First Dodgeball Card Game - Collect Matching Sets Of Cards Faster Than Your Opponents While Simultaneously Ducking, Dodging And Throwing New Squishy Airborne Avocados. A Simple And Easy Game For Kids And Adults - Clear Some Space And Put Away The Antiques, Because You'Ve Never Played A Party Game Quite Like This.""",
         price=24.99,
         added_by_user_id=1,
         category_id=games_id
@@ -58,7 +58,7 @@ def seed_products():
 
     game5 = Product(
         name='Speed Stacks',
-        description="""The Digimon Card Game is a competitive trading card game. Each player has a companion Digimon in the battle area to attack the opponent. Your Digimon evolves, gets stronger, and gains new power! You win by beating your opponent\’s security (reducing your opponent’s Security Area cards to zero) and delivering a knockout blow!""",
+        description="""The Digimon Card Game is a competitive trading card game. Each player has a companion Digimon in the battle area to attack the opponent. Your Digimon evolves, gets stronger, and gains new power! You win by beating your opponent's security (reducing your opponent's Security Area cards to zero) and delivering a knockout blow!""",
         price=49.99,
         added_by_user_id=1,
         category_id=games_id

@@ -10,7 +10,7 @@ class Product(db.Model):
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(255), nullable=False)
-    description = db.Column(db.String(255), nullable=False)
+    description = db.Column(db.String(400), nullable=False)
     price = db.Column(db.Numeric(10, 2), nullable=False)
     post_date = db.Column(db.Date, nullable=False, default = datetime.utcnow())
     added_by_user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)#fk at the many side
