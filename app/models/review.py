@@ -27,3 +27,30 @@ class Review(db.Model):
     # Relationships - many side
     product = db.relationship("Product", back_populates="reviews")
     user = db.relationship("User", back_populates="reviews")
+
+def to_dict(self, include_user=False, include_product=False):
+    data = {
+        'id': self.id,
+        'product_id': self.product_id,
+        'user_id': self.user_id,
+        'review_text': self.review_text,
+        'rating': self.rating,
+        'review_date': self.review_date.strftime('%Y-%m-%d %H:%M:%S') if self.review_date else None,
+    }
+
+    if include_user and self.user:
+        data['user'] = {
+            'id': self.user.id,
+            'username': self.user.username,
+        }
+
+    if include_product and self.product:
+        data['product'] = {
+            'id': self.product.id,
+            'name': self.product.name,
+        }
+
+    if self.images:
+        data['images'] = [image.to_dict() for image in self.images] 
+
+    return data

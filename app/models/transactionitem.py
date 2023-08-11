@@ -16,3 +16,13 @@ class TransactionItem(db.Model):
     # relationship - many side
     transaction = db.relationship("Transaction", back_populates="transaction_items")
     product = db.relationship("Product", back_populates="transaction_items")
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'transaction_id': self.transaction_id,
+            'product_id': self.product_id,
+            'product_name': self.product.name, 
+            'quantity': self.quantity,
+            'price_at_time_of_purchase': float(self.price_at_time_of_purchase) if self.price_at_time_of_purchase else None,
+        }

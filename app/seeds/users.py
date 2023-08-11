@@ -7,13 +7,15 @@ def seed_users():
         username='Owner',
         email='owner@aa.io',
         password='owner',
-        profile_image_url='https://64.media.tumblr.com/1b92dccaf54b1bed9599a2e97167760d/a8a000f166be391d-d8/s540x810/26bdc54fd0f2c8b556032a871fd43a678d7dd3ed.jpg'
+        profile_image_url='https://64.media.tumblr.com/1b92dccaf54b1bed9599a2e97167760d/a8a000f166be391d-d8/s540x810/26bdc54fd0f2c8b556032a871fd43a678d7dd3ed.jpg',
+        role='admin'
     )
     demo = User(
         username ='Demo',
         email ='demo@aa.io',
         password ='password',
-        profile_image_url = 'https://www.alaska.edu/_resources/images/placeholders/profile.png'
+        profile_image_url = 'https://www.alaska.edu/_resources/images/placeholders/profile.png',
+        role='editor'
     )
     marnie = User(
         username='marnie',

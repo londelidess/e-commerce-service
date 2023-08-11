@@ -14,3 +14,16 @@ class Transaction(db.Model):
 
     # relationship - one side
     transaction_items = db.relationship("TransactionItem", back_populates="transaction")
+
+    def to_dict(self, include_items=False):
+        data = {
+            'id': self.id,
+            'user_id': self.user_id,
+            'timestamp': self.timestamp.strftime('%Y-%m-%d %H:%M:%S') if self.timestamp else None,
+            'total_amount': float(self.total_amount) if self.total_amount else None,
+        }
+
+        if include_items:
+            data['items'] = [item.to_dict() for item in self.transaction_items]
+
+        return data

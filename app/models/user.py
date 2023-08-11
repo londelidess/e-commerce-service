@@ -14,6 +14,8 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
     profile_image_url = db.Column(db.String(255), nullable=True)
+    role = db.Column(db.String, default='user')
+
 
     #relationship one side
     products = db.relationship("Product", back_populates="user")

@@ -31,3 +31,21 @@ class Product(db.Model):
     cart_items = db.relationship("ShoppingCartItem", back_populates="product")
     transaction_items = db.relationship("TransactionItem", back_populates="product")
     reviews = db.relationship("Review", back_populates="product")
+
+
+    def to_dict(self, include_category=False):
+        data = {
+            'id': self.id,
+            'name': self.name,
+            'description': self.description,
+            'price': self.price if self.price else None,
+            'post_date': self.post_date.strftime('%Y-%m-%d') if self.post_date else None,
+            'added_by_user_id': self.added_by_user_id,
+            'category_id': self.category_id,
+            'images':[image.to_dict() for image in self.images] if self.images else [],
+            'category_name': self.category.name if self.category else None,
+        }
+        # if include_category and self.category:
+        #     data['category_name'] = self.category.name
+
+        return data
