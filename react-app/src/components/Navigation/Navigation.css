@@ -7,11 +7,25 @@
 }
 
 .logo {
-  width: 30px;
+  width: 200px;
   height: auto;
   transition: transform 0.2s ease-in-out;
 }
 
 .logo:hover {
-  transform: rotate(-20deg);
+  transform: rotate(-5deg);
+}
+.nav-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 0 1rem;
+}
+
+.profile-button-container {
+  position: absolute;
+  right: 1rem;  /* adjust this to position the button */
+  top: 50%;
+  transform: translateY(-50%);
 }
