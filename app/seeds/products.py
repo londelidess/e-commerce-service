@@ -10,7 +10,7 @@ def seed_products():
 
     game1 = Product(
         name='Camel Up',
-        description="""In Camel Up, up to eight players bet on five racing camels, trying to suss out which will place first and second in a quick race around a pyramid. The earlier you place your bet, the more you can win — should you guess correctly, of course. Camels don't run neatly, however, sometimes landing on top of another one and being carried toward the finish line. Who's going to run when? That all depends on how the dice come out of the pyramid dice shaker, which releases one die at a time when players pause from their bets long enough to see who's actually moving!""",
+        description="""In Camel Up, up to eight players bet on five racing camels, trying to suss out which will place first and second in a quick race around a pyramid. The earlier you place your bet, the more you can win — should you guess correctly, of course. Camels don't run neatly, however, sometimes landing on top of another one and being carried toward the finish line. """,
         price=31.99,
         added_by_user_id=1,
         category_id=games_id
@@ -27,7 +27,7 @@ def seed_products():
 
     puzzle1 = Product(
         name='Pokemon Jigsaw Puzzle',
-        description="""Unleash the power and nostalgia of Pokémon through a captivating jigsaw puzzle collection! This bundle features three meticulously crafted 300-piece puzzles, each unveiling a distinct, vibrant Pokémon scene. Measuring 11.5 x 15 inches upon completion, they're perfect for trainers and puzzle enthusiasts of all ages. But that's not all! Extend your puzzling horizon with our special 500-piece panoramic puzzle, offering a unique, stretched-out view of the dynamic Pokémon world, finalizing at dimensions of 9 x 27 inches. Whether piecing together a familiar Pokémon battle or traversing unknown terrains, every fragment promises to immerse you deeper into this enchanting universe. As a bonus, each set comes with a helpful insert, ensuring that your puzzle-building adventure is as smooth as it is thrilling. Dive into the challenge and rekindle your love for Pokémon, one puzzle piece at a time!""",
+        description="""Unleash the power and nostalgia of Pokémon through a captivating jigsaw puzzle collection! Dive into the challenge and rekindle your love for Pokémon, one puzzle piece at a time!""",
         price=19.18,
         added_by_user_id=1,
         category_id=puzzles_id
