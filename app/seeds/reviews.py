@@ -1,5 +1,6 @@
 from datetime import datetime
-from app.models import db, Product, Review
+from app.models import db, Product, Review, environment, SCHEMA
+from sqlalchemy.sql import text
 
 def seed_reviews():
     camel_up = Product.query.filter_by(name='Camel Up').first()

@@ -50,7 +50,7 @@ def seed_products():
     )
     game4 = Product(
         name='Throw Throw Avocado',
-        description="""The First Dodgeball Card Game - Collect Matching Sets Of Cards Faster Than Your Opponents While Simultaneously Ducking, Dodging And Throwing New Squishy Airborne Avocados. A Simple And Easy Game For Kids And Adults - Clear Some Space And Put Away The Antiques, Because You\'Ve Never Played A Party Game Quite Like This. The Cards You Collect Earn You Points, But You Lose Points When You Get Hit By Squishy Avocados.""",
+        description="""The First Dodgeball Card Game - Collect Matching Sets Of Cards Faster Than Your Opponents While Simultaneously Ducking, Dodging And Throwing New Squishy Airborne Avocados. A Simple And Easy Game For Kids And Adults - Clear Some Space And Put Away The Antiques, Because You\'Ve Never Played A Party Game Quite Like This.""",
         price=24.99,
         added_by_user_id=1,
         category_id=games_id
