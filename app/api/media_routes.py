@@ -17,22 +17,13 @@ def add_media(owner_id):
   form = MediaForm()
   form['csrf_token'].data = request.cookies['csrf_token']
 
-  owner_type = request.form.get('owner_type')
+  product = Product.query.get(product_id)
+  if not product:
+    return {"error": "Product not found!"}, 404
   # img = request.files.get('media_file')
   # print(img)
   valid_owner_types = ["product", "review"]
 
-  if owner_type not in valid_owner_types:
-    return {"error": "Invalid owner type!"}, 400
-
-  entity = None
-  if owner_type == "product":
-    entity = Product.query.get(owner_id)
-  elif owner_type == "review":
-    entity = Review.query.get(owner_id)
-
-  if not entity:
-    return {"error": f"{owner_type.capitalize()} not found!"}, 404
   # print(form.validate_on_submit())
   # print(form.data["media_file"])
   if form.validate_on_submit():
@@ -53,10 +44,9 @@ def add_media(owner_id):
       media_type = "image"
 
     new_media = Media(
-      owner_id=owner_id,
+      product_id=product_id,
       media_type=media_type,
-      media_url=upload["url"],
-      owner_type=owner_type
+      media_url=upload["url"]
       )
 
     db.session.add(new_media)
