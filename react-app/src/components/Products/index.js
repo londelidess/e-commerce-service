@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAllProducts } from "../../store/product";
 import ProductItem from "./ProductItem";
-import './landing.css';
+import './products.css';
 
 function ProductLandingPage() {
   const dispatch = useDispatch();
