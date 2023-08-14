@@ -25,7 +25,6 @@
 
 .profile-button-container {
   position: absolute;
-  right: 1rem;  /* adjust this to position the button */
-  top: 50%;
+  right: 1rem;  
   transform: translateY(-50%);
 }

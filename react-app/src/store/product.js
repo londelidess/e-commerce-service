@@ -21,7 +21,7 @@ const addProduct = (product) => ({
   product,
 });
 
-const updateProductAction = (product) => ({
+const updateProduct = (product) => ({
   type: UPDATE_PRODUCT,
   product,
 });
@@ -85,7 +85,7 @@ export const updateProductThunk = (productId, productData) => async (dispatch) =
   }
 
     const updatedProduct = await response.json();
-    dispatch(updateProductAction(updatedProduct));
+    dispatch(updateProduct(updatedProduct));
 
 };
 
@@ -105,7 +105,7 @@ export const deleteProductByIdThunk = (productId) => async (dispatch) => {
 // Reducer
 const initialState = {
   allProducts: {},
-  singleProduct: {},
+  singleProduct: [],
 };
 
 export default function productsReducer(state = initialState, action) {
@@ -117,7 +117,7 @@ export default function productsReducer(state = initialState, action) {
       });
       return { ...state, allProducts };
     case SET_PRODUCT:
-      return { ...state, singleProduct: { [action.product.id]: action.product } };
+        return { ...state, singleProduct: action.product };
     case ADD_PRODUCT:
       return { ...state, allProducts: { ...state.allProducts, [action.product.id]: action.product } };
     case UPDATE_PRODUCT:

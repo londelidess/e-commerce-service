@@ -8,9 +8,9 @@ from flask import current_app as app
 
 media_routes = Blueprint("medias", __name__)
 
-@media_routes.route("/<int:owner_id>", methods=["POST"])
+@media_routes.route("/<int:product_id>", methods=["POST"])
 @login_required
-def add_media(owner_id):
+def add_media(product_id):
   '''
   add a media to a product or media
   '''
