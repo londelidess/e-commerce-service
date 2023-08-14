@@ -11,22 +11,29 @@ function Navigation({ isLoaded }) {
 
   return (
     <div className="nav-container">
-      <div>
-        <NavLink exact to="/">
-          <img className="logo" src={logo} alt="Home" />
-        </NavLink>
+    <div className="logo-and-menu">
+      <NavLink exact to="/">
+        <img className="logo" src={logo} alt="Home" />
+      </NavLink>
+      <div className="menu-links">
+        <NavLink to="/about">About</NavLink>
+        <NavLink to="/sell">Sell</NavLink>
+        <NavLink to="/products">Shop</NavLink>
+        <NavLink to="/press">Press</NavLink>
+        <NavLink to="/contact">Contact</NavLink>
+      </div>
       </div>
       {isLoaded && (
         <div className="profile-section">
           <div className="social-icons">
             {/* <a href="https://www.instagram.com/your_username/" target="_blank" rel="noopener noreferrer">
-              <FaInstagram />
+              <FaInstagram  style={{ color: '#DAA520'  }} />
             </a> */}
             <a href="https://www.linkedin.com/in/makoto-doi/" target="_blank" rel="noopener noreferrer">
-              <FaLinkedin />
+              <FaLinkedin  style={{ color: '#DAA520'  }} />
             </a>
             <a href="https://www.facebook.com/profile.php?id=100004164127853" target="_blank" rel="noopener noreferrer">
-              <FaFacebook />
+              <FaFacebook  style={{ color: '#DAA520'  }} />
             </a>
           </div>
           <div className="profile-button-container">

@@ -1,6 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import DeleteProductFormModal from "./DeleteProductFormModal";
+import "./products.css";
 
 const ProductManageItem = ({ product, sessionUser }) => {
 
@@ -9,10 +10,12 @@ const ProductManageItem = ({ product, sessionUser }) => {
       <li title={product.name} className="outer-container-Update-Delete-Buttons">
         <Link to={`/products/${product.id}`}>
           <div className="product-item">
-            <div
-              className="product-preview"
-              style={{ backgroundImage: `url(${product.images[0]?.media_url})` }}
-            ></div>
+            <div className="product-preview" title={product.name}>
+              <img
+                src={product.images[0]?.media_url}
+                alt={product.name}
+              />
+            </div>
             <div className="product-details">
               <p style={{ fontWeight: 'bold' }}>${parseFloat(product.price).toFixed(2)}</p>
             </div>

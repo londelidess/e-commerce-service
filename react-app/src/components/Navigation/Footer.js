@@ -1,6 +1,6 @@
 import logo from "../../images/playbox-high-resolution-logo-black-on-transparent-background.png";
 import { FaInstagram, FaLinkedin, FaFacebook } from 'react-icons/fa';
-import "./Navigation.css";
+import "./Footer.css";
 
 function Footer() {
     return (

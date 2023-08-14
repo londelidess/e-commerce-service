@@ -15,7 +15,7 @@ console.log(productsArray)
   }, [dispatch]);
 
   return (
-    <section>
+    <section className="landing-page">
       <ul className="product-grid">
         {productsArray.map((product) => (
           <ProductItem product={product} key={product.id} />
