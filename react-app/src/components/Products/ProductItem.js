@@ -6,11 +6,6 @@ const ProductItem = ({ product }) => {
       <li title={product.name}>
         <Link to={`/products/${product.id}`}>
           <div className="product-item">
-            {/* <div
-                className="product-preview"
-                style={{ backgroundImage: `url(${product.images[0]?.media_url})` }}
-                alt={product.name}
-            ></div> */}
         <div className="product-preview" title={product.name}>
              <img
              src={product.images[0]?.media_url}

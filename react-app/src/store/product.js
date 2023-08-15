@@ -62,7 +62,7 @@ export const createProductThunk = (productData) => async (dispatch) => {
   });
 
   const data = await response.json();
-  console.log("This is post from thunkCreate", data);
+  console.log("This is post returning data from thunkCreate", data);
 
   if (!response.ok) {
 
@@ -73,8 +73,8 @@ export const createProductThunk = (productData) => async (dispatch) => {
 
     throw new Error(data.message || "Failed to create the product.");
   }
-
   dispatch(addProduct(data));
+  return data.id
 };
 
 export const updateProductThunk = (productId, productData) => async (dispatch) => {

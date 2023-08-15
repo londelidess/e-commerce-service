@@ -16,7 +16,7 @@ const ProductManage = () => {
   const productsArray = Object.values(productsObject);
 
     // console.log(productsArray)
-    console.log(sessionUser?.role)
+    // console.log(sessionUser?.role)
 
     useEffect(() => {
         dispatch(fetchAllProducts()).then(() => {

@@ -56,11 +56,11 @@ def add_media(product_id):
   return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
-@media_routes.route("/<int:owner_id>", methods=["DELETE"])
+@media_routes.route("/<int:media_id>", methods=["DELETE"])
 @login_required
-def delete_media(owner_id):
+def delete_media(media_id):
   """delete a media"""
-  media_to_delete = Media.query.get(owner_id)
+  media_to_delete = Media.query.get(media_id)
   file_delete = remove_file_from_s3(media_to_delete.media_url)
   if file_delete is True:
     db.session.delete(media_to_delete)

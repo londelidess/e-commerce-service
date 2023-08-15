@@ -16,6 +16,8 @@ const CreateProductForm = () => {
     const [categoryId, setCategoryId] = useState("");
     const [categories, setCategories] = useState([]);
     const [image, setImage] = useState(null);
+    const [image2, setImage2] = useState(null);
+    const [image3, setImage3] = useState(null);
     const [touched, setTouched] = useState({
         name: false,
         description: false,
@@ -95,6 +97,18 @@ const CreateProductForm = () => {
         }
     }, [categoryId, touched.categoryId]);
 
+    const handleImageChange = (setImageFunction, e) => {
+        const file = e.target.files[0];
+        const maxSize = 5 * 1024 * 1024; // 5 MB
+
+        if (file.size > maxSize) {
+            alert("File is too large. Please upload a file smaller than 5MB.");
+            return;
+        }
+
+        setImageFunction(file);
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         await dispatch(fetchAllProducts());
@@ -110,16 +124,18 @@ const CreateProductForm = () => {
             price,
             category_id: categoryId,
         };
-        console.log('productData',productData)
-
+        // console.log('productData',productData)
+        console.log("Submitting form...");
         try {
 
-            await dispatch(createProductThunk(productData));
+            const productId = await dispatch(createProductThunk(productData));
 
-            if (image) {
-                const formData = new FormData();
-                formData.append('image', image);
-                await dispatch(thunkAddMediaToProduct(formData));
+            const images = [image, image2, image3];
+
+            for (let img of images) {
+                if (img && productId) {
+                    await dispatch(thunkAddMediaToProduct(productId, img));
+                }
             }
 
             history.push("/products/manage");
@@ -192,21 +208,21 @@ const CreateProductForm = () => {
                 Preview Image:
                 <input
                     type="file"
-                    onChange={(e) => setImage(e.target.files[0])}
+                    onChange={(e) => handleImageChange(setImage, e)}
                 />
             </label>
             <label>
                 Image2:
                 <input
                     type="file"
-                    onChange={(e) => setImage(e.target.files[0])}
+                    onChange={(e) => handleImageChange(setImage2, e)}
                 />
             </label>
             <label>
                 Image3:
                 <input
                     type="file"
-                    onChange={(e) => setImage(e.target.files[0])}
+                    onChange={(e) => handleImageChange(setImage3, e)}
                 />
             </label>
           <button type="submit" disabled={Object.keys(errors).length > 0}>Create Product</button>
