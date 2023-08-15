@@ -6,15 +6,15 @@
   }
 
   .footer-container {
-    background-color: #ADD8E6; /* Light blue */
-    color: #000000; /* Black */
+    background-color: #ADD8E6;
+    color: #000000;
     padding: 20px 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 
-    margin-top:20px;
+    /* margin-top:20px; */
   }
 
   .footer-content {

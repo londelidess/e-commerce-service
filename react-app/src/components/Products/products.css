@@ -113,7 +113,7 @@
     list-style: none;
     padding: 0;
     max-width: 1000px;
-    margin: 0 auto;
+    margin: 20px auto ;
 }
 
 .product-preview {
@@ -149,6 +149,11 @@
 
 
 /* managa */
+.manage-section{
+    margin:10px;
+
+}
+
 .manage-products {
     margin-bottom: 20px;
 }

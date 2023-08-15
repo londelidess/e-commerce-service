@@ -18,7 +18,7 @@ def seed_medias():
     media3 = Media(
         product_id=2,
         media_type='image',
-        media_url='https://www.reddit.com/media?url=https%3A%2F%2Fi.redd.it%2Fi3tc75gzxqq91.jpg',
+        media_url='https://i5.walmartimages.com/asr/24fe50b3-17d7-42d9-b28f-bb90facea218.5b4443498690b33c9b6ea0977063e803.jpeg?odnHeight=2000&odnWidth=2000&odnBg=FFFFFF',
 
     )
     #Pokemon Jigsaw Puzzlen
@@ -77,7 +77,7 @@ def seed_medias():
     media12= Media(
         product_id=6,
         media_type='image',
-        media_url='https://m.media-amazon.com/images/I/61swACMaT-L._AC_SL1000_.jpg',
+        media_url='https://m.media-amazon.com/images/I/714V0dHQ7FL._AC_SL1500_.jpg',
 
     )
 

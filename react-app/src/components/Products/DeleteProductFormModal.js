@@ -1,7 +1,8 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
-import { deleteProductByIdThunk } from "../../store/product";
+import { deleteProductByIdThunk,fetchAllProducts } from "../../store/product";
+import { thunkAddMediaToPost } from "../../store/media";
 
 function DeleteProductFormModal({ productId }) {
   const dispatch = useDispatch();
@@ -9,8 +10,9 @@ function DeleteProductFormModal({ productId }) {
   const sessionUser = useSelector((state) => state.session.user);
 
   const handleDelete = async () => {
+    console.log(productId)
     await dispatch(deleteProductByIdThunk(productId));
-    // await dispatch(fetchDetailedSpot(spotId))
+    await dispatch(fetchAllProducts())
     closeModal();
   };
 

@@ -8,7 +8,6 @@ product_routes = Blueprint('products', __name__)
 
 allowed_roles = ('admin', 'editor')
 
-
 @product_routes.route('/', methods=['GET'])
 def get_all_products():
     """route to fetch and display all products"""
@@ -23,12 +22,11 @@ def get_product(product_id):
         return jsonify(product.to_dict())
     return jsonify({"message": "Product not found"}), 404
 
-
 @product_routes.route('/categories', methods=['GET'])
 def get_categories():
     """get all categories"""
     categories = Category.query.all()
-    return jsonify([category.name for category in categories])
+    return jsonify([{"id": category.id, "name": category.name} for category in categories])
 
 @product_routes.route('/', methods=['POST'])
 @login_required

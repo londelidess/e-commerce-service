@@ -1,11 +1,3 @@
-li {
-  list-style: none;
-}
-
-a {
-  text-decoration: none;
-}
-
 
 .profile-dropdown {
   position: absolute;
@@ -27,9 +19,9 @@ a {
 
 .nav-container {
   display: flex;
-  justify-content: center; /* Center the children */
+  justify-content: center;
   align-items: center;
-  position: relative; /* This allows absolute positioning of children */
+  position: relative;
   padding: 0 1rem;
   margin-bottom:20px;
 }
@@ -38,11 +30,32 @@ a {
   display: flex;
   align-items: center;
   gap: 10px;
-  position: absolute; /* Position this section absolutely */
-  right: 1rem; /* Push it to the right */
+  position: absolute;
+  right: 1rem;
+}
+
+.social-icons{
+  display: flex;
+  gap: 10px;
 }
 
 /* profile button */
+.icon-button {
+  background: none;
+  border: none;
+  padding: 15px 30px;
+  font-size: 1.5em;
+  margin: 0;
+  outline: none;
+}
+
+.profile-image-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
 .profile-container{
   position: relative;
   display: inline-block;
@@ -62,6 +75,7 @@ a {
 
   z-index: 1000;
 }
+
 .logo-and-menu {
   display: flex;
   flex-direction: column;
@@ -73,4 +87,16 @@ a {
   justify-content: center;
   gap: 40px;
   margin-top: 10px;
+}
+
+.logged-in.icon-button {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  outline: none;
+}
+
+.logged-in.icon-button:focus {
+  outline: none;
 }

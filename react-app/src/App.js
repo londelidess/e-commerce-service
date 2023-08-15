@@ -5,12 +5,15 @@ import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
+import HomePage from './components/HomePage';
 import Footer from "./components/Navigation/Footer"
 import Products from "./components/Products"
 import CreateProductForm from "./components/Products/CreateProductForm";
 import UpdateProductForm from "./components/Products/UpdateProductForm";
 import ProductManage from "./components/Products/ProductManage"
 import ProductShow from "./components/Products/ProductShow";
+
+// import PrivateRoute from "./PrivateRoute"
 
 function App() {
   const dispatch = useDispatch();
@@ -36,6 +39,7 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
+          <Route exact path="/" component={HomePage} />
         </Switch>
       )}
       <Footer />

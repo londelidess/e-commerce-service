@@ -1,5 +1,5 @@
 import logo from "../../images/playbox-high-resolution-logo-black-on-transparent-background.png";
-import { FaInstagram, FaLinkedin, FaFacebook } from 'react-icons/fa';
+import {  FaLinkedin, FaFacebook } from 'react-icons/fa';
 import "./Footer.css";
 
 function Footer() {
@@ -10,9 +10,9 @@ function Footer() {
             <img src={logo} alt="Footer Logo" />
           </div>
           <div className="footer-links">
-            <a href="#">About Us</a>
+            {/* <a href="#">About Us</a>
             <a href="#">Contact</a>
-            <a href="#">Privacy Policy</a>
+            <a href="#">Privacy Policy</a> */}
           </div>
           <div className="footer-social-icons">
             {/* <a href="https://www.instagram.com/your_username/" target="_blank" rel="noopener noreferrer">

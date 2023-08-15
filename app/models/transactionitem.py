@@ -11,7 +11,7 @@ class TransactionItem(db.Model):
     transaction_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('transactions.id')), nullable=False)
     product_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('products.id')), nullable=False)
     quantity = db.Column(db.Integer)
-    price_at_time_of_purchase = db.Column(db.Float(10, 2))
+    price_at_time_of_purchase = db.Column(db.Numeric(precision=10, scale=2))
 
     # relationship - many side
     transaction = db.relationship("Transaction", back_populates="transaction_items")

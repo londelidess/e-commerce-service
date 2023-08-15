@@ -1,7 +1,7 @@
-import React from "react";
+
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { FaInstagram, FaLinkedin, FaFacebook } from 'react-icons/fa';
+import {  FaLinkedin, FaFacebook } from 'react-icons/fa';
 import ProfileButton from "./ProfileButton";
 import "./Navigation.css";
 import logo from "../../images/playbox-high-resolution-logo-black-on-transparent-background.png";
@@ -27,13 +27,13 @@ function Navigation({ isLoaded }) {
         <div className="profile-section">
           <div className="social-icons">
             {/* <a href="https://www.instagram.com/your_username/" target="_blank" rel="noopener noreferrer">
-              <FaInstagram  style={{ color: '#DAA520'  }} />
+              <FaInstagram  style={{ color: 'gold'  }} />
             </a> */}
             <a href="https://www.linkedin.com/in/makoto-doi/" target="_blank" rel="noopener noreferrer">
-              <FaLinkedin  style={{ color: '#DAA520'  }} />
+              <FaLinkedin className="nav-linkedin" style={{ color: 'gold'  }} />
             </a>
             <a href="https://www.facebook.com/profile.php?id=100004164127853" target="_blank" rel="noopener noreferrer">
-              <FaFacebook  style={{ color: '#DAA520'  }} />
+              <FaFacebook className="nav-facebook" style={{ color: 'gold'  }} />
             </a>
           </div>
           <div className="profile-button-container">

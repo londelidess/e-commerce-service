@@ -14,7 +14,7 @@ export const deleteMediaAction = (mediaId) => ({
 });
 
 
-export const thunkAddMediaToPost = (ownerId, mediaFile) => async (dispatch) => {
+export const thunkAddMediaToProduct = (ownerId, mediaFile) => async (dispatch) => {
     const formData = new FormData();
     formData.append('media_file', mediaFile);
 

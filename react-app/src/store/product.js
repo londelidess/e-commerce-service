@@ -48,26 +48,33 @@ export const fetchProductById = (productId) => async (dispatch) => {
   }
 };
 
+// const csrfCookie = document.cookie.split('; ').find(row => row.startsWith('csrf_token='));
+// const csrfToken = csrfCookie ? csrfCookie.split('=')[1] : null;
 export const createProductThunk = (productData) => async (dispatch) => {
-  const response = await fetch("/api/products", {
+  const response = await fetch("/api/products/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      // "X-CSRFToken": csrfToken
     },
     body: JSON.stringify(productData),
+    credentials: 'include'
   });
+
+  const data = await response.json();
+  console.log("This is post from thunkCreate", data);
+
   if (!response.ok) {
-    const errorData = await response.json();
-    throw new Error(errorData.message || "Failed to create the product.");
+
+    if (data.errors) {
+      const formErrors = Object.values(data.errors).flat();
+      throw new Error(formErrors.join("\n"));
+    }
+
+    throw new Error(data.message || "Failed to create the product.");
   }
-//   if (!response.ok) {
-//     throw new Error("Failed to create the product.");
-//   }
 
-    const product = await response.json();
-    console.log("This is post from thunkCreate", product)
-    dispatch(addProduct(product));
-
+  dispatch(addProduct(data));
 };
 
 export const updateProductThunk = (productId, productData) => async (dispatch) => {
@@ -77,6 +84,7 @@ export const updateProductThunk = (productId, productData) => async (dispatch) =
       "Content-Type": "application/json",
     },
     body: JSON.stringify(productData),
+    credentials: 'include'
   });
 
   if (!response.ok) {

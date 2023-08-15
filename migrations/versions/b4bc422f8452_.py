@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 670901b9df80
+Revision ID: b4bc422f8452
 Revises:
-Create Date: 2023-08-11 16:37:46.259454
+Create Date: 2023-08-14 22:52:41.238179
 
 """
 from alembic import op
@@ -12,8 +12,9 @@ import os
 environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get("SCHEMA")
 
+
 # revision identifiers, used by Alembic.
-revision = '670901b9df80'
+revision = 'b4bc422f8452'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -77,7 +78,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
     sa.Column('product_id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
-    sa.Column('review_text', sa.Text(), nullable=True),
+    sa.Column('review_text', sa.String(), nullable=True),
     sa.Column('rating', sa.Integer(), nullable=True),
     sa.Column('review_date', sa.DateTime(), nullable=True),
     sa.ForeignKeyConstraint(['product_id'], ['products.id'], ),
@@ -89,7 +90,7 @@ def upgrade():
     sa.Column('transaction_id', sa.Integer(), nullable=False),
     sa.Column('product_id', sa.Integer(), nullable=False),
     sa.Column('quantity', sa.Integer(), nullable=True),
-    sa.Column('price_at_time_of_purchase', sa.Float(precision=10, asdecimal=2), nullable=True),
+    sa.Column('price_at_time_of_purchase', sa.Numeric(precision=10, scale=2), nullable=True),
     sa.ForeignKeyConstraint(['product_id'], ['products.id'], ),
     sa.ForeignKeyConstraint(['transaction_id'], ['transactions.id'], ),
     sa.PrimaryKeyConstraint('id')
