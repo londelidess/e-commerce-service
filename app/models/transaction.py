@@ -10,7 +10,7 @@ class Transaction(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     timestamp = db.Column(db.DateTime, default=datetime.utcnow())
-    total_amount = db.Column(db.Numeric(10, 2))
+    total_amount = db.Column(db.Numeric(precision=10, scale=2))
 
     # relationship - one side
     transaction_items = db.relationship("TransactionItem", back_populates="transaction")

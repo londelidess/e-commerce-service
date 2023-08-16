@@ -20,6 +20,7 @@ class User(db.Model, UserMixin):
     #relationship one side
     products = db.relationship("Product", back_populates="user")
     reviews = db.relationship("Review", back_populates="user")
+    cart_items = db.relationship("ShoppingCartItem", back_populates="user")
 
     @property
     def password(self):
@@ -37,5 +38,6 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'username': self.username,
             'email': self.email,
-            'profile_image_url': self.profile_image_url
+            'profile_image_url': self.profile_image_url,
+            'role':self.role
         }

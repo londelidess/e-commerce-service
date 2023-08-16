@@ -11,7 +11,7 @@ class Review(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     product_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('products.id')), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
-    review_text = db.Column(db.Text)
+    review_text = db.Column(db.String)
     rating = db.Column(db.Integer)
     review_date = db.Column(db.DateTime, default=datetime.utcnow)
 

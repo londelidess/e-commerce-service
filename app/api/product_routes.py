@@ -6,8 +6,7 @@ from ..forms import ProductForm
 
 product_routes = Blueprint('products', __name__)
 
-allowed_roles = ('admin', 'editor')
-
+# allowed_roles = ('admin', 'editor')
 
 @product_routes.route('/', methods=['GET'])
 def get_all_products():
@@ -23,18 +22,17 @@ def get_product(product_id):
         return jsonify(product.to_dict())
     return jsonify({"message": "Product not found"}), 404
 
-
 @product_routes.route('/categories', methods=['GET'])
 def get_categories():
     """get all categories"""
     categories = Category.query.all()
-    return jsonify([category.name for category in categories])
+    return jsonify([{"id": category.id, "name": category.name} for category in categories])
 
 @product_routes.route('/', methods=['POST'])
 @login_required
 def create_product():
-    if current_user.role not in allowed_roles:
-        return jsonify({"message": "Permission denied."}), 403
+    # if current_user.role not in allowed_roles:
+    #     return jsonify({"message": "Permission denied."}), 403
 
     form = ProductForm()
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -67,8 +65,8 @@ def update_product(product_id):
     if not product:
         return jsonify({"message": "Product not found"}), 404
 
-    if current_user.role not in allowed_roles:
-        return jsonify({"message": "Permission denied."}), 403
+    # if current_user.role not in allowed_roles:
+    #     return jsonify({"message": "Permission denied."}), 403
 
 
     form = ProductForm()
@@ -96,8 +94,8 @@ def delete_product(product_id):
     if not product:
         return jsonify({"message": "Product not found"}), 404
 
-    if current_user.role not in allowed_roles:
-        return jsonify({"message": "Permission denied."}), 403
+    # if current_user.role not in allowed_roles:
+    #     return jsonify({"message": "Permission denied."}), 403
 
     db.session.delete(product)
     db.session.commit()

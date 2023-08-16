@@ -6,5 +6,4 @@ from ..api.AWS_helpers import ALLOWED_EXTENSIONS
 
 class MediaForm(FlaskForm):
   media_file = FileField("Image File", validators=[FileRequired(), FileAllowed(list(ALLOWED_EXTENSIONS))])
-  owner_type = StringField("Owner Type")
   submit = SubmitField("Submit")

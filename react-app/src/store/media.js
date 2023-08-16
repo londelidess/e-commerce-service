@@ -13,13 +13,13 @@ export const deleteMediaAction = (mediaId) => ({
     payload: mediaId
 });
 
-
-export const thunkAddMediaToPost = (ownerId, mediaFile) => async (dispatch) => {
+// Thunks
+export const thunkAddMediaToProduct = (productId, mediaFile) => async (dispatch) => {
     const formData = new FormData();
     formData.append('media_file', mediaFile);
 
     try {
-        const response = await fetch(`/api/medias/${ownerId}`, {
+        const response = await fetch(`/api/medias/${productId}`, {
             method: "POST",
             body: formData
         });

@@ -21,7 +21,7 @@ const addProduct = (product) => ({
   product,
 });
 
-const updateProductAction = (product) => ({
+const updateProduct = (product) => ({
   type: UPDATE_PRODUCT,
   product,
 });
@@ -44,30 +44,39 @@ export const fetchProductById = (productId) => async (dispatch) => {
   const response = await fetch(`/api/products/${productId}`);
   if (response.ok) {
     const product = await response.json();
+    console.log('fetchProductById res in thunk',product)
     dispatch(setProduct(product));
+    return product;
   }
 };
 
+// const csrfCookie = document.cookie.split('; ').find(row => row.startsWith('csrf_token='));
+// const csrfToken = csrfCookie ? csrfCookie.split('=')[1] : null;
 export const createProductThunk = (productData) => async (dispatch) => {
-  const response = await fetch("/api/products", {
+  const response = await fetch("/api/products/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      // "X-CSRFToken": csrfToken
     },
     body: JSON.stringify(productData),
+    credentials: 'include'
   });
+
+  const data = await response.json();
+  console.log("This is post returning data from thunkCreate", data);
+
   if (!response.ok) {
-    const errorData = await response.json();
-    throw new Error(errorData.message || "Failed to create the product.");
+
+    if (data.errors) {
+      const formErrors = Object.values(data.errors).flat();
+      throw new Error(formErrors.join("\n"));
+    }
+
+    throw new Error(data.message || "Failed to create the product.");
   }
-//   if (!response.ok) {
-//     throw new Error("Failed to create the product.");
-//   }
-
-    const product = await response.json();
-    console.log("This is post from thunkCreate", product)
-    dispatch(addProduct(product));
-
+  dispatch(addProduct(data));
+  return data.id
 };
 
 export const updateProductThunk = (productId, productData) => async (dispatch) => {
@@ -77,6 +86,7 @@ export const updateProductThunk = (productId, productData) => async (dispatch) =
       "Content-Type": "application/json",
     },
     body: JSON.stringify(productData),
+    credentials: 'include'
   });
 
   if (!response.ok) {
@@ -85,7 +95,7 @@ export const updateProductThunk = (productId, productData) => async (dispatch) =
   }
 
     const updatedProduct = await response.json();
-    dispatch(updateProductAction(updatedProduct));
+    dispatch(updateProduct(updatedProduct));
 
 };
 
@@ -105,7 +115,7 @@ export const deleteProductByIdThunk = (productId) => async (dispatch) => {
 // Reducer
 const initialState = {
   allProducts: {},
-  singleProduct: {},
+  singleProduct: [],
 };
 
 export default function productsReducer(state = initialState, action) {
@@ -117,7 +127,7 @@ export default function productsReducer(state = initialState, action) {
       });
       return { ...state, allProducts };
     case SET_PRODUCT:
-      return { ...state, singleProduct: { [action.product.id]: action.product } };
+        return { ...state, singleProduct: action.product };
     case ADD_PRODUCT:
       return { ...state, allProducts: { ...state.allProducts, [action.product.id]: action.product } };
     case UPDATE_PRODUCT:

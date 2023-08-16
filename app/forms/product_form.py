@@ -12,3 +12,4 @@ class ProductForm(FlaskForm):
     # added_by_user_id = SelectField("User", choices=[])
     category_id = SelectField("Category", choices=[])
     submit = SubmitField("Save Product")
+

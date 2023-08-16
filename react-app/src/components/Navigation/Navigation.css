@@ -1,3 +1,4 @@
+
 .profile-dropdown {
   position: absolute;
 }
@@ -15,17 +16,87 @@
 .logo:hover {
   transform: rotate(-5deg);
 }
+
 .nav-container {
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
   padding: 0 1rem;
+  margin-bottom:20px;
 }
 
-.profile-button-container {
+.profile-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   position: absolute;
-  right: 1rem;  /* adjust this to position the button */
-  top: 50%;
-  transform: translateY(-50%);
+  right: 1rem;
+}
+
+.social-icons{
+  display: flex;
+  gap: 10px;
+}
+
+/* profile button */
+.icon-button {
+  background: none;
+  border: none;
+  padding: 15px 30px;
+  font-size: 1.5em;
+  margin: 0;
+  outline: none;
+}
+
+.profile-image-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile-container{
+  position: relative;
+  display: inline-block;
+
+}
+
+.profile-dropdown{
+  left: 0;
+  transform: translateX(-50%);
+  position: absolute;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+
+  background-color: #f9f9f9;
+  border-radius: 4px;
+
+  z-index: 1000;
+}
+
+.logo-and-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.menu-links {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 10px;
+}
+
+.logged-in.icon-button {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  outline: none;
+}
+
+.logged-in.icon-button:focus {
+  outline: none;
 }

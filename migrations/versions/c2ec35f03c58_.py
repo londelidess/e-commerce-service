@@ -1,19 +1,16 @@
 """empty message
 
-Revision ID: 670901b9df80
-Revises:
-Create Date: 2023-08-11 16:37:46.259454
+Revision ID: c2ec35f03c58
+Revises: 
+Create Date: 2023-08-15 16:37:46.986515
 
 """
 from alembic import op
 import sqlalchemy as sa
 
-import os
-environment = os.getenv("FLASK_ENV")
-SCHEMA = os.environ.get("SCHEMA")
 
 # revision identifiers, used by Alembic.
-revision = '670901b9df80'
+revision = 'c2ec35f03c58'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -61,8 +58,10 @@ def upgrade():
     op.create_table('cart_items',
     sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
     sa.Column('product_id', sa.Integer(), nullable=False),
+    sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('quantity', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['product_id'], ['products.id'], ),
+    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('medias',
@@ -77,7 +76,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
     sa.Column('product_id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
-    sa.Column('review_text', sa.Text(), nullable=True),
+    sa.Column('review_text', sa.String(), nullable=True),
     sa.Column('rating', sa.Integer(), nullable=True),
     sa.Column('review_date', sa.DateTime(), nullable=True),
     sa.ForeignKeyConstraint(['product_id'], ['products.id'], ),
@@ -89,22 +88,12 @@ def upgrade():
     sa.Column('transaction_id', sa.Integer(), nullable=False),
     sa.Column('product_id', sa.Integer(), nullable=False),
     sa.Column('quantity', sa.Integer(), nullable=True),
-    sa.Column('price_at_time_of_purchase', sa.Float(precision=10, asdecimal=2), nullable=True),
+    sa.Column('price_at_time_of_purchase', sa.Numeric(precision=10, scale=2), nullable=True),
     sa.ForeignKeyConstraint(['product_id'], ['products.id'], ),
     sa.ForeignKeyConstraint(['transaction_id'], ['transactions.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     # ### end Alembic commands ###
-    if environment == "production":
-        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER TABLE categories SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER TABLE products SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER TABLE reviews SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER TABLE medias SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER TABLE cart_items SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER TABLE transactions SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER TABLE transaction_items SET SCHEMA {SCHEMA};")
-
 
 
 def downgrade():
