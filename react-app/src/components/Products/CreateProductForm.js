@@ -3,13 +3,12 @@ import { useDispatch } from "react-redux";
 import { createProductThunk,fetchAllProducts } from "../../store/product";
 import { thunkAddMediaToProduct } from "../../store/media";
 import { useHistory } from "react-router-dom";
-import "./products.css";
+import "./productform.css";
 
 const CreateProductForm = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const [errors, setErrors] = useState({});
-
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState("");
@@ -18,6 +17,7 @@ const CreateProductForm = () => {
     const [image, setImage] = useState(null);
     const [image2, setImage2] = useState(null);
     const [image3, setImage3] = useState(null);
+    const ALLOWED_EXTENSIONS = new Set(["png", "jpg", "jpeg", "gif", "mp4"]);
     const [touched, setTouched] = useState({
         name: false,
         description: false,
@@ -46,60 +46,45 @@ const CreateProductForm = () => {
     const validate = (fieldName) => {
         const validationErrors = {};
 
-        if (fieldName === "name" || !fieldName) {
             if (!name || name.length < 3 || name.length > 255) {
                 validationErrors.name = "Name must be between 3 and 255 characters.";
             }
-        }
 
-        if (fieldName === "description" || !fieldName) {
             if (!description || description.length < 5 || description.length > 255) {
                 validationErrors.description = "Description must be between 5 and 255 characters.";
             }
-        }
 
-        if (fieldName === "price" || !fieldName) {
             if (!price || price <= 0) {
                 validationErrors.price = "Price must be a positive value.";
             }
-        }
 
-        if (fieldName === "categoryId" || !fieldName) {
             if (!categoryId) {
                 validationErrors.categoryId = "Category ID is required.";
             }
-        }
 
-        return validationErrors;
+            return validationErrors;
+        };
+
+        useEffect(() => {
+            if (touched.name || touched.description || touched.price || touched.categoryId) {
+                setErrors(validate());
+            }
+        }, [name, description, price, categoryId, touched]);
+
+
+    const isAllowedExtension = (filename) => {
+        const ext = filename.split('.').pop().toLowerCase();
+        return ALLOWED_EXTENSIONS.has(ext);
     };
-
-    useEffect(() => {
-        if (touched.name) {
-            setErrors(validate("name"));
-        }
-    }, [name, touched.name]);
-
-    useEffect(() => {
-        if (touched.description) {
-            setErrors(validate("description"));
-        }
-    }, [description, touched.description]);
-
-    useEffect(() => {
-        if (touched.price) {
-            setErrors(validate("price"));
-        }
-    }, [price, touched.price]);
-
-    useEffect(() => {
-        if (touched.categoryId) {
-            setErrors(validate("categoryId"));
-        }
-    }, [categoryId, touched.categoryId]);
 
     const handleImageChange = (setImageFunction, e) => {
         const file = e.target.files[0];
         const maxSize = 5 * 1024 * 1024; // 5 MB
+
+        if (!isAllowedExtension(file.name)) {
+            alert("Invalid file type. Please upload a valid media file.");
+            return;
+        }
 
         if (file.size > maxSize) {
             alert("File is too large. Please upload a file smaller than 5MB.");
@@ -124,8 +109,6 @@ const CreateProductForm = () => {
             price,
             category_id: categoryId,
         };
-        // console.log('productData',productData)
-        console.log("Submitting form...");
         try {
 
             const productId = await dispatch(createProductThunk(productData));
@@ -146,9 +129,10 @@ const CreateProductForm = () => {
             });
         }
     };
-
+    console.log("Errors:", errors);
+    console.log("Number of Errors:", Object.keys(errors).length);
     return (
-        <div>
+        <div className="product-form">
         <form onSubmit={handleSubmit}>
         {touched.name && errors.name && <div className="error">{errors.name}</div>}
           <label>
@@ -204,30 +188,36 @@ const CreateProductForm = () => {
                 </option>
             ))}
             </select>
-            <label>
-                Preview Image:
-                <input
-                    type="file"
-                    onChange={(e) => handleImageChange(setImage, e)}
-                />
-            </label>
-            <label>
-                Image2:
-                <input
-                    type="file"
-                    onChange={(e) => handleImageChange(setImage2, e)}
-                />
-            </label>
-            <label>
-                Image3:
-                <input
-                    type="file"
-                    onChange={(e) => handleImageChange(setImage3, e)}
-                />
-            </label>
-          <button type="submit" disabled={Object.keys(errors).length > 0}>Create Product</button>
-        </form>
-        </div>
-      );
+            <div className="file-input-note">
+            Upload images in PNG, JPG, JPEG, or GIF format. Videos should be in MP4 format. Each file should be less than 5MB.
+                </div>
+                <label>
+                   Preview Madia:
+                    <input
+                        type="file"
+                        accept=".png, .jpg, .jpeg, .gif, .mp4"
+                        onChange={(e) => handleImageChange(setImage, e)}
+                    />
+                </label>
+                <label>
+                    Media2:
+                    <input
+                        type="file"
+                        accept=".png, .jpg, .jpeg, .gif, .mp4"
+                        onChange={(e) => handleImageChange(setImage2, e)}
+                    />
+                </label>
+                <label>
+                    Media3:
+                    <input
+                        type="file"
+                        accept=".png, .jpg, .jpeg, .gif, .mp4"
+                        onChange={(e) => handleImageChange(setImage3, e)}
+                    />
+                </label>
+                <button type="submit" disabled={!touched.name || !touched.description || !touched.price || !touched.categoryId || Object.keys(errors).length > 0}>Create Product</button>
+                </form>
+            </div>
+        );
     };
 export default CreateProductForm;

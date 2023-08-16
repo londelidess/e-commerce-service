@@ -24,9 +24,9 @@ const ProductManage = () => {
         });
     }, [dispatch]);
 
-    if (!sessionUser || (sessionUser?.role !== 'editor' && sessionUser?.role !== 'admin')) {
-        return <Redirect to="/" />;
-      }
+    // if (!sessionUser || (sessionUser?.role !== 'editor' && sessionUser?.role !== 'admin')) {
+    //     return <Redirect to="/" />;
+    //   }
 
   if (isLoading) {
     return <div className="centered">Loading...</div>;

@@ -30,7 +30,7 @@ function App() {
         <Switch>
           <Route exact path="/products/new" component={CreateProductForm} />
           <Route exact path="/products/manage" component={ProductManage} />
-          <Route exact path= "/products/product:id/edit" component={UpdateProductForm} />
+          <Route exact path= "/products/:productId/edit" component={UpdateProductForm} />
           <Route exact path="/products/:productId" component={ProductShow} />
           <Route exact path="/products" component={Products} />
           <Route path="/login" >

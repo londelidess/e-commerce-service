@@ -51,40 +51,53 @@ useEffect(() => {
 
 
   return (
-<div className="detailed-page">
-    <div className="product-image-section">
+    <div className="detailed-page">
+        <div className="product-image-section">
         <div className="product-image-container">
+        {product.images[currentImageIndex]?.media_url?.endsWith("mp4") ? (
+            <video controls width="100%" height="100%">
+                <source src={product.images[currentImageIndex]?.media_url} type="video/mp4" />
+                Your browser does not support the video tag.
+            </video>
+        ) : (
             <img
                 src={product.images[currentImageIndex]?.media_url}
                 alt={product.name}
                 className="product-image"
             />
-        </div>
-        <div className="preview-images">
-    {product.images.map((image, index) => (
-        <div
-            key={index}
-            className="preview-image"
-            onClick={() => setCurrentImageIndex(index)}
-        >
-            <img
-                src={image.media_url}
-                alt={`${product.name} preview ${index + 1}`}
-            />
-        </div>
-    ))}
-</div>
+        )}
     </div>
-        <div className="product-details">
-            <div className="product-header">
-                <h1>{product.name}</h1>
+    <div className="preview-images">
+        {product.images.map((image, index) => (
+            <div
+                key={index}
+                className="preview-image"
+                onClick={() => setCurrentImageIndex(index)}
+            >
+                {image.media_url?.endsWith("mp4") ? (
+                    <video width="100%" height="100%">
+                        <source src={image.media_url} type="video/mp4" />
+                    </video>
+                ) : (
+                    <img
+                        src={image.media_url}
+                        alt={`${product.name} preview ${index + 1}`}
+                    />
+                )}
             </div>
-            <div className="product-description">
-                {product.description}
-            </div>
-            <div className="product-price">${parseFloat(product.price).toFixed(2)}</div>
-        </div>
+        ))}
     </div>
-);
+        </div>
+            <div className="product-details">
+                <div className="product-header">
+                    <h1>{product.name}</h1>
+                </div>
+                <div className="product-description">
+                    {product.description}
+                </div>
+                <div className="product-price">${parseFloat(product.price).toFixed(2)}</div>
+            </div>
+        </div>
+    );
 };
 export default ProductShow;

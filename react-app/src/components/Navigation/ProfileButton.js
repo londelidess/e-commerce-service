@@ -63,14 +63,14 @@ function ProfileButton({ user }) {
           <li>Hello, {user?.username}</li>
           <li>{user?.email}</li>
           <hr />
-          {(user?.role === 'editor' || user?.role === 'admin') && (
+          {/* {(user?.role === 'editor' || user?.role === 'admin') && ( */}
             <>
               <NavLink to="/products/manage" style={{ cursor: "pointer" }}>
                 Manage Products
               </NavLink>
               <hr />
             </>
-          )}
+          {/* )} */}
           <li>
             <button onClick={handleLogout}>Log Out</button>
           </li>

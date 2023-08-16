@@ -5,9 +5,9 @@ def seed_shopping_cart_items():
     marnie_id = User.query.filter_by(username='marnie').first().id
     bobbie_id = User.query.filter_by(username='bobbie').first().id
 
-    marnie_cart = ShoppingCartItem(product_id=5, quantity=1)  # Speed Stacks
+    marnie_cart = ShoppingCartItem(product_id=5,user_id=marnie_id, quantity=1)  # Speed Stacks
 
-    bobbie_cart = ShoppingCartItem(product_id=1, quantity=1)  # Camel Up
+    bobbie_cart = ShoppingCartItem(product_id=1, user_id=bobbie_id, quantity=1)  # Camel Up
 
     db.session.add_all([marnie_cart, bobbie_cart])
     db.session.commit()
