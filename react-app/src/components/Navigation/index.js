@@ -1,7 +1,7 @@
 
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
-import {  FaLinkedin, FaFacebook } from 'react-icons/fa';
+import {  FaLinkedin, FaFacebook,FaShoppingCart  } from 'react-icons/fa';
 import ProfileButton from "./ProfileButton";
 import "./Navigation.css";
 import logo from "../../images/playbox-high-resolution-logo-black-on-transparent-background.png";
@@ -36,6 +36,11 @@ function Navigation({ isLoaded }) {
               <FaFacebook className="nav-facebook" style={{ color: 'gold'  }} />
             </a>
           </div>
+          <div className="shopping-cart-icon-container">
+                    <NavLink to="/shoppingcarts">
+                        <FaShoppingCart style={{ color: 'gold' }} />
+                    </NavLink>
+                </div>
           <div className="profile-button-container">
             <ProfileButton user={sessionUser} />
           </div>

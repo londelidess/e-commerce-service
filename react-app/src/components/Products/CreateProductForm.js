@@ -192,7 +192,7 @@ const CreateProductForm = () => {
             Upload images in PNG, JPG, JPEG, or GIF format. Videos should be in MP4 format. Each file should be less than 5MB.
                 </div>
                 <label>
-                   Preview Madia:
+                   Preview Media:
                     <input
                         type="file"
                         accept=".png, .jpg, .jpeg, .gif, .mp4"
