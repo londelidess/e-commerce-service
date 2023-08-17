@@ -1,7 +1,7 @@
 import React, {  useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import { updateProductThunk,fetchProductById } from "../../store/product";
-import {thunkAddMediaToProduct,thunkDeleteMedia} from "../../store/media"
+import {thunkAddMediaToProduct,thunkDeleteMedia,thunkGetAllMediaByProductId} from "../../store/media"
 import { useHistory, useParams } from "react-router-dom";
 import "./productform.css";
 
@@ -96,21 +96,27 @@ const UpdateProductForm = () => {
 
         setImageFunction(file);
     }
+
     useEffect(() => {
         const fetchProduct = async () => {
             try {
                 const fetchedProduct = await dispatch(fetchProductById(productId));
-                console.log("fetchedProduct.images[0]?.media_url",fetchedProduct.images[0]?.media_url)
                 setProduct(fetchedProduct);
                 setName(fetchedProduct.name);
                 setDescription(fetchedProduct.description);
                 setPrice(fetchedProduct.price);
                 setCategoryId(fetchedProduct.category_id);
                 if (fetchedProduct.images && fetchedProduct?.images.length > 0) {
-                    setImage(fetchedProduct.images[0]?.media_url || null);
-                    setImage2(fetchedProduct.images[1]?.media_url || null);
-                    setImage3(fetchedProduct.images[2]?.media_url || null);
+                    setImage(fetchedProduct.images[0] || null);
+                    setImage2(fetchedProduct.images[1] || null);
+                    setImage3(fetchedProduct.images[2] || null);
                 }
+                setTouched({
+                    name: true,
+                    description: true,
+                    price: true,
+                    categoryId: true
+                });
             } catch (error) {
                 console.error("Error fetching product:", error);
             }
@@ -118,6 +124,8 @@ const UpdateProductForm = () => {
 
         fetchProduct();
     }, [dispatch, productId]);
+
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -135,7 +143,7 @@ const UpdateProductForm = () => {
         };
 
         try {
-            const productId = await dispatch(updateProductThunk(productData));
+            await dispatch(updateProductThunk(productId,productData));
 
             const images = [image, image2, image3];
 
@@ -144,7 +152,7 @@ const UpdateProductForm = () => {
                     await dispatch(thunkAddMediaToProduct(productId, img));
                 }
             }
-
+            await dispatch(thunkGetAllMediaByProductId(productId))
             history.push("/products/manage");
         } catch (err) {
             setErrors({
@@ -154,7 +162,11 @@ const UpdateProductForm = () => {
         }
     };
 
-
+    const handleDeleteMedia = (setImageFunction, mediaId) => {
+        dispatch(thunkDeleteMedia(mediaId));
+        setImageFunction(null);
+    };
+console.log(Object.keys(errors).length)
     return (
 
         <div className="product-form">
@@ -173,18 +185,19 @@ const UpdateProductForm = () => {
             />
           </label>
           {touched.description && errors.description && <div className="error">{errors.description}</div>}
-          <label>
-            Description:
-            <input
-              type="text"
-              value={description}
-              onChange={(e) => {
-                  setDescription(e.target.value);
-                  setTouched((prev) => ({ ...prev, description: true }));
-              }}
-              required
-            />
-          </label>
+            <label>
+                Description:
+                <textarea
+                    value={description}
+                    onChange={(e) => {
+                        setDescription(e.target.value);
+                        setTouched((prev) => ({ ...prev, description: true }));
+                    }}
+                    rows="10"
+                    cols="82"
+                    required
+                ></textarea>
+            </label>
           {touched.price && errors.price && <div className="error">{errors.price}</div>}
           <label>
             Price:$
@@ -216,8 +229,51 @@ const UpdateProductForm = () => {
             <div className="file-input-note">
             Upload images in PNG, JPG, JPEG, or GIF format. Videos should be in MP4 format. Each file should be less than 5MB.
                 </div>
+                {image &&  typeof image.media_url === 'string' &&(
+                    <>
+                        {image && image?.media_url.endsWith('.mp4') ? (
+                            <video width="100" controls>
+                                <source src={image?.media_url} type="video/mp4" />
+                                Your browser does not support the video tag.
+                            </video>
+                        ) : (
+                            <img src={image?.media_url} alt="Media1" width="100" />
+                        )}
+                        <button onClick={() => handleDeleteMedia(setImage, image.id)}>Delete</button>
+                    </>
+                )}
+
+                {image2 && typeof image2.media_url === 'string' &&(
+                    <>
+                        {image2 && image2?.media_url.endsWith('.mp4') ? (
+                            <video width="100" controls>
+                                <source src={image2?.media_url} type="video/mp4" />
+                                Your browser does not support the video tag.
+                            </video>
+                        ) : (
+                            <img src={image2?.media_url} alt="Media2" width="100" />
+                        )}
+                        <button onClick={() => handleDeleteMedia(setImage2, image2.id)}>Delete</button>
+                    </>
+                )}
+
+                {image3 && typeof image3.media_url === 'string' &&(
+                    <>
+                        {image3 && image3?.media_url.endsWith('.mp4') ? (
+                            <video width="100" controls>
+                                <source src={image3?.media_url} type="video/mp4" />
+                                Your browser does not support the video tag.
+                            </video>
+                        ) : (
+                            <img src={image3?.media_url} alt="Media3" width="100" />
+                        )}
+                        <button onClick={() => handleDeleteMedia(setImage3, image3.id)}>Delete</button>
+                    </>
+                )}
+
+
                 <label>
-                    Preview Madia:
+                    Media1:
                     <input
                         type="file"
                         accept=".png, .jpg, .jpeg, .gif, .mp4"
@@ -240,7 +296,7 @@ const UpdateProductForm = () => {
                         onChange={(e) => handleImageChange(setImage3, e)}
                     />
                 </label>
-                <button type="submit" disabled={!touched.name || !touched.description || !touched.price || !touched.categoryId || Object.keys(errors).length > 0}>Create Product</button>
+                <button type="submit" disabled={!touched.name || !touched.description || !touched.price || !touched.categoryId || Object.keys(errors).length > 0}>Update Product</button>
                 </form>
             </div>
         );

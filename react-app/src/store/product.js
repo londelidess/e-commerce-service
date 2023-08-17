@@ -44,7 +44,7 @@ export const fetchProductById = (productId) => async (dispatch) => {
   const response = await fetch(`/api/products/${productId}`);
   if (response.ok) {
     const product = await response.json();
-    console.log('fetchProductById res in thunk',product)
+    // console.log('fetchProductById res in thunk',product)
     dispatch(setProduct(product));
     return product;
   }

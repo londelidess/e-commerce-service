@@ -58,12 +58,5 @@ class SignUpForm(FlaskForm):
         ]
     )
 
-    confirm_password = PasswordField(
-        'Confirm Password',
-        validators=[
-            DataRequired(),
-            EqualTo('password', message="Passwords must match")
-        ]
-        )
-
     image = FileField("Image File", validators=[FileAllowed(list(ALLOWED_EXTENSIONS))])
+

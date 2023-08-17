@@ -3,25 +3,26 @@
 // import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 // import PostReviewFormModal from "../Review/PostReviewFormModal";
 
-import { useParams } from "react-router-dom";
-import React, { useEffect,useState  } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchProductById } from "../../store/product";
-
-
-const ProductShow = () => {
-    const { productId } = useParams();
-    const dispatch = useDispatch();
-    const [isLoading, setIsLoading] = useState(true);
-    const [error, setError] = useState(null);
-    const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-  const product = useSelector((state) => state.products.singleProduct);
 // const { singleProduct: product } = useSelector((state) => state.products);
 //   const reviews = useSelector((state) => state.reviews.spot);
 //   const userHasReview =
 //     currentUser && reviews?.find((review) => review.userId === currentUser.id);
+import { useParams } from "react-router-dom";
+import React, { useEffect,useState  } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProductById } from "../../store/product";
+import { thunkAddToCart } from "../../store/shoppingCart";
 
+const ProductShow = () => {
+    const { productId } = useParams();
+    const sessionUser = useSelector((state) => state.session.user);
+    const dispatch = useDispatch();
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const [quantity, setQuantity] = useState(1);
+
+  const product = useSelector((state) => state.products.singleProduct);
 
 useEffect(() => {
     const fetchProductAndReviews = async () => {
@@ -40,15 +41,13 @@ useEffect(() => {
     fetchProductAndReviews();
   }, [dispatch, productId]);
 
-  if (isLoading) {
-    return <div className="centered">Loading...</div>;
-  }
-
+  const handleAddItemToCart = () => {
+    dispatch(thunkAddToCart(productId, Number(quantity)));
+};
 
   if (isLoading) return <div className="centered">Loading...</div>;
   if (error) return <div className="centered">An error occurred.</div>;
   if (!product) return null;
-
 
   return (
     <div className="detailed-page">
@@ -96,6 +95,21 @@ useEffect(() => {
                     {product.description}
                 </div>
                 <div className="product-price">${parseFloat(product.price).toFixed(2)}</div>
+                {sessionUser && (
+                <div className="product-order-section">
+                    <label htmlFor="quantity">Quantity:</label>
+                    <input
+                        type="number"
+                        id="quantity"
+                        value={quantity}
+                        onChange={(e) => setQuantity(e.target.value)}
+                        min="1"
+                    />
+                    <button onClick={handleAddItemToCart}>
+                        Add to Cart
+                    </button>
+                </div>
+            )}
             </div>
         </div>
     );
