@@ -65,24 +65,22 @@ def sign_up():
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
 
-        image = form.data["image"]
-        image.filename = get_unique_filename(image.filename)
-        upload = upload_file_to_s3(image)
+        profile_image_url = None 
 
-        if "url" not in upload:
-            return {"error": "upload failed!"}
-        if upload["url"].endswith("mp4"):
-            media_type = "video"
-        elif upload["url"].endswith("gif"):
-            media_type = "gif"
-        else: media_type = "image"
+        if "image" in form.data and form.data["image"]:
+            image = form.data["image"]
+            image.filename = get_unique_filename(image.filename)
+            upload = upload_file_to_s3(image)
 
+            if "url" not in upload:
+                return {"error": "upload failed!"}
+            profile_image_url = upload["url"]
 
         user = User(
             username=form.data['username'],
             email=form.data['email'],
             hashed_password=form.data['password'],
-            profile_image_url=upload["url"]
+            profile_image_url=profile_image_url  # Use the uploaded URL or None
         )
         db.session.add(user)
         db.session.commit()

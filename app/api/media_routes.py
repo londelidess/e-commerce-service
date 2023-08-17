@@ -8,6 +8,18 @@ from flask import current_app as app
 
 media_routes = Blueprint("medias", __name__)
 
+@media_routes.route("/<int:product_id>", methods=["GET"])
+@login_required
+def get_all_media_by_id(product_id):
+    """Fetch all media for a given product ID"""
+
+    media_list = Media.query.filter_by(product_id=product_id).all()
+
+    media_dicts = [media.to_dict() for media in media_list]
+
+    return jsonify(media_dicts)
+
+
 @media_routes.route("/<int:product_id>", methods=["POST"])
 @login_required
 def add_media(product_id):

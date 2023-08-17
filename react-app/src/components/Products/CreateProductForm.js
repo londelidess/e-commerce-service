@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { createProductThunk,fetchAllProducts } from "../../store/product";
-import { thunkAddMediaToProduct } from "../../store/media";
+import { thunkAddMediaToProduct,thunkGetAllMediaByProductId } from "../../store/media";
 import { useHistory } from "react-router-dom";
 import "./productform.css";
 
@@ -120,7 +120,7 @@ const CreateProductForm = () => {
                     await dispatch(thunkAddMediaToProduct(productId, img));
                 }
             }
-
+            dispatch(thunkGetAllMediaByProductId(productId))
             history.push("/products/manage");
         } catch (err) {
             setErrors({
@@ -129,8 +129,8 @@ const CreateProductForm = () => {
             });
         }
     };
-    console.log("Errors:", errors);
-    console.log("Number of Errors:", Object.keys(errors).length);
+    // console.log("Errors:", errors);
+    // console.log("Number of Errors:", Object.keys(errors).length);
     return (
         <div className="product-form">
         <form onSubmit={handleSubmit}>
@@ -147,19 +147,21 @@ const CreateProductForm = () => {
               required
             />
           </label>
+         
           {touched.description && errors.description && <div className="error">{errors.description}</div>}
-          <label>
-            Description:
-            <input
-              type="text"
-              value={description}
-              onChange={(e) => {
-                  setDescription(e.target.value);
-                  setTouched((prev) => ({ ...prev, description: true }));
-              }}
-              required
-            />
-          </label>
+            <label>
+                Description:
+                <textarea
+                    value={description}
+                    onChange={(e) => {
+                        setDescription(e.target.value);
+                        setTouched((prev) => ({ ...prev, description: true }));
+                    }}
+                    rows="10"
+                    cols="82"
+                    required
+                ></textarea>
+            </label>
           {touched.price && errors.price && <div className="error">{errors.price}</div>}
           <label>
             Price:$

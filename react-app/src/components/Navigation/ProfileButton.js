@@ -6,6 +6,7 @@ import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import "./Navigation.css";
+import DEFAULT_PROFILE_IMAGE_URL from "../../images/no-img.jpg"
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -43,7 +44,7 @@ function ProfileButton({ user }) {
 
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
   const closeMenu = () => setShowMenu(false);
-    console.log(user?.role)
+    // console.log(user?.role)
   return (
     <>
     <button className={`icon-button ${user ? 'logged-in' : ''}`} onClick={openMenu} style={{ cursor: "pointer" }}>

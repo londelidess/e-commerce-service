@@ -15,6 +15,7 @@ import { thunkAddToCart } from "../../store/shoppingCart";
 
 const ProductShow = () => {
     const { productId } = useParams();
+    const sessionUser = useSelector((state) => state.session.user);
     const dispatch = useDispatch();
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -94,19 +95,21 @@ useEffect(() => {
                     {product.description}
                 </div>
                 <div className="product-price">${parseFloat(product.price).toFixed(2)}</div>
+                {sessionUser && (
                 <div className="product-order-section">
-                 <label htmlFor="quantity">Quantity:</label>
-                <input
-                    type="number"
-                    id="quantity"
-                    value={quantity}
-                    onChange={(e) => setQuantity(e.target.value)}
-                    min="1"
-                 />
-            <button onClick={handleAddItemToCart}>
-                Add to Cart
-            </button>
-            </div>
+                    <label htmlFor="quantity">Quantity:</label>
+                    <input
+                        type="number"
+                        id="quantity"
+                        value={quantity}
+                        onChange={(e) => setQuantity(e.target.value)}
+                        min="1"
+                    />
+                    <button onClick={handleAddItemToCart}>
+                        Add to Cart
+                    </button>
+                </div>
+            )}
             </div>
         </div>
     );

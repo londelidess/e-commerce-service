@@ -36,11 +36,13 @@ function Navigation({ isLoaded }) {
               <FaFacebook className="nav-facebook" style={{ color: 'gold'  }} />
             </a>
           </div>
-          <div className="shopping-cart-icon-container">
-                    <NavLink to="/shoppingcarts">
-                        <FaShoppingCart style={{ color: 'gold' }} />
-                    </NavLink>
-                </div>
+          {sessionUser && (  // <-- This is the conditional rendering for the shopping cart
+        <div className="shopping-cart-icon-container">
+            <NavLink to="/shoppingcarts">
+                <FaShoppingCart style={{ color: 'gold' }} />
+            </NavLink>
+        </div>
+        )}
           <div className="profile-button-container">
             <ProfileButton user={sessionUser} />
           </div>
