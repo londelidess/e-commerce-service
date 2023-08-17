@@ -58,7 +58,7 @@ function ShoppingCart() {
     return (
         <div>
             <h2>Your Toy Box</h2>
-            {Object.values(cart).length === 0 ? (
+            {cart && Object.values(cart).length === 0 ? (
                 <p>You can fill your toy box as much as you wish!</p>
             ) : (
                 <div>

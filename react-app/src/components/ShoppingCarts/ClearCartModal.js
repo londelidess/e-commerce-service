@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
-import { thunkGetCart, thunkRemoveFromCart,thunkClearCart } from "../../store/shoppingCart";
+import { thunkGetCart, thunkClearCart } from "../../store/shoppingCart";
 import { thunkDeleteMedia } from "../../store/media";
 
 function ClearCartModal() {
@@ -14,6 +14,7 @@ function ClearCartModal() {
   const handleDelete = async () => {
 
     await dispatch(thunkClearCart())
+    await dispatch(thunkGetCart())
     closeModal();
   };
 

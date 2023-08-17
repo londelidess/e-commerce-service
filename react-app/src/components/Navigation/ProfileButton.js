@@ -72,6 +72,12 @@ function ProfileButton({ user }) {
             </>
           {/* )} */}
           <li>
+          <NavLink to="/history" style={{ cursor: "pointer" }}>
+                Order History
+          </NavLink>
+          </li>
+          <hr />
+          <li>
             <button onClick={handleLogout}>Log Out</button>
           </li>
         </>

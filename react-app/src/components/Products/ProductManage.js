@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { fetchAllProducts } from "../../store/product";
-import ProductItem from "./ProductItem";
+// import ProductItem from "./ProductItem";
 import ProductManageItem from "./ProductManageItem"
-import { Redirect } from "react-router-dom";
+// import { Redirect } from "react-router-dom";
 import './products.css';
 
 const ProductManage = () => {

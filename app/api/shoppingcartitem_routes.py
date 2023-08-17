@@ -194,16 +194,25 @@ def reorder_past_order(order_id):
             continue
 
         quantity = desired_quantities[str(item.product_id)]
-        print(quantity)
-        cart_item = ShoppingCartItem(
-            product_id=item.product_id,
-            user_id=user_id,
-            quantity=quantity
-        )
-        db.session.add(cart_item)
-        db.session.commit()  # Commit here to ensure relationships are loaded otherwise product id never executed
 
-        reordered_items.append(cart_item.to_dict())
+        # Check if the product is already in the cart
+        existing_cart_item = ShoppingCartItem.query.filter_by(user_id=user_id, product_id=item.product_id).first()
+
+        if existing_cart_item:
+            # If the product is already in the cart, update the quantity
+            existing_cart_item.quantity += quantity
+            reordered_items.append(existing_cart_item.to_dict())
+        else:
+            # If the product is not in the cart, add a new row
+            cart_item = ShoppingCartItem(
+                product_id=item.product_id,
+                user_id=user_id,
+                quantity=quantity
+            )
+            db.session.add(cart_item)
+            reordered_items.append(cart_item.to_dict())
+
+    db.session.commit()  # Commit changes to the database
 
     return jsonify({
         "message": f"Reordered items from order with ID {order_id}",

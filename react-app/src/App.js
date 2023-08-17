@@ -7,8 +7,9 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import HomePage from './components/HomePage';
 import Footer from "./components/Navigation/Footer"
-import Products from "./components/Products"
 import ShoppingCart from "./components/ShoppingCarts"
+import OrderHistory from "./components/OrderHistory"
+import Products from "./components/Products"
 import CreateProductForm from "./components/Products/CreateProductForm";
 import UpdateProductForm from "./components/Products/UpdateProductForm";
 import ProductManage from "./components/Products/ProductManage"
@@ -29,6 +30,7 @@ function App() {
 
       {isLoaded && (
         <Switch>
+          <Route exact path="/history" component={OrderHistory} />
           <Route exact path="/shoppingcarts" component={ShoppingCart} />
           <Route exact path="/products/new" component={CreateProductForm} />
           <Route exact path="/products/manage" component={ProductManage} />
