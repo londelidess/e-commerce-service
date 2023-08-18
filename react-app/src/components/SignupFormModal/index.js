@@ -34,17 +34,17 @@ function SignupFormPage() {
     }
 };
 
-  const handleImageChange = (e) => {
+const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) setImage(file);
-  };
+};
 
-  return (
-    <>
-      <h1>Sign Up</h1>
+return (
+    <div className="signup-form">
+      <h1 className="signup-form-title">Sign Up</h1>
       <form onSubmit={handleSubmit}>
         <ul>
-          {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+          {errors.map((error, idx) => <li key={idx} className="error">{error}</li>)}
         </ul>
         <label>
           Email
@@ -82,18 +82,17 @@ function SignupFormPage() {
             required
           />
         </label>
-        <label>
+        <label className="image-upload">
           Profile Image
           <input
             type="file"
             onChange={handleImageChange}
-            accept=".png, .jpg, .gif, .jpeg"
+            className="image-input"
           />
         </label>
-        <button type="submit">Sign Up</button>
+        <button type="submit" className="signup-button">Sign Up</button>
       </form>
-    </>
-  );
+    </div>
+);
 }
-
-export default SignupFormPage;
+export default SignupFormPage
