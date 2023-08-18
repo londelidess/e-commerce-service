@@ -65,7 +65,7 @@ def sign_up():
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
 
-        profile_image_url = None 
+        profile_image_url = None
 
         if "image" in form.data and form.data["image"]:
             image = form.data["image"]
@@ -79,7 +79,7 @@ def sign_up():
         user = User(
             username=form.data['username'],
             email=form.data['email'],
-            hashed_password=form.data['password'],
+            password=form.data['password'],
             profile_image_url=profile_image_url  # Use the uploaded URL or None
         )
         db.session.add(user)
