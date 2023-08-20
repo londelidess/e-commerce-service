@@ -1,0 +1,115 @@
+.order-history-container {
+    background-color: #eef2f7;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: 'Arial', sans-serif;
+}
+
+
+
+.no-orders-msg {
+    color: #888;
+    font-style: italic;
+}
+
+.orders-list {
+    margin-top: 20px;
+}
+
+.single-order {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+}
+
+.order-timestamp, .order-total {
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.order-items {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.order-item {
+    margin-bottom: 10px;
+}
+
+.order-item-name {
+    font-weight: bold;
+}
+
+.order-item-quantity {
+    margin-left: 10px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.order-item-price {
+    color: #777;
+}
+
+.reorder-button {
+    background-color: #00bfff;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-align: center;
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.reorder-button:hover {
+    background-color: #009acd;
+}
+
+/* added to your cart */
+.added-to-cart-modal {
+    background-color: #FFEBE8; /* Pastel pink */
+    padding: 20px 40px;
+    border-radius: 20px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+    font-size: 1.5em;
+    text-align: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    animation: bounce 0.5s forwards;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.added-to-cart-modal p {
+    font-weight: bold;
+    color: #FF6B83;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.added-to-cart-modal .add-cart-emoji {
+    font-size: 1.5em;
+}
+
+@keyframes bounce {
+    0% {
+        transform: translate(-50%, -50%) scale(0.9);
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.05);
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
