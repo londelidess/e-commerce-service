@@ -23,7 +23,8 @@ class ShoppingCartItem(db.Model):
                 'product_name': 'Product not found',
                 'quantity': self.quantity,
                 'single-price': None,
-                'total_price': None
+                'total_price': None,
+                'product_image': None
             }
 
         total_price = self.product.price * self.quantity
@@ -33,5 +34,6 @@ class ShoppingCartItem(db.Model):
             'product_name': self.product.name,
             'quantity': self.quantity,
             'single-price': self.product.price,
-            'total_price': total_price
+            'total_price': total_price,
+            'product_image': self.product.get_primary_image(),
         }

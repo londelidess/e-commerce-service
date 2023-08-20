@@ -8,6 +8,95 @@
   background-color: #f4f4f4;
 }
 
+/* cart */
+.cart-container {
+  background-color: #eef2f7; /* Light blue background similar to the image */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: 'Arial', sans-serif; /* You can replace this with a more suitable font */
+}
+
+.cart-container h2 {
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.product-preview {
+  width: 320px;
+  height: 240px;
+  overflow: hidden;
+  border-radius: 10px;
+  margin-right: 20px;
+  border: 1px solid #ccc;
+}
+
+.product-preview img, .product-preview video {
+  max-width: 100%;
+  height: auto;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.cart-item strong {
+  font-size: 18px;
+  color: #333;
+  flex: 1;
+}
+
+.cart-item button {
+  background-color: #f44336; /* Red color for buttons */
+  color: #fff;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: background-color 0.3s;
+}
+
+.cart-item button:hover {
+  background-color: #d32f2f;
+}
+
+.cart-summary {
+  margin-top: 20px;
+  text-align: right;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.cart-summary p {
+  margin: 5px 0;
+  font-weight: bold;
+}
+
+.delete-button-for-product {
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Adjustments for input fields */
+input[type="number"] {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 0 10px;
+}
 /* delete confirmation */
 /* delete-confirmation-container */
 .delete-product-confirmation-container {

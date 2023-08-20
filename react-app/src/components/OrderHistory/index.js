@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
+import { Redirect } from "react-router-dom";
 // import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 // import ClearCartModal from "./ClearCartModal"
 import { thunkGetPastOrders,thunkReorderPastOrder, thunkGetCart} from "../../store/shoppingCart";
 // import './orderhistory.css'
 
+
 function OrderHistory() {
     const dispatch = useDispatch();
+    const sessionUser = useSelector((state) => state.session.user);
     const ordersObj = useSelector(state => state.shoppingCart.orders);
     const orders = Object.values(ordersObj);
     const [reorderQuantities, setReorderQuantities] = useState({});
@@ -34,6 +37,8 @@ function OrderHistory() {
             setShowAddedToCartMsg(false);
         }, 3000);
     };
+
+    if (!sessionUser) return <Redirect to="/" />;
 
     return (
         <div>

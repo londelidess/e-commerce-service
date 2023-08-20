@@ -1,12 +1,14 @@
 import React, {  useState, useEffect } from "react";
-import { useDispatch,useSelector } from "react-redux";
-import { updateProductThunk,fetchProductById } from "../../store/product";
-import {thunkAddMediaToProduct,thunkDeleteMedia,thunkGetAllMediaByProductId} from "../../store/media"
-import { useHistory, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { updateProductThunk, fetchProductById } from "../../store/product";
+import {thunkAddMediaToProduct, thunkDeleteMedia, thunkGetAllMediaByProductId} from "../../store/media"
+import { useHistory, useParams, Redirect } from "react-router-dom";
+
 import "./productform.css";
 
 const UpdateProductForm = () => {
     const { productId } = useParams();
+    const sessionUser = useSelector((state) => state.session.user);
     // console.log("productId",productId)
     const dispatch = useDispatch();
     const history = useHistory();
@@ -125,7 +127,9 @@ const UpdateProductForm = () => {
         fetchProduct();
     }, [dispatch, productId]);
 
-
+    if (!sessionUser) {
+        return <Redirect to="/" />;
+      }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -166,7 +170,8 @@ const UpdateProductForm = () => {
         dispatch(thunkDeleteMedia(mediaId));
         setImageFunction(null);
     };
-console.log(Object.keys(errors).length)
+
+// console.log(Object.keys(errors).length)
     return (
 
         <div className="product-form">

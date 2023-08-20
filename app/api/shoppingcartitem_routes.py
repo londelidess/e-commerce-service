@@ -11,8 +11,17 @@ def get_cart():
     '''Fetch all items in the cart for the currently logged-in user.'''
     user_id = current_user.id
     cart_items = ShoppingCartItem.query.filter_by(user_id=user_id).all()
-    return jsonify([item.to_dict() for item in cart_items])
 
+    # Calculate subtotal and total quantity
+    subtotal = sum(item.product.price * item.quantity for item in cart_items if item.product)
+    total_quantity = sum(item.quantity for item in cart_items)
+
+    return jsonify({
+        'items': [item.to_dict() for item in cart_items],
+        'subtotal': subtotal,
+        'total_quantity': total_quantity
+    })
+    
 # @shoppingcartitem_routes.route('/', methods=['GET'])
 # @login_required
 # def get_cart():

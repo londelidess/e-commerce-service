@@ -1,7 +1,7 @@
 
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
-import {  FaLinkedin, FaFacebook,FaShoppingCart  } from 'react-icons/fa';
+import {  FaLinkedin, FaFacebook, FaBagShopping, FaGithub  } from 'react-icons/fa6';
 import ProfileButton from "./ProfileButton";
 import "./Navigation.css";
 import logo from "../../images/playbox-high-resolution-logo-black-on-transparent-background.png";
@@ -35,11 +35,14 @@ function Navigation({ isLoaded }) {
             <a href="https://www.facebook.com/profile.php?id=100004164127853" target="_blank" rel="noopener noreferrer">
               <FaFacebook className="nav-facebook" style={{ color: 'gold'  }} />
             </a>
+            <a href="https://github.com/londelidess" target="_blank" rel="noopener noreferrer">
+            <FaGithub className="nav-github" style={{ color: 'gold'  }} />
+            </a>
           </div>
-          {sessionUser && (  // <-- This is the conditional rendering for the shopping cart
+          {sessionUser && (
         <div className="shopping-cart-icon-container">
             <NavLink to="/shoppingcarts">
-                <FaShoppingCart style={{ color: 'gold' }} />
+                <FaBagShopping style={{ color: 'gold' }} />
             </NavLink>
         </div>
         )}

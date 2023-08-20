@@ -5,8 +5,8 @@
     border-radius: 8px;
   }
 
-  .home-container h1, .home-container h2 {
-    color: lightcoral;
+.home-container h1, .home-container h2 {
+    color: #ff4262;
     margin-bottom: 10px;
 }
 
@@ -21,37 +21,35 @@
 
   .home-container button{
     border: none;
-    padding: 10px 20px;
+    padding: 21px 34px;
+    color: white;
     cursor: pointer;
     text-decoration: 0.3s;
-    border-radius: 5px;
-    font-weight: bold;
+    border-radius: 40px;
+    font-weight:Bold;
+    font-size:18px;
   }
 
 .home-container button.shop-now {
-    background-color: lightcoral;
-    color: white;
-    border: none;
-    padding: 10px 20px;
+    background-color: #00bfff;
     cursor: pointer;
     transition: 0.3s;
+    font-size:23px;
   }
 
   .home-container button.shop-now:hover {
-    background-color: #cd5c5c;
+    background-color:#62d8ff;
   }
 
   .home-container button.learn-more {
-    background-color: lightblue;
+    background-color: #ff4262;
     color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
     transition: 0.3s;
+
   }
 
   .home-container button.learn-more:hover {
-    background-color: #87cefa;
+    background-color:  #ff7088;
   }
 
   .as-seen-on-container {
@@ -63,6 +61,7 @@
   }
 
   .large-heading {
+    color: #ff4262;
     font-size: 3em;
   }
 

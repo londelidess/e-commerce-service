@@ -4,18 +4,18 @@ import { NavLink } from "react-router-dom";
 import { fetchAllProducts } from "../../store/product";
 // import ProductItem from "./ProductItem";
 import ProductManageItem from "./ProductManageItem"
-// import { Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import './products.css';
 
 const ProductManage = () => {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(true);
-  const sessionUser = useSelector((state) => state.session.user);
-
+  const sessionUser = useSelector((state) => state.session?.user);
   const productsObject = useSelector((state) => state.products.allProducts);
   const productsArray = Object.values(productsObject);
+  const userProducts = sessionUser ? productsArray.filter(product => product?.added_by_user_id === sessionUser.id) : [];
 
-    // console.log(productsArray)
+    // console.log(sessionUser.id)
     // console.log(sessionUser?.role)
 
     useEffect(() => {
@@ -27,15 +27,16 @@ const ProductManage = () => {
     // if (!sessionUser || (sessionUser?.role !== 'editor' && sessionUser?.role !== 'admin')) {
     //     return <Redirect to="/" />;
     //   }
-
+  if (!sessionUser) {
+      return <Redirect to="/" />;
+    }
   if (isLoading) {
     return <div className="centered">Loading...</div>;
   }
-
   return (
     <section className="manage-section">
       <div className="manage-products">
-        <h1>Manage Products</h1>
+        <h1>Manage Your Products</h1>
 
           <NavLink to="/products/new" style={{
 
@@ -49,20 +50,18 @@ const ProductManage = () => {
           cursor: "pointer" }}>
             Create a New Product
           </NavLink>
-
-
       </div>
       <section>
-      <ul className="product-grid">
-        {productsArray.map((product) => (
-          <ProductManageItem
-          product={product}
-          key={product.id}
-          sessionUser={sessionUser}
-          />
-        ))}
-      </ul>
-    </section>
+        <ul className="product-grid">
+          {userProducts.map(product => (
+            <ProductManageItem
+              product={product}
+              key={product.id}
+              sessionUser={sessionUser}
+            />
+          ))}
+        </ul>
+      </section>
     </section>
   );
 };

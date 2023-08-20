@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector  } from "react-redux";
 import { createProductThunk,fetchAllProducts } from "../../store/product";
 import { thunkAddMediaToProduct,thunkGetAllMediaByProductId } from "../../store/media";
-import { useHistory } from "react-router-dom";
+import { useHistory, Redirect } from "react-router-dom";
 import "./productform.css";
 
 const CreateProductForm = () => {
     const dispatch = useDispatch();
     const history = useHistory();
+    const sessionUser = useSelector((state) => state.session.user);
     const [errors, setErrors] = useState({});
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
@@ -129,6 +130,11 @@ const CreateProductForm = () => {
             });
         }
     };
+
+    if (!sessionUser) {
+        return <Redirect to="/" />;
+      }
+
     // console.log("Errors:", errors);
     // console.log("Number of Errors:", Object.keys(errors).length);
     return (
@@ -147,7 +153,7 @@ const CreateProductForm = () => {
               required
             />
           </label>
-         
+
           {touched.description && errors.description && <div className="error">{errors.description}</div>}
             <label>
                 Description:

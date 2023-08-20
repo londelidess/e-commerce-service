@@ -9,7 +9,7 @@ function ProductLandingPage() {
 
   const productsObject = useSelector((state) => state.products.allProducts);
   const productsArray = Object.values(productsObject);
-console.log(productsArray)
+// console.log(productsArray)
   useEffect(() => {
     dispatch(fetchAllProducts());
   }, [dispatch]);

@@ -145,6 +145,15 @@
 
 }
 
+.product-name {
+    font-weight: bold;
+    color: #0530ad;
+}
+
+.product-price {
+    color: #0530ad;
+}
+
 .product-preview {
     width: 100%;
     max-width: 300px;

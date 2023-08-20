@@ -25,6 +25,8 @@ class Product(db.Model):
     transaction_items = db.relationship("TransactionItem", back_populates="product")
     reviews = db.relationship("Review", back_populates="product")
 
+    def get_primary_image(self):
+        return self.images[0].media_url if self.images else None
 
     def to_dict(self, include_category=False):
         data = {
@@ -40,5 +42,6 @@ class Product(db.Model):
         }
         # if include_category and self.category:
         #     data['category_name'] = self.category.name
+        data['primary_image'] = self.get_primary_image()
 
         return data
