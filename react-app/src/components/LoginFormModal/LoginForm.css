@@ -1,74 +1,92 @@
-.login-form-title {
-  margin-bottom: 20px;
-  text-align: center;
-}
-
+/* Login Form Container */
 .login-form {
-  background-color: gold;
-  padding: 20px;
-  border-radius: 10px;
-  width: 300px;
-  margin: 0 auto;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 20px;
+  max-width: 400px;
+  margin: 20px auto;
+  background-color: #ffffff;
 }
 
-.login-form ul {
-  list-style-type: none;
-  padding: 0;
+/* Login Form Title */
+.login-form-title {
+  font-size: 24px;
   margin-bottom: 20px;
+  color: #333;
 }
 
+/* Error Messages */
 .error {
-  color: red;
-  font-size: 12px;
+  color: #e74c3c;
+  font-size: 14px;
+  list-style-type: none;
 }
 
+/* Form Labels and Inputs */
 .login-form label {
   display: block;
-  margin-bottom: 10px;
-  color: #333;
+  width: 100%;
+  margin-bottom: 15px;
 }
 
 .login-form input {
   width: 100%;
   padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid #e0e0e0;
   border-radius: 5px;
+  font-size: 16px;
+  transition: border-color 0.3s;
 }
 
+.login-form input:focus {
+  border-color: #3498db;
+  outline: none;
+}
+
+/* Login Button */
 .login-button {
+  background-color: #3498db;
+  color: white;
   padding: 10px 20px;
-  background-color: red;
-  color: #fff;
   border: none;
-  border-radius: 4px;
+  border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 16px;
   margin-top: 10px;
   width: 100%;
-  border: 1px solid black;
-  box-shadow: 5px 5px 5px grey;
+  box-sizing: border-box;
 }
 
+.login-button:hover {
+  background-color: #2980b9;
+}
+
+/* Demo Login Button */
 .demo-login-button {
-  color: #2196f3;
-  cursor: pointer;
-  background: none;
-  border: none;
+  background-color: #2ecc71;
+  color: white;
   padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 16px;
   margin-top: 10px;
   width: 100%;
+  box-sizing: border-box;
 }
 
-.login-button:hover,
 .demo-login-button:hover {
-  opacity: 0.8;
+  background-color: #27ae60;
 }
 
-.login-button:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
+.login-demo-button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  width: 100%;
 }
