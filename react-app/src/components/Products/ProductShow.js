@@ -11,7 +11,7 @@ import { useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProductById } from "../../store/product";
-import { thunkAddToCart } from "../../store/shoppingCart";
+import { thunkAddToCart,thunkGetCart } from "../../store/shoppingCart";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import AddedToCartModal from "./AddedToCartModal";
 import './products.css';
@@ -51,6 +51,7 @@ const ProductShow = () => {
 
   const handleAddItemToCart = () => {
     dispatch(thunkAddToCart(productId, Number(quantity)));
+    dispatch(thunkGetCart())
   };
 
   if (isLoading) return <div className="centered">Loading...</div>;

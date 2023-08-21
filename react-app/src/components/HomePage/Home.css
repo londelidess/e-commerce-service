@@ -68,7 +68,7 @@
 
 .slider-container {
   display: flex;
-  animation: slide_animation 21s infinite linear; 
+  animation: slide_animation 21s infinite linear;
 }
 
 @keyframes slide_animation {
