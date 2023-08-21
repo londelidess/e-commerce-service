@@ -1,3 +1,13 @@
+/* ...loading */
+.centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-size: 24px;
+    background-color: #f4f4f4;
+}
+
 .product-form {
     max-width: 600px;
     margin: 50px auto;
@@ -15,8 +25,7 @@
 
 .product-form input[type="text"],
 .product-form input[type="number"],
-.product-form select,
-.product-form input[type="file"] {
+.product-form select{
     width: 100%;
     padding: 10px;
     margin-bottom: 20px;
@@ -54,4 +63,48 @@
     font-size: 12px;
     margin-bottom: 10px;
     color: #555;
+}
+
+.product-form label[for="fileInput1"],
+.product-form label[for="fileInput2"],
+.product-form label[for="fileInput3"] {
+    padding: 10px 15px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.product-form label[for="fileInput1"]:hover,
+.product-form label[for="fileInput2"]:hover,
+.product-form label[for="fileInput3"]:hover {
+    background-color: #45a049;
+}
+
+.form-preview-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.form-preview-image {
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
+}
+
+.form-delete-media-btn button{
+    padding: 5px 10px;
+    background-color: #ff4262;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.form-delete-media-btn button:hover {
+    background-color: #ff7088;
 }

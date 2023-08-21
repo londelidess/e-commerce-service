@@ -58,7 +58,7 @@ def seed_products():
 
     game5 = Product(
         name='Speed Stacks',
-        description="""The Digimon Card Game is a competitive trading card game. Each player has a companion Digimon in the battle area to attack the opponent. Your Digimon evolves, gets stronger, and gains new power! You win by beating your opponent's security (reducing your opponents Security Area cards to zero) and delivering a knockout blow!""",
+        description="""Cup stacking with Speed Stacks is an exciting individual and team sport that promotes hand-eye coordination, ambidexterity, quickness and concentration. Cup stacking helps students use both sides of their bodies and brains to develop important athletic and lifelong skills.""",
         price=49.99,
         added_by_user_id=1,
         category_id=games_id

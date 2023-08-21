@@ -10,7 +10,7 @@ const ProductManageItem = ({ product, sessionUser }) => {
     <>
     <li title={product.name} className="outer-container-Update-Delete-Buttons">
             <Link to={`/products/${product.id}`}>
-            <div className="product-item">
+            <div className="product-list-item">
                 <div className="product-preview" title={product.name}>
                 {product.images[0]?.media_url?.endsWith("mp4") ? (
                     <video controls width="320" height="240">
@@ -21,11 +21,11 @@ const ProductManageItem = ({ product, sessionUser }) => {
                     <img src={product.images[0]?.media_url} alt={product.name} />
                 )}
                 </div>
-                <div className="product-details">
+                <div className="product-list-info">
               <div className="product-info">
-                <h2 className="product-name">{product.name}</h2>
+                <h2 className="product-list-name">{product.name}</h2>
               </div>
-              <h2 className="product-price">${parseFloat(product.price).toFixed(2)}</h2>
+              <h2 className="product-list-price">${parseFloat(product.price).toFixed(2)}</h2>
             </div>
             </div>
             </Link>
@@ -34,8 +34,7 @@ const ProductManageItem = ({ product, sessionUser }) => {
             <NavLink
               to={`/products/${product.id}/edit`}
               style={{
-                marginLeft: "22px",
-                marginTop:"10px",
+                borderRadius: '5px',
                 border: "1px solid #000",
                 backgroundColor: "grey",
                 color: "white",
