@@ -107,25 +107,27 @@ const ProductShow = () => {
           ${parseFloat(product.price).toFixed(2)}
         </div>
         {sessionUser && (
-          <div className="product-order-section">
-            <label htmlFor="quantity">Quantity:</label>
-            <input
-              type="number"
-              id="quantity"
-              value={quantity}
-              onChange={(e) => setQuantity(e.target.value)}
-              min="1"
-            />
-            <button
-            className="add-to-cart-button"
-            onClick={handleAddItemToCart}>
-
-              <OpenModalMenuItem
-                itemText="Add to Cart"
-                modalComponent={<AddedToCartModal />}
-              />
-            </button>
-          </div>
+         <div className="product-order-section">
+         <div className="quantity-section">
+             <label htmlFor="quantity">Quantity:</label>
+             <input
+                 type="number"
+                 id="quantity"
+                 value={quantity}
+                 onChange={(e) => setQuantity(e.target.value)}
+                 min="1"
+             />
+         </div>
+         <button
+             className="add-to-cart-button"
+             onClick={handleAddItemToCart}
+         >
+             <OpenModalMenuItem
+                 itemText="Add to Cart"
+                 modalComponent={<AddedToCartModal />}
+             />
+         </button>
+     </div>
         )}
       </div>
     </div>

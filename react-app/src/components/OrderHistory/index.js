@@ -84,7 +84,7 @@ function OrderHistory() {
                   onClick={() => handleReorder(order.id, order.items)}
                 >
                   <OpenModalMenuItem
-                    itemText="Reorder this Order"
+                    itemText="Reorder this Toy"
                     modalComponent={<AddedToCartModal />}
                   />
                 </button>

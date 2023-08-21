@@ -1,71 +1,113 @@
 .home-container {
-    background-color: gold;
-    padding: 20px;
-    /* margin-bottom: 20px; */
-    border-radius: 8px;
-  }
+  background-color: gold;
+  padding: 20px;
+  /* margin-bottom: 20px; */
+  border-radius: 8px;
+}
 
-.home-container h1, .home-container h2 {
-    color: #ff4262;
-    margin-bottom: 10px;
+.home-container h1,
+.home-container h2 {
+  color: #ff4262;
+  margin-bottom: 10px;
 }
 
 .home-container h2.centered-content {
-    color: white;
+  color: white;
 }
 
-  .home-container p {
-    color: white;
-    margin-bottom: 15px;
-  }
+.home-container p {
+  color: white;
+  margin-bottom: 15px;
+}
 
-  .home-container button{
-    border: none;
-    padding: 21px 34px;
-    color: white;
-    cursor: pointer;
-    text-decoration: 0.3s;
-    border-radius: 40px;
-    font-weight:Bold;
-    font-size:18px;
-  }
+.home-container button {
+  border: none;
+  padding: 21px 34px;
+  color: white;
+  cursor: pointer;
+  text-decoration: 0.3s;
+  border-radius: 40px;
+  font-weight: Bold;
+  font-size: 18px;
+}
 
 .home-container button.shop-now {
-    background-color: #00bfff;
-    cursor: pointer;
-    transition: 0.3s;
-    font-size:23px;
-  }
+  background-color: #00bfff;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 23px;
+}
 
-  .home-container button.shop-now:hover {
-    background-color:#62d8ff;
-  }
+.home-container button.shop-now:hover {
+  background-color: #62d8ff;
+}
 
-  .home-container button.learn-more {
-    background-color: #ff4262;
-    color: white;
-    transition: 0.3s;
+.home-container button.learn-more {
+  background-color: #ff4262;
+  color: white;
+  transition: 0.3s;
+}
 
-  }
+.home-container button.learn-more:hover {
+  background-color: #ff7088;
+}
 
-  .home-container button.learn-more:hover {
-    background-color:  #ff7088;
-  }
+.as-seen-on-container {
+  color: lightcoral;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+}
 
-  .as-seen-on-container {
-    color: lightcoral;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100px;
-  }
+.slider-wrapper {
+  overflow: hidden;
+  width: 100%;
+  height: 300px; /* Adjust based on your image height */
+}
 
-  .large-heading {
-    color: #ff4262;
-    font-size: 3em;
-  }
+.slider-container {
+  display: flex;
+  animation: slide_animation 21s infinite linear; /* Adjust the duration based on the number of images and desired speed */
+}
 
-  .centered-content {
-    max-width: 50%;
-    margin: 0 auto;
-  }
+@keyframes slide_animation {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-100%); }
+}
+
+.img-container {
+  flex: 0 0 auto;
+  width: 300px;
+  height: 300px;
+}
+
+.img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.slider-container img {
+  flex: 0 0 auto;
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.large-heading {
+  color: #ff4262;
+  font-size: 3em;
+}
+
+.centered-content {
+  max-width: 50%;
+  margin: 0 auto;
+}

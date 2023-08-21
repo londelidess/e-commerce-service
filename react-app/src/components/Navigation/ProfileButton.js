@@ -6,8 +6,7 @@ import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import "./Navigation.css";
-import DEFAULT_PROFILE_IMAGE_URL from "../../images/no-img.jpg";
-import {  FaUser } from 'react-icons/fa6';
+import {  FaRegUser } from 'react-icons/fa6';
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -23,17 +22,13 @@ function ProfileButton({ user }) {
     if (user) {
       console.log(user?.profile_image_url);
     }
-
     if (!showMenu) return;
-
     const closeMenu = (e) => {
       if (ulRef.current && !ulRef.current.contains(e.target)) {
         setShowMenu(false);
       }
     };
-
     document.addEventListener("click", closeMenu);
-
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu, user]);
 
@@ -56,7 +51,7 @@ function ProfileButton({ user }) {
             className="profile-image-icon"
           />
         ) : (
-          <FaUser className="profile-image-icon" />
+          <FaRegUser className="profile-image-icon" />
         )}
       </button>
       <ul className={ulClassName} ref={ulRef}>
