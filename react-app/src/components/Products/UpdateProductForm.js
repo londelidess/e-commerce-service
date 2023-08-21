@@ -27,14 +27,15 @@ const UpdateProductForm = () => {
   const [image3, setImage3] = useState(null);
   const ALLOWED_EXTENSIONS = new Set(["png", "jpg", "jpeg", "gif", "mp4"]);
   const [touched, setTouched] = useState({
-    name: false,
-    description: false,
-    price: false,
-    categoryId: false,
+    name: true,
+    description: true,
+    price: true,
+    categoryId: true,
   });
   const [previewURL1, setPreviewURL1] = useState(null);
   const [previewURL2, setPreviewURL2] = useState(null);
   const [previewURL3, setPreviewURL3] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -59,19 +60,19 @@ const UpdateProductForm = () => {
 
     if (
       touched.name &&
-      (!name.trim() || name.trim().length < 3 || name.trim().length > 255)
+      (!name.trim() || name.trim().length < 3 || name.trim().length > 400)
     ) {
-      validationErrors.name = "Name must be between 3 and 255 characters.";
+      validationErrors.name = "Name must be between 3 and 400 characters.";
     }
 
     if (
       touched.description &&
       (!description.trim() ||
         description.trim().length < 5 ||
-        description.trim().length > 255)
+        description.trim().length > 400)
     ) {
       validationErrors.description =
-        "Description must be between 5 and 255 characters.";
+        "Description must be between 5 and 400 characters.";
     }
 
     if (touched.price && (!price || price <= 0)) {
@@ -95,6 +96,7 @@ const UpdateProductForm = () => {
 
   const handleImageChange = (setImageFunction, setPreviewFunction, e) => {
     const file = e.target.files[0];
+    if (!file) return;
     const maxSize = 5 * 1024 * 1024; // 5 MB
 
     if (!isAllowedExtension(file.name)) {
@@ -128,11 +130,13 @@ const UpdateProductForm = () => {
         }
       } catch (error) {
         console.error("Error fetching product:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchProduct();
-  }, [dispatch, productId]);
+}, [dispatch, productId]);
 
   if (!sessionUser) {
     return <Redirect to="/" />;
@@ -150,7 +154,10 @@ const UpdateProductForm = () => {
           ) : (
             <img src={media?.media_url} alt="Media" width="100" />
           )}
-          <button onClick={() => handleDeleteMedia(setImageFunction, mediaId)}>
+          <button
+          className="form-delete-media-btn"
+          onClick={() => handleDeleteMedia(setImageFunction, mediaId)}
+          >
             Delete
           </button>
         </>
@@ -162,7 +169,12 @@ const UpdateProductForm = () => {
           Your browser does not support the video tag.
         </video>
       ) : (
-        <img src={previewURL} alt="Preview" width="100" />
+        <img
+          src={previewURL}
+          alt="Preview"
+          width="100"
+          className="form-preview-image"
+        />
       );
     }
     return null;
@@ -208,7 +220,9 @@ const UpdateProductForm = () => {
     setImageFunction(null);
   };
 
-  // console.log(Object.keys(errors).length)
+  if (loading)  return <div className="centered">Loading...</div>;
+
+  console.log(Object.keys(errors).length)
   return (
     <div className="product-form">
       <form onSubmit={handleSubmit}>
@@ -283,31 +297,37 @@ const UpdateProductForm = () => {
         </div>
 
         <div className="form-preview-container">
-          <label>Media1:</label>
+          <label htmlFor="fileInput1">Media1:</label>
           <input
+            id="fileInput1"
             type="file"
             accept=".png, .jpg, .jpeg, .gif, .mp4"
             onChange={(e) => handleImageChange(setImage, setPreviewURL1, e)}
+            style={{ display: "none" }}
           />
           {renderMedia(image, previewURL1, setImage, image?.id)}
         </div>
 
         <div className="form-preview-container">
-          <label>Media2:</label>
+          <label htmlFor="fileInput2">Media2:</label>
           <input
+            id="fileInput2"
             type="file"
             accept=".png, .jpg, .jpeg, .gif, .mp4"
             onChange={(e) => handleImageChange(setImage2, setPreviewURL2, e)}
+            style={{ display: "none" }}
           />
           {renderMedia(image2, previewURL2, setImage2, image2?.id)}
         </div>
 
         <div className="form-preview-container">
-          <label>Media3:</label>
+          <label htmlFor="fileInput3">Media3:</label>
           <input
+            id="fileInput3"
             type="file"
             accept=".png, .jpg, .jpeg, .gif, .mp4"
             onChange={(e) => handleImageChange(setImage3, setPreviewURL3, e)}
+            style={{ display: "none" }}
           />
           {renderMedia(image3, previewURL3, setImage3, image3?.id)}
         </div>

@@ -53,17 +53,17 @@ const CreateProductForm = () => {
   const validate = (fieldName) => {
     const validationErrors = {};
 
-    if (!name.trim() || name.trim().length < 3 || name.trim().length > 255) {
-      validationErrors.name = "Name must be between 3 and 255 characters.";
+    if (!name.trim() || name.trim().length < 3 || name.trim().length > 240055) {
+      validationErrors.name = "Name must be between 3 and 400 characters.";
     }
 
     if (
       !description.trim() ||
       description.trim().length < 5 ||
-      description.trim().length > 255
+      description.trim().length > 400
     ) {
       validationErrors.description =
-        "Description must be between 5 and 255 characters.";
+        "Description must be between 5 and 400 characters.";
     }
 
     if (!price || price <= 0) {
@@ -121,7 +121,7 @@ const CreateProductForm = () => {
       return;
     }
     const url = URL.createObjectURL(file);
-    setPreviewFunction(url); 
+    setPreviewFunction(url);
     setImageFunction(file);
   };
 
@@ -241,7 +241,7 @@ const CreateProductForm = () => {
         </div>
 
         <div className="form-preview-container">
-          <label for="fileInput1">Upload Preview Media</label>
+          <label htmlFor="fileInput1">Upload Preview Media</label>
           <input
             id="fileInput1"
             type="file"
@@ -265,7 +265,7 @@ const CreateProductForm = () => {
         </div>
 
         <div className="form-preview-container">
-          <label for="fileInput2">Upload Media2</label>
+          <label htmlFor="fileInput2">Upload Media2</label>
           <input
             id="fileInput2"
             type="file"
@@ -289,7 +289,7 @@ const CreateProductForm = () => {
         </div>
 
         <div className="form-preview-container">
-          <label for="fileInput3">Upload Media3</label>
+          <label htmlFor="fileInput3">Upload Media3</label>
           <input
             id="fileInput3"
             type="file"
