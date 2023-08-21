@@ -17,27 +17,30 @@ function LoginFormModal() {
     if (data) {
       setErrors(data);
     } else {
-        closeModal()
+      closeModal();
     }
   };
 
   const handleDemoLogin = async (e) => {
     e.preventDefault();
-    const data = await dispatch(login('demo@aa.io', 'password'));
+    const data = await dispatch(login("demo@aa.io", "password"));
     if (data) {
       setErrors(data);
     } else {
-        closeModal();
+      closeModal();
     }
-};
-
+  };
 
   return (
     <div className="login-form">
       <h1 className="login-form-title">Log In</h1>
       <form onSubmit={handleSubmit}>
         <ul>
-          {errors.map((error, idx) => <li key={idx} className="error">{error}</li>)}
+          {errors.map((error, idx) => (
+            <li key={idx} className="error">
+              {error}
+            </li>
+          ))}
         </ul>
         <label>
           Email
@@ -57,13 +60,21 @@ function LoginFormModal() {
             required
           />
         </label>
-        <button type="submit" className="login-button">Log In</button>
-        <button type="button" className="demo-login-button" onClick={handleDemoLogin}>Demo User</button>
+        <div className="login-demo-button-container">
+          <button type="submit" className="login-button">
+            Log In
+          </button>
+          <button
+            type="button"
+            className="demo-login-button"
+            onClick={handleDemoLogin}
+          >
+            Demo User
+          </button>
+        </div>
       </form>
     </div>
   );
 }
 
 export default LoginFormModal;
-
-

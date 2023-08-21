@@ -6,6 +6,9 @@ import {
   thunkDeleteMedia,
   thunkGetAllMediaByProductId,
 } from "../../store/media";
+import {
+    FaUpload
+  } from "react-icons/fa6";
 import { useHistory, useParams, Redirect } from "react-router-dom";
 import "./productform.css";
 

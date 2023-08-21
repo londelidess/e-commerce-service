@@ -76,7 +76,7 @@
 }
 
 .shopping-cart-icon {
-  font-size: 35px; 
+  font-size: 35px;
 }
 
 .cart-quantity {
@@ -91,6 +91,14 @@
   transform: translate(-100%, -50%);
 }
 /* profile button */
+.profile-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+}
+
 .icon-button {
   background: none;
   border: none;
@@ -114,17 +122,25 @@
 }
 
 .profile-dropdown{
-  left: 0;
+  /* left: 0;
   transform: translateX(-50%);
   position: absolute;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   padding: 12px 16px;
-
   background-color: #f9f9f9;
   border-radius: 4px;
-
-  z-index: 1000;
+  z-index: 1000; */
+  left: auto;
+  right: 0;
+  top: 100%;
+  transform: none;
+  position: absolute;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  background-color: #f9f9f9;
+  border-radius: 4px;
 }
 
 .logo-and-menu {
@@ -132,9 +148,6 @@
   flex-direction: column;
   align-items: center;
 }
-
-
-
 
 .logged-in.icon-button {
   background: none;
@@ -146,4 +159,72 @@
 
 .logged-in.icon-button:focus {
   outline: none;
+}
+
+
+
+/*Sign-Out  Log-In Sign-Up Button */
+
+.logout-button {
+  background-color: #ff3a3a;
+  color: white;
+  margin: 5px 0;
+  width: 100%;
+  text-align: center;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.logout-button:hover {
+  background-color: #e02929;
+}
+
+.profile-login-logout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.profile-login-button button {
+  background-color: #3498db;
+  color: white;
+  text-align: center;
+  margin-top: 10px;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.profile-login-button button:hover {
+  background-color: #2980b9;
+}
+.profile-signup-button button {
+  background-color: #2ecc71;
+  color: white;
+  text-align: center;
+  margin-top: 10px;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.profile-signup-button button:hover {
+  background-color: #27ae60;
 }

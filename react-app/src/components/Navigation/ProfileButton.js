@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { logout } from "../../store/session";
@@ -6,7 +6,7 @@ import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import "./Navigation.css";
-import {  FaRegUser } from 'react-icons/fa6';
+import { FaRegUser } from "react-icons/fa6";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -43,7 +43,11 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button className={`icon-button ${user ? 'logged-in' : ''}`} onClick={openMenu} style={{ cursor: "pointer" }}>
+      <button
+        className={`icon-button ${user ? "logged-in" : ""}`}
+        onClick={openMenu}
+        style={{ cursor: "pointer" }}
+      >
         {user?.profile_image_url ? (
           <img
             src={user?.profile_image_url}
@@ -71,21 +75,32 @@ function ProfileButton({ user }) {
             </li>
             <hr />
             <li>
-              <button onClick={handleLogout}>Log Out</button>
+              <button
+                className="logout-button"
+                onClick={handleLogout}
+              >
+                Log Out
+              </button>
             </li>
           </>
         ) : (
           <>
+          <div className="login-logout">
+          <div className="profile-login-button">
             <OpenModalButton
               buttonText="Log In"
               onItemClick={closeMenu}
               modalComponent={<LoginFormModal />}
             />
+            </div>
+            <div className="profile-signup-button">
             <OpenModalButton
               buttonText="Sign Up"
               onItemClick={closeMenu}
               modalComponent={<SignupFormModal />}
             />
+            </div>
+            </div>
           </>
         )}
       </ul>
