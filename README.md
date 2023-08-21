@@ -1,148 +1,179 @@
-# Flask React Project
 
-This is the starter for the Flask React project.
+# `PLAYBOX <toy-store-e-commerce-service>`
 
-## Getting started
-1. Clone this repository (only this branch)
+## INTRODUCTION
+![homepage][def]
+![shoppage][def2]
+![shoppingcartpage][def3]
+![orderhistorypage][def4]
 
-2. Install dependencies
+## Link to website 
+[https://bv-group-project.onrender.com](https://omocha-no-chachacha.onrender.com)
 
-      ```bash
-      pipenv install -r requirements.txt
-      ```
+PLAYBOX, a [U](https://upbounders.com/) replica, is a platform where users can buy toys.
 
-3. Create a **.env** file based on the example with proper settings for your
-   development environment
+## Feature List
+**Shopping Bliss**, an e-commerce platform, is a website where users can browse a variety of products, add them to their carts, engage in product reviews, and complete purchases with ease.
 
-4. Make sure the SQLite3 database connection URL is in the **.env** file
+1. **New account creation, log in, log out, and guest/demo login**
+    - Users can sign up, log in, and log out.
+    - Users can use a demo login to try the site without making actual purchases.
+    - Users can't use certain features without logging in (like adding products to cart, reviewing products, and completing transactions).
+    - Logged in users are directed to their profile page which displays their past orders and favorite products.
+    - Logged out users are directed to the main product browsing page.
 
-5. This starter organizes all tables inside the `flask_schema` schema, defined
-   by the `SCHEMA` environment variable.  Replace the value for
-   `SCHEMA` with a unique name, **making sure you use the snake_case
-   convention**.
+2. **Hosting on Render**
 
-6. Get into your pipenv, migrate your database, seed your database, and run your Flask app
+3. **Products**
+    - All users can view available products.
+    - Logged in owner can add new products.
+    - Product owners can edit and delete their products.
+    - Users can search for products using a search bar.
 
-   ```bash
-   pipenv shell
-   ```
+4. **Shopping Cart and Transactions**
+    - Logged in users can add products to their shopping cart.
+    - Users can view all products added to their cart.
+    - Users can remove products from their shopping cart.
+    - Users can complete a transaction/purchase, turning the cart into an order.
+    - Users can view their past orders.
 
-   ```bash
-   flask db upgrade
-   ```
+5. **Reviews**
+    - Logged in users can post reviews on products.
+    - Review authors can edit and delete their reviews.
+    - All users can view product reviews.
 
-   ```bash
-   flask seed all
-   ```
+6. **Favorites**
+    - Logged in users can mark products as favorites.
+    - Users can view and manage their favorite products.
+    - Users can remove products from their favorites.
 
-   ```bash
-   flask run
-   ```
+6. **Images**
+    - Product owners can add multiple images to their product listings.
+    - Users (if allowed) can include images in their reviews.
 
-7. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
+8. **Past Orders & Reorder**
+    - Users can view their past orders and reorder.
+
+9. **Production README**
+    - Brief explanation of what the platform is and its purpose.
+    - How to start the development environment.
+    - Technologies used.
+    - Link to the live site.
+    - Link to Wiki docs or documentation.
+    - Discussion of two standout features of the platform.
+    - Challenges faced during development and their solutions.
+    - Code snippets showcasing notable aspects of the site's backend or frontend code.
 
 
-## Deployment through Render.com
+10. **Bonus Features**
+    - **Search**: Users can search products by category.
 
-First, refer to your Render.com deployment articles for more detailed
-instructions about getting started with [Render.com], creating a production
-database, and deployment debugging tips.
+    - **Recommendations**: Based on user browsing and purchase history, recommend products they might like.
 
-From the [Dashboard], click on the "New +" button in the navigation bar, and
-click on "Web Service" to create the application that will be deployed.
+    - **Sale and Discounts**: Implement features for sales, discount codes, and special promotions.
+![db-schema](https://github.com/londelidess/shopping-website/blob/main/images/db-schema.png)
 
-Look for the name of the application you want to deploy, and click the "Connect"
-button to the right of the name.
+## Authentication
 
-Now, fill out the form to configure the build and start commands, as well as add
-the environment variables to properly deploy the application.
+* Users can check if they're authenticated.
+  - `GET api/auth`
 
-### Part A: Configure the Start and Build Commands
+* Users can log in.
+  - `POST api/auth/login`
 
-Start by giving your application a name.
+* Users can log out.
+  - `POST api/auth/logout`
 
-Leave the root directory field blank. By default, Render will run commands from
-the root directory.
+* Users can sign up.
+  - `POST api/auth/signup`
 
-Make sure the Environment field is set set to "Python 3", the Region is set to
-the location closest to you, and the Branch is set to "main".
+* An unauthorized endpoint to handle authentication failures.
+  - `POST api/auth/unauthorized`
 
-Next, add your Build command. This is a script that should include everything
-that needs to happen _before_ starting the server.
+---
 
-For your Flask project, enter the following command into the Build field, all in
-one line:
+## Session
 
-```shell
-# build command - enter all in one line
-npm install --prefix react-app &&
-npm run build --prefix react-app &&
-pip install -r requirements.txt &&
-pip install psycopg2 &&
-flask db upgrade &&
-flask seed all
-```
+* Users can view all users.
+  - `GET api/posts`
 
-This script will install dependencies for the frontend, and run the build
-command in the __package.json__ file for the frontend, which builds the React
-application. Then, it will install the dependencies needed for the Python
-backend, and run the migration and seed files.
+* Users can retrieve a specific user by their ID.
+  - `GET api/users/<id>`
 
-Now, add your start command in the Start field:
+---
 
-```shell
-# start script
-gunicorn app:app
-```
 
-_If you are using websockets, use the following start command instead for increased performance:_
+## Products
 
-`gunicorn --worker-class eventlet -w 1 app:app`
+* Users can view all products.
+  - `GET api/products`
 
-### Part B: Add the Environment Variables
+* Users can retrieve a specific product by its ID.
+  - `GET api/products/<product_id>`
 
-Click on the "Advanced" button at the bottom of the form to configure the
-environment variables your application needs to access to run properly. In the
-development environment, you have been securing these variables in the __.env__
-file, which has been removed from source control. In this step, you will need to
-input the keys and values for the environment variables you need for production
-into the Render GUI.
+* Users can create a product.
+  - `POST api/products`
 
-Click on "Add Environment Variable" to start adding all of the variables you
-need for the production environment.
+* Users can update a specific product by its ID.
+  - `PUT api/products/<product_id>`
 
-Add the following keys and values in the Render GUI form:
+* Users can delete a specific product by its ID.
+  - `DELETE api/products/<product_id>`
 
-- SECRET_KEY (click "Generate" to generate a secure secret for production)
-- FLASK_ENV production
-- FLASK_APP app
-- SCHEMA (your unique schema name, in snake_case)
-- REACT_APP_BASE_URL (use render.com url, located at top of page, similar to
-  https://this-application-name.onrender.com)
 
-In a new tab, navigate to your dashboard and click on your Postgres database
-instance.
+## Shopping Cart
 
-Add the following keys and values:
+* Users can view all products in their cart.
+  - `GET api/cart`
 
-- DATABASE_URL (copy value from Internal Database URL field)
+* Users can add a product to their cart.
+  - `POST api/cart`
 
-_Note: Add any other keys and values that may be present in your local __.env__
-file. As you work to further develop your project, you may need to add more
-environment variables to your local __.env__ file. Make sure you add these
-environment variables to the Render GUI as well for the next deployment._
+* Users can remove a product from their cart.
+  - `DELETE api/cart/<product_id>`
 
-Next, choose "Yes" for the Auto-Deploy field. This will re-deploy your
-application every time you push to main.
+* Users can complete a transaction/purchase.
+  - `POST api/cart/checkout`
 
-Now, you are finally ready to deploy! Click "Create Web Service" to deploy your
-project. The deployment process will likely take about 10-15 minutes if
-everything works as expected. You can monitor the logs to see your build and
-start commands being executed, and see any errors in the build process.
+---
 
-When deployment is complete, open your deployed site and check to see if you
-successfully deployed your Flask application to Render! You can find the URL for
-your site just below the name of the Web Service at the top of the page.
+## Past Orders
 
-[Render.com]: https://render.com/
-[Dashboard]: https://dashboard.render.com/
+* Users can view all their past orders.
+  - `GET api/orders`
+
+* Users can reorder a past order.
+  - `POST api/orders/<order_id>/reorder`
+
+---
+
+## Search
+
+* Users can search for products.
+  - `GET api/search?query=<search_term>`
+
+
+
+---
+
+## Reviews
+
+* Users can retrieve all reviews for a specific product.
+  - `GET api/reviews/<product_id>`
+
+* Users can create a review for a specific product.
+  - `POST api/reviews/<product_id>`
+
+* Users can update their review for a specific product by review ID.
+  - `PUT api/reviews/<review_id>`
+
+* Users can delete their review from a specific product by review ID.
+  - `DELETE api/reviews/<review_id>`
+ 
+## Technology we used 
+Flask/ React/ Redux/ sqlAlchemy/ postgresql/ AWS S3
+
+[def]: ./images/home-page.png
+[def2]:./images/shop-page.png
+[def3]:./images/shopping-cart.png
+[def4]:./images/order-history.png
