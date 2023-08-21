@@ -18,9 +18,9 @@ const ProductItem = ({ product }) => {
             </div>
             <div className="product-details">
               <div className="product-info">
-                <h3>{product.name}</h3>
+                <h2 className="product-name">{product.name}</h2>
               </div>
-              <div>${parseFloat(product.price).toFixed(2)}</div>
+              <h2 className="product-price">${parseFloat(product.price).toFixed(2)}</h2>
             </div>
           </div>
         </Link>

@@ -5,7 +5,7 @@ import "./products.css";
 
 const ProductManageItem = ({ product, sessionUser }) => {
 
-    console.log(product.images[0]?.media_url)
+
   return (
     <>
     <li title={product.name} className="outer-container-Update-Delete-Buttons">
@@ -22,8 +22,11 @@ const ProductManageItem = ({ product, sessionUser }) => {
                 )}
                 </div>
                 <div className="product-details">
-                <p style={{ fontWeight: 'bold' }}>${parseFloat(product.price).toFixed(2)}</p>
-                </div>
+              <div className="product-info">
+                <h2 className="product-name">{product.name}</h2>
+              </div>
+              <h2 className="product-price">${parseFloat(product.price).toFixed(2)}</h2>
+            </div>
             </div>
             </Link>
             <div className="Update-Delete-Buttons">
