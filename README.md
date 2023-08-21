@@ -147,28 +147,6 @@ PLAYBOX, a [U](https://upbounders.com/) replica, is a platform where users can b
 
 ---
 
-## Search
-
-* Users can search for products.
-  - `GET api/search?query=<search_term>`
-
-
-
----
-
-## Reviews
-
-* Users can retrieve all reviews for a specific product.
-  - `GET api/reviews/<product_id>`
-
-* Users can create a review for a specific product.
-  - `POST api/reviews/<product_id>`
-
-* Users can update their review for a specific product by review ID.
-  - `PUT api/reviews/<review_id>`
-
-* Users can delete their review from a specific product by review ID.
-  - `DELETE api/reviews/<review_id>`
  
 ## Technology we used 
 Flask/ React/ Redux/ sqlAlchemy/ postgresql/ AWS S3
