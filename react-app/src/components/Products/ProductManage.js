@@ -39,7 +39,7 @@ const ProductManage = () => {
         <h1>Manage Your Products</h1>
 
           <NavLink to="/products/new" style={{
-
+          borderRadius: '5px',
           border: "1px solid #000",
           backgroundColor: "grey",
           color: "white",
