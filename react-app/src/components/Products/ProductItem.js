@@ -16,12 +16,12 @@ const ProductItem = ({ product }) => {
                 <img src={product.images[0]?.media_url} alt={product.name} />
               )}
             </div>
-            <div className="product-details">
+
               <div className="product-info">
-                <h2 className="product-name">{product.name}</h2>
+                <h2 className="product-list-name">{product.name}</h2>
               </div>
-              <h2 className="product-price">${parseFloat(product.price).toFixed(2)}</h2>
-            </div>
+              <h2 className="product-list-price">${parseFloat(product.price).toFixed(2)}</h2>
+
           </div>
         </Link>
       </li>

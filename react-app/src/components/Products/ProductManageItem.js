@@ -8,10 +8,11 @@ const ProductManageItem = ({ product, sessionUser }) => {
 
   return (
     <>
-    <li title={product.name} className="outer-container-Update-Delete-Buttons">
+        <li title={product.name} className="manage-outer-container">
             <Link to={`/products/${product.id}`}>
-            <div className="product-list-item">
-                <div className="product-preview" title={product.name}>
+            <div className="manage-product-item">
+                <div className="manage-product-preview" title={product.name}>
+
                 {product.images[0]?.media_url?.endsWith("mp4") ? (
                     <video controls width="320" height="240">
                     <source src={product.images[0]?.media_url} type="video/mp4" />
@@ -20,13 +21,11 @@ const ProductManageItem = ({ product, sessionUser }) => {
                 ) : (
                     <img src={product.images[0]?.media_url} alt={product.name} />
                 )}
+               </div>
+                <div className="manage-product-info">
+                    <h2 className="manage-product-name">{product.name}</h2>
+                    <h2 className="manage-product-price">${parseFloat(product.price).toFixed(2)}</h2>
                 </div>
-                <div className="product-list-info">
-              <div className="product-info">
-                <h2 className="product-list-name">{product.name}</h2>
-              </div>
-              <h2 className="product-list-price">${parseFloat(product.price).toFixed(2)}</h2>
-            </div>
             </div>
             </Link>
             <div className="Update-Delete-Buttons">
