@@ -225,7 +225,7 @@ const UpdateProductForm = () => {
 
   if (loading)  return <div className="centered">Loading...</div>;
 
-  console.log(Object.keys(errors).length)
+//   console.log(Object.keys(errors).length)
   return (
     <div className="product-form">
       <form onSubmit={handleSubmit}>
