@@ -10,7 +10,7 @@
 ## Link to website 
 [https://bv-group-project.onrender.com](https://omocha-no-chachacha.onrender.com)
 
-PLAYBOX, a [U](https://upbounders.com/) replica, is a platform where users can buy toys.
+PLAYBOX, a [Upbounders](https://upbounders.com/) replica, is a platform where users can buy toys.
 
 ## Feature List
 **Shopping Bliss**, an e-commerce platform, is a website where users can browse a variety of products, add them to their carts, engage in product reviews, and complete purchases with ease.
