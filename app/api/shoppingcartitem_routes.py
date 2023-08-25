@@ -21,7 +21,7 @@ def get_cart():
         'subtotal': subtotal,
         'total_quantity': total_quantity
     })
-    
+
 # @shoppingcartitem_routes.route('/', methods=['GET'])
 # @login_required
 # def get_cart():

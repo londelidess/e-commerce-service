@@ -1,5 +1,4 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
-from .media import Media
 from datetime import datetime
 
 class Product(db.Model):
@@ -24,6 +23,7 @@ class Product(db.Model):
     cart_items = db.relationship("ShoppingCartItem", back_populates="product",cascade="all, delete")
     transaction_items = db.relationship("TransactionItem", back_populates="product")
     reviews = db.relationship("Review", back_populates="product")
+    favorited_by = db.relationship("Favorite", back_populates="product", cascade="all, delete-orphan")
 
     def get_primary_image(self):
         return self.images[0].media_url if self.images else None

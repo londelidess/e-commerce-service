@@ -7,4 +7,5 @@ from .transaction import Transaction
 from .transactionitem import TransactionItem
 from .media import Media
 from .review import Review
+from .favorite import Favorite
 from .db import environment, SCHEMA
