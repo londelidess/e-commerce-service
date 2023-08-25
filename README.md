@@ -111,6 +111,9 @@ PLAYBOX, a [Upbounders](https://upbounders.com/) replica, is a platform where us
 * Users can retrieve a specific product by its ID.
   - `GET api/products/<product_id>`
 
+* Users can view all categories of products.
+  - `POST api/products/categories`
+
 * Users can create a product.
   - `POST api/products`
 
@@ -124,28 +127,39 @@ PLAYBOX, a [Upbounders](https://upbounders.com/) replica, is a platform where us
 ## Shopping Cart
 
 * Users can view all products in their cart.
-  - `GET api/cart`
+  - `GET api/shoppingcarts`
 
 * Users can add a product to their cart.
-  - `POST api/cart`
+  - `POST api/shoppingcarts`
+
+* Users can clear all products from their cart.
+  - `DELETE api/shoppingcarts/clear`
 
 * Users can remove a product from their cart.
-  - `DELETE api/cart/<product_id>`
+  - `DELETE api/shoppingcarts/<product_id>`
+
+* Users can update product quantity in their cart.
+  - `PUT api/shoppingcarts/<product_id>`
 
 * Users can complete a transaction/purchase.
-  - `POST api/cart/checkout`
+  - `POST api/shoppingcarts/checkout`
+
+
 
 ---
 
 ## Past Orders
 
-* Users can view all their past orders.
-  - `GET api/orders`
-
 * Users can reorder a past order.
-  - `POST api/orders/<order_id>/reorder`
+  - `POST api/shoppingcarts/orders/<order_id>/reorder`
+
+
+* Users can view all their past orders.
+  - `GET api/shoppingcarts/orders`
+
 
 ---
+
 
  
 ## Technology we used 
