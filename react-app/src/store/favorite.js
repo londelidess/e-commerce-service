@@ -64,11 +64,10 @@ export const removeProductFromFavorites = (productId) => async (dispatch) => {
 	}
 };
 
-// initialState
 const initialState = {};
 
 // reducer
-export default function reducer(state = initialState, action) {
+export default function favoriteReducer(state = initialState, action) {
 	switch (action.type) {
 		case SET_FAVORITES:
 			const favoritesObj = {};
