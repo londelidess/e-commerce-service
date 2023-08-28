@@ -14,6 +14,7 @@ import CreateProductForm from "./components/Products/CreateProductForm";
 import UpdateProductForm from "./components/Products/UpdateProductForm";
 import ProductManage from "./components/Products/ProductManage"
 import ProductShow from "./components/Products/ProductShow";
+import favorite from "./components/Favorite";
 
 // import PrivateRoute from "./PrivateRoute"
 
@@ -31,6 +32,7 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route exact path="/history" component={OrderHistory} />
+          <Route exact path="/favorite" component={favorite} />
           <Route exact path="/shoppingcarts" component={ShoppingCart} />
           <Route exact path="/products/new" component={CreateProductForm} />
           <Route exact path="/products/manage" component={ProductManage} />
