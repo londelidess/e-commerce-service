@@ -6,7 +6,6 @@ import {
     fetchFavorites,
     removeProductFromFavorites
   } from "../../store/favorite";
-import "./orderhistory.css";
 
 function Favorite() {
   const dispatch = useDispatch();
