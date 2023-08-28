@@ -22,16 +22,21 @@ const removeFavorite = (productId) => ({
 
 // thunks
 export const fetchFavorites = () => async (dispatch) => {
-	const response = await fetch("/api/favorites/my-favorites", {
-		headers: {
-			"Content-Type": "application/json",
-		},
-	});
-	if (response.ok) {
-		const favorites = await response.json();
-		dispatch(setFavorites(favorites));
-	}
-};
+    try {
+      const response = await fetch("/api/favorites/my-favorites", {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      if (!response.ok) {
+        throw new Error("Failed to fetch favorites");
+      }
+      const favorites = await response.json();
+      dispatch(setFavorites(favorites));
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
 export const addProductToFavorites = (productId) => async (dispatch) => {
 	const response = await fetch(`/api/favorites/${productId}`, {

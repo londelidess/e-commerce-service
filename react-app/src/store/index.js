@@ -11,7 +11,7 @@ const rootReducer = combineReducers({
   products:productsReducer,
   shoppingCart:shoppingCartReducer,
   medias:mediaReducer,
-  favorite:favoriteReducer
+  favorites:favoriteReducer
 });
 
 let enhancer;
