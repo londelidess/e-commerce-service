@@ -23,6 +23,7 @@ const HomePage = () => {
     return () => clearInterval(interval);
   }, [dispatch, productsArray.length])
 
+
   return (
     <div>
       <div className="home-container">

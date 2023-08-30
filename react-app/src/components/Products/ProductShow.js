@@ -14,6 +14,11 @@ import { fetchProductById } from "../../store/product";
 import { thunkAddToCart,thunkGetCart } from "../../store/shoppingCart";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import AddedToCartModal from "./AddedToCartModal";
+import {
+  fetchFavorites,
+  addProductToFavorites,
+  removeProductFromFavorites,
+} from "../../store/favorite";
 import './products.css';
 
 const ProductShow = () => {

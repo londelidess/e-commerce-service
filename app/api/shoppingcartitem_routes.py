@@ -171,6 +171,7 @@ def checkout():
     db.session.commit()
 
     return jsonify({"message": "Transaction completed", "transaction_id": transaction.id})
+    
 
 @shoppingcartitem_routes.route('/orders/<int:order_id>/reorder', methods=['POST'])
 @login_required
