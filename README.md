@@ -55,14 +55,7 @@ PLAYBOX, a [Upbounders](https://upbounders.com/) replica, is a platform where us
     - Users can view their past orders and reorder.
 
 9. **Production README**
-    - Brief explanation of what the platform is and its purpose.
-    - How to start the development environment.
-    - Technologies used.
-    - Link to the live site.
-    - Link to Wiki docs or documentation.
-    - Discussion of two standout features of the platform.
-    - Challenges faced during development and their solutions.
-    - Code snippets showcasing notable aspects of the site's backend or frontend code.
+
 
 
 10. **Bonus Features**
