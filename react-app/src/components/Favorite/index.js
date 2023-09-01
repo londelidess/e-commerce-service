@@ -11,7 +11,8 @@ import "./favorite.css"
 function Favorite() {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
-  const favoritesObj = useSelector((state) => state.favorites);
+//   const favoritesObj = useSelector((state) => state.favorites);
+  const favorites = useSelector((state) => state.favorites);
   const [deleting, setDeleting] = useState(false);
 
   useEffect(() => {
@@ -32,10 +33,10 @@ function Favorite() {
 
   if (!sessionUser) return <Redirect to="/" />;
   if (deleting) return <div className="centered">Removing...</div>;
-
-  const favorites = Object.values(favoritesObj);
-
-  return (
+//   console.log(favoritesObj);
+//   const favorites = Object.values(favoritesObj);
+//   console.log(favorites);
+return (
     <div className="favorites-container">
         <h2>Your Favorites</h2>
         {favorites.length === 0 && <p>No favorites yet.</p>}
@@ -50,13 +51,17 @@ function Favorite() {
                          <FaX />
                         </button>
                         <div className="product-preview" title={product.name}>
-                            {product.images[0].media_url.endsWith("mp4") ? (
-                                <video controls width="320" height="240">
-                                    <source src={product.images[0].media_url} type="video/mp4" />
-                                    Your browser does not support the video tag.
-                                </video>
+                            {product.images && product.images.length > 0 ? (
+                                product.images[0].media_url.endsWith("mp4") ? (
+                                    <video controls width="320" height="240">
+                                        <source src={product.images[0].media_url} type="video/mp4" />
+                                        Your browser does not support the video tag.
+                                    </video>
+                                ) : (
+                                    <img src={product.images[0].media_url} alt={product.name} />
+                                )
                             ) : (
-                                <img src={product.images[0].media_url} alt={product.name} />
+                                <p>No image available</p>
                             )}
                         </div>
                         <div className="product-details">
@@ -73,5 +78,4 @@ function Favorite() {
     </div>
 );
 }
-
 export default Favorite;

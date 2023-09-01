@@ -141,11 +141,12 @@
 
 .product-header {
     display: flex;
-    padding: 0px 10px;
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: row;
+    /* align-items: flex-start; */
     width: 100%;
     margin-bottom: 20px;
+    align-items: center;
+    /* justify-content: space-between; */
 }
 
 .product-header h1 {
@@ -153,6 +154,8 @@
     margin: 0;
     color: #333;
     text-align: center;
+    flex-grow: 1;
+    margin-right: 10px;
 }
 
 .product-price {
@@ -436,3 +439,55 @@
     background-color: #626e77;
     transform: translateY(-2px);
   }
+
+/* favorite button */
+
+.favorite-button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #000;
+    color: white;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-left: 10px;
+}
+
+.favorite-button .icon {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    position: relative;
+}
+
+.favorite-button .icon .star {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    clip-path: polygon(
+        50% 0%,
+        61% 35%,
+        98% 35%,
+        68% 57%,
+        79% 91%,
+        50% 70%,
+        21% 91%,
+        32% 57%,
+        2% 35%,
+        39% 35%
+    );
+}
+
+.favorite-button.active {
+    background-color: #000;
+    color: #FFD700;
+    transform: scale(1.2);
+}
+
+.favorite-button.active .icon .star {
+    background-color: #FFD700;
+}

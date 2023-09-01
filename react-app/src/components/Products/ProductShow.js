@@ -11,7 +11,7 @@ import { useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProductById } from "../../store/product";
-import { thunkAddToCart,thunkGetCart } from "../../store/shoppingCart";
+import { thunkAddToCart, thunkGetCart } from "../../store/shoppingCart";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import AddedToCartModal from "./AddedToCartModal";
 import {
@@ -19,7 +19,7 @@ import {
   addProductToFavorites,
   removeProductFromFavorites,
 } from "../../store/favorite";
-import './products.css';
+import "./products.css";
 
 const ProductShow = () => {
   const { productId } = useParams();
@@ -29,38 +29,61 @@ const ProductShow = () => {
   const [error, setError] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [quantity, setQuantity] = useState(1);
-
+  const favorites = useSelector((state) => state.favorites);
+  // console.log(favorites)
+  const [isFavorite, setIsFavorite] = useState(false);
   const product = useSelector((state) => state.products.singleProduct);
+
+useEffect(() => {
+    setIsFavorite(!!favorites.find((favorite) => favorite.id === productId));
+}, [favorites, productId]);
+
+
   useEffect(() => {
     let isMounted = true;
 
-    const fetchProductAndReviews = async () => {
-        if (isMounted) setIsLoading(true);
-        try {
-            await dispatch(fetchProductById(productId));
-        } catch (err) {
-            console.error("Failed to fetch product or reviews:", err);
-            if (isMounted) setError(err);
-        } finally {
-            if (isMounted) setIsLoading(false);
+    const fetchProduct = async () => {
+      if (isMounted) setIsLoading(true);
+      try {
+        await dispatch(fetchProductById(productId));
+        if (isMounted) setIsLoading(false);
+      } catch (err) {
+        console.error("Failed to fetch product:", err);
+        if (isMounted) {
+          setIsLoading(false);
+          setError(err);
         }
+      }
     };
 
-    fetchProductAndReviews();
+    fetchProduct();
 
     return () => {
-        isMounted = false;
+      isMounted = false;
     };
 }, [dispatch, productId]);
 
+const handleFavoriteButtonClick = (e) => {
+  e.preventDefault();
+  if (isFavorite) {
+    dispatch(removeProductFromFavorites(productId));
+    // dispatch(fetchFavorites())
+} else {
+    dispatch(addProductToFavorites(productId));
+    // dispatch(fetchFavorites())
+}
+setIsFavorite(!isFavorite);
+// dispatch(fetchFavorites())
+};
 
   const handleAddItemToCart = () => {
     dispatch(thunkAddToCart(productId, Number(quantity)));
-    dispatch(thunkGetCart())
+    dispatch(thunkGetCart());
   };
 
   if (isLoading) return <div className="centered">Loading...</div>;
-  if (error) return <div className="centered">An error occurred.</div>;
+  if (error)
+    return <div className="centered">An error occurred: {error.message}</div>;
   if (!product) return null;
 
   return (
@@ -107,33 +130,44 @@ const ProductShow = () => {
       <div className="product-details">
         <div className="product-header">
           <h1>{product.name}</h1>
+          {sessionUser && (
+            <button
+              className={`favorite-button ${isFavorite ? "active" : ""}`}
+              onClick={handleFavoriteButtonClick}
+            >
+              <div className="icon">
+                <div className="star"></div>
+              </div>
+              <span>Favorite</span>
+            </button>
+          )}
         </div>
         <div className="product-description">{product.description}</div>
         <div className="product-price">
           ${parseFloat(product.price).toFixed(2)}
         </div>
         {sessionUser && (
-         <div className="product-order-section">
-         <div className="quantity-section">
-             <label htmlFor="quantity">Quantity:</label>
-             <input
-                 type="number"
-                 id="quantity"
-                 value={quantity}
-                 onChange={(e) => setQuantity(e.target.value)}
-                 min="1"
-             />
-         </div>
-         <button
-             className="add-to-cart-button"
-             onClick={handleAddItemToCart}
-         >
-             <OpenModalMenuItem
-                 itemText="Add to Cart"
-                 modalComponent={<AddedToCartModal />}
-             />
-         </button>
-     </div>
+          <div className="product-order-section">
+            <div className="quantity-section">
+              <label htmlFor="quantity">Quantity:</label>
+              <input
+                type="number"
+                id="quantity"
+                value={quantity}
+                onChange={(e) => setQuantity(e.target.value)}
+                min="1"
+              />
+            </div>
+            <button
+              className="add-to-cart-button"
+              onClick={handleAddItemToCart}
+            >
+              <OpenModalMenuItem
+                itemText="Add to Cart"
+                modalComponent={<AddedToCartModal />}
+              />
+            </button>
+          </div>
         )}
       </div>
     </div>

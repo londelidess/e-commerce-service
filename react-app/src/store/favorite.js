@@ -32,6 +32,7 @@ export const fetchFavorites = () => async (dispatch) => {
         throw new Error("Failed to fetch favorites");
       }
       const favorites = await response.json();
+	  console.log(favorites)
       dispatch(setFavorites(favorites));
     } catch (error) {
       console.error(error);
@@ -69,24 +70,18 @@ export const removeProductFromFavorites = (productId) => async (dispatch) => {
 	}
 };
 
-const initialState = {};
+const initialState = [];
 
 // reducer
 export default function favoriteReducer(state = initialState, action) {
-	switch (action.type) {
-		case SET_FAVORITES:
-			const favoritesObj = {};
-			action.payload.forEach(favorite => {
-				favoritesObj[favorite.product_id] = favorite;
-			});
-			return favoritesObj;
-		case ADD_FAVORITE:
-			return { ...state, [action.payload.product_id]: action.payload };
-		case REMOVE_FAVORITE:
-			const newState = { ...state };
-			delete newState[action.payload];
-			return newState;
-		default:
-			return state;
-	}
+  switch (action.type) {
+    case SET_FAVORITES:
+      return action.payload;
+    case ADD_FAVORITE:
+      return [...state, action.payload];
+    case REMOVE_FAVORITE:
+      return state.filter(favorite => favorite.id !== action.payload);
+    default:
+      return state;
+  }
 }
