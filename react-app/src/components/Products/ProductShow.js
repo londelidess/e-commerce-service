@@ -67,13 +67,10 @@ const handleFavoriteButtonClick = (e) => {
   e.preventDefault();
   if (isFavorite) {
     dispatch(removeProductFromFavorites(productId));
-    // dispatch(fetchFavorites())
 } else {
     dispatch(addProductToFavorites(productId));
-    // dispatch(fetchFavorites())
 }
 setIsFavorite(!isFavorite);
-// dispatch(fetchFavorites())
 };
 
   const handleAddItemToCart = () => {
