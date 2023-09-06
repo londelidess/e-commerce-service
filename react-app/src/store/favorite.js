@@ -1,5 +1,6 @@
 // constants
 const SET_FAVORITES = "favorites/SET_FAVORITES";
+const SET_IS_FAVORITE = "favorites/SET_IS_FAVORITE";
 const ADD_FAVORITE = "favorites/ADD_FAVORITE";
 const REMOVE_FAVORITE = "favorites/REMOVE_FAVORITE";
 
@@ -7,6 +8,11 @@ const REMOVE_FAVORITE = "favorites/REMOVE_FAVORITE";
 const setFavorites = (favorites) => ({
 	type: SET_FAVORITES,
 	payload: favorites,
+});
+
+const setIsFavorite = (productId, isFavorite) => ({
+    type: SET_IS_FAVORITE,
+    payload: { productId, isFavorite },
 });
 
 const addFavorite = (favorite) => ({
@@ -38,6 +44,21 @@ export const fetchFavorites = () => async (dispatch) => {
       console.error(error);
     }
   };
+
+  export const checkIsFavorite = (productId) => async (dispatch) => {
+    try {
+        const response = await fetch(`/api/favorites/is-favorite/${productId}`);
+        if (!response.ok) {
+            throw new Error("Failed to check if product is a favorite");
+        }
+        const data = await response.json();
+        dispatch(setIsFavorite(productId, data.is_favorite));
+        return data.is_favorite;
+    } catch (error) {
+        console.error(error);
+        return false; 
+    }
+};
 
 export const addProductToFavorites = (productId) => async (dispatch) => {
 	const response = await fetch(`/api/favorites/${productId}`, {
@@ -75,6 +96,16 @@ const initialState = [];
 // reducer
 export default function favoriteReducer(state = initialState, action) {
   switch (action.type) {
+	case SET_IS_FAVORITE:
+    const updatedState = [];
+    for (let product of state) {
+        if (product.id === action.payload.productId) {
+            updatedState.push({ ...product, isFavorite: action.payload.isFavorite });
+        } else {
+            updatedState.push(product);
+        }
+    }
+    return updatedState;
     case SET_FAVORITES:
       return action.payload;
     case ADD_FAVORITE:

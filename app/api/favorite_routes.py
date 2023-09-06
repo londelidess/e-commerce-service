@@ -11,6 +11,13 @@ def view_favorites():
     favorite_products = [favorite.product.to_dict() for favorite in favorites]
     return jsonify(favorite_products)
 
+@favorite_routes.route('/is-favorite/<int:product_id>', methods=['GET'])
+@login_required
+def is_favorite(product_id):
+    '''Check if the product is favorited by the current user'''
+    is_favorite = Favorite.query.filter_by(user_id=current_user.id, product_id=product_id).first()
+    return jsonify({"is_favorite": bool(is_favorite)})
+
 @favorite_routes.route('/<int:product_id>', methods=['POST'])
 @login_required
 def add_favorite(product_id):

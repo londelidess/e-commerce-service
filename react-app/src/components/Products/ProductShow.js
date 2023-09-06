@@ -16,6 +16,7 @@ import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import AddedToCartModal from "./AddedToCartModal";
 import {
   fetchFavorites,
+  checkIsFavorite,
   addProductToFavorites,
   removeProductFromFavorites,
 } from "../../store/favorite";
@@ -29,15 +30,10 @@ const ProductShow = () => {
   const [error, setError] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [quantity, setQuantity] = useState(1);
-  const favorites = useSelector((state) => state.favorites);
-  // console.log(favorites)
-  const [isFavorite, setIsFavorite] = useState(false);
   const product = useSelector((state) => state.products.singleProduct);
-
-useEffect(() => {
-    setIsFavorite(!!favorites.find((favorite) => favorite.id === productId));
-}, [favorites, productId]);
-
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [isFavoriteLoading, setIsFavoriteLoading] = useState(true);
+  // console.log(isFavorite)
 
   useEffect(() => {
     let isMounted = true;
@@ -63,24 +59,43 @@ useEffect(() => {
     };
 }, [dispatch, productId]);
 
-const handleFavoriteButtonClick = (e) => {
-  e.preventDefault();
-  if (isFavorite) {
-    dispatch(removeProductFromFavorites(productId));
-} else {
-    dispatch(addProductToFavorites(productId));
-}
-setIsFavorite(!isFavorite);
-};
+
+useEffect(() => {
+  const fetchFavoriteStatus = async () => {
+    setIsFavoriteLoading(true);
+    try {
+      const favorited = await dispatch(checkIsFavorite(productId));
+      // console.log("Favorited status from action:", favorited);
+      setIsFavorite(favorited);
+    } catch (error) {
+      console.error("Failed to fetch favorite status:", error);
+      setError(error);
+    } finally {
+      setIsFavoriteLoading(false);
+    }
+  };
+
+  fetchFavoriteStatus();
+}, [dispatch, productId]);
+
+
+  const handleFavoriteButtonClick = async (e) => {
+    e.preventDefault();
+    if (isFavorite) {
+      await dispatch(removeProductFromFavorites(productId));
+    } else {
+      await dispatch(addProductToFavorites(productId));
+    }
+    setIsFavorite((prev) => !prev);
+  };
 
   const handleAddItemToCart = () => {
     dispatch(thunkAddToCart(productId, Number(quantity)));
     dispatch(thunkGetCart());
   };
 
-  if (isLoading) return <div className="centered">Loading...</div>;
-  if (error)
-    return <div className="centered">An error occurred: {error.message}</div>;
+  if (error) return <div className="centered">An error occurred: {error.message}</div>;
+  if (isLoading || isFavoriteLoading) return <div className="centered">Loading...</div>;
   if (!product) return null;
 
   return (
