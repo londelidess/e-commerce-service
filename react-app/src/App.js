@@ -10,10 +10,16 @@ import Footer from "./components/Navigation/Footer"
 import ShoppingCart from "./components/ShoppingCarts"
 import OrderHistory from "./components/OrderHistory"
 import Products from "./components/Products"
+import GamesPage from "./components/Products/GamesPage"
+import PuzzlesPage from "./components/Products/PuzzlesPage"
+import ModelKitsPage from "./components/Products/ModelKitsPage"
+import ProductCategoryPage from "./components/Products/ProductCategoryPage";
 import CreateProductForm from "./components/Products/CreateProductForm";
 import UpdateProductForm from "./components/Products/UpdateProductForm";
 import ProductManage from "./components/Products/ProductManage"
 import ProductShow from "./components/Products/ProductShow";
+import Favorite from "./components/Favorite";
+
 
 // import PrivateRoute from "./PrivateRoute"
 
@@ -30,14 +36,21 @@ function App() {
 
       {isLoaded && (
         <Switch>
+{/*
+          <Route exact path="/products/games" component={GamesPage} />
+          <Route exact path="/products/puzzles" component={PuzzlesPage} />
+          <Route exact path="/products/model-kits" component={ModelKitsPage} /> */}
           <Route exact path="/history" component={OrderHistory} />
+          <Route exact path="/favorite" component={Favorite} />
           <Route exact path="/shoppingcarts" component={ShoppingCart} />
           <Route exact path="/products/new" component={CreateProductForm} />
           <Route exact path="/products/manage" component={ProductManage} />
-          <Route exact path= "/products/:productId/edit" component={UpdateProductForm} />
-          <Route exact path="/products/:productId" component={ProductShow} />
+          <Route exact path="/products/id/:productId" component={ProductShow} />
+          <Route exact path="/products/category/:categoryName" component={ProductCategoryPage} />
+          <Route exact path="/products/:productId/edit" component={UpdateProductForm} />
           <Route exact path="/products" component={Products} />
-          <Route path="/login" >
+
+          <Route exact path="/login" >
             <LoginFormPage />
           </Route>
           <Route path="/signup">

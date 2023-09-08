@@ -68,6 +68,10 @@ function ProfileButton({ user }) {
               Manage Products
             </NavLink>
             <hr />
+            <NavLink to="/favorite" style={{ cursor: "pointer" }}>
+              Your Favorites
+            </NavLink>
+            <hr />
             <li>
               <NavLink to="/history" style={{ cursor: "pointer" }}>
                 Order History

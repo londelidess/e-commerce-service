@@ -21,7 +21,7 @@ def get_cart():
         'subtotal': subtotal,
         'total_quantity': total_quantity
     })
-    
+
 # @shoppingcartitem_routes.route('/', methods=['GET'])
 # @login_required
 # def get_cart():
@@ -171,6 +171,7 @@ def checkout():
     db.session.commit()
 
     return jsonify({"message": "Transaction completed", "transaction_id": transaction.id})
+    
 
 @shoppingcartitem_routes.route('/orders/<int:order_id>/reorder', methods=['POST'])
 @login_required

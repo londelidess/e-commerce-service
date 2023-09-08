@@ -16,11 +16,11 @@ class User(db.Model, UserMixin):
     profile_image_url = db.Column(db.String(255), nullable=True)
     role = db.Column(db.String, default='user')
 
-
     #relationship one side
     products = db.relationship("Product", back_populates="user")
     reviews = db.relationship("Review", back_populates="user")
     cart_items = db.relationship("ShoppingCartItem", back_populates="user")
+    favorites = db.relationship("Favorite", back_populates="user", cascade="all, delete-orphan")
 
     @property
     def password(self):

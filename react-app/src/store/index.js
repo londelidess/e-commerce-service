@@ -4,14 +4,15 @@ import session from './session'
 import productsReducer from './product'
 import shoppingCartReducer from './shoppingCart'
 import mediaReducer from './media'
+import favoriteReducer from './favorite'
 
 const rootReducer = combineReducers({
   session,
   products:productsReducer,
   shoppingCart:shoppingCartReducer,
-  medias:mediaReducer
+  medias:mediaReducer,
+  favorites:favoriteReducer
 });
-
 
 let enhancer;
 
