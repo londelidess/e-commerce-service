@@ -13,7 +13,7 @@
 PLAYBOX, a [Upbounders](https://upbounders.com/) replica, is a platform where users can buy toys.
 
 ## Feature List
-**Shopping Bliss**, an e-commerce platform, is a website where users can browse a variety of products, add them to their carts, engage in product reviews, and complete purchases with ease.
+**PLAYBOX**, an e-commerce platform, is a website where users can browse a variety of products, add them to their carts, engage in product reviews, and complete purchases with ease.
 
 1. **New account creation, log in, log out, and guest/demo login**
     - Users can sign up, log in, and log out.
