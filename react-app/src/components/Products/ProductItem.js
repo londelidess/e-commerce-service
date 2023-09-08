@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const ProductItem = ({ product }) => {
     return (
       <li title={product.name}>
-        <Link to={`/products/${product.id}`}>
+        <Link to={`/products/id/${product.id}`}>
           <div className="product-item">
             <div className="product-preview" title={product.name}>
               {product.images[0]?.media_url?.endsWith("mp4") ? (

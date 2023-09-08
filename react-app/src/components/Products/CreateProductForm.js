@@ -43,7 +43,7 @@ const CreateProductForm = () => {
           throw new Error("Failed to fetch categories.");
         }
         const data = await response.json();
-        console.log("fetch categories", data);
+        // console.log("fetch categories", data);
         setCategories(data);
       } catch (error) {
         console.error("Error fetching categories:", error);
