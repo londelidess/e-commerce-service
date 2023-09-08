@@ -155,7 +155,7 @@ PLAYBOX, a [Upbounders](https://upbounders.com/) replica, is a platform where us
 
 
  
-## Technology we used 
+## Used Technology in this project 
 Flask/ React/ Redux/ sqlAlchemy/ postgresql/ AWS S3
 
 [def]: ./images/home-page.png
