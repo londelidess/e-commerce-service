@@ -1,5 +1,6 @@
 import logo from "../../images/playbox-high-resolution-logo-black-on-transparent-background.png";
 import {  FaLinkedin, FaFacebook,FaGithub } from 'react-icons/fa6';
+import { Link } from 'react-router-dom'; 
 import "./Footer.css";
 
 function Footer() {
@@ -28,9 +29,9 @@ function Footer() {
 
         </div>
         <div className="footer-links">
-          {/* <a href="#">About Us</a>
-          <a href="#">Contact</a>
-          <a href="#">Privacy Policy</a> */}
+        <Link to="/about">About Us</Link>
+        <Link to="/contact">Contact</Link>
+        {/* <a href="#">Privacy Policy</a> */}
         </div>
         <div className="footer-copyright">
           © 2023 PLAYBOX. All rights reserved.
