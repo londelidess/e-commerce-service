@@ -15,8 +15,15 @@ const ProductManage = () => {
   const productsArray = Object.values(productsObject);
   const userProducts = sessionUser ? productsArray.filter(product => product?.added_by_user_id === sessionUser.id) : [];
 
-    // console.log(sessionUser.id)
-    // console.log(sessionUser?.role)
+// let userProducts = [];
+// if (sessionUser) {
+//     userProducts = productsArray.filter(product => {
+//         if (product && product.added_by_user_id === sessionUser.id) {
+//             return true;
+//         }
+//         return false;
+//     });
+// }
 
     useEffect(() => {
         dispatch(fetchAllProducts()).then(() => {
@@ -27,6 +34,7 @@ const ProductManage = () => {
     // if (!sessionUser || (sessionUser?.role !== 'editor' && sessionUser?.role !== 'admin')) {
     //     return <Redirect to="/" />;
     //   }
+
   if (!sessionUser) {
       return <Redirect to="/" />;
     }

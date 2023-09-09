@@ -6,13 +6,12 @@ import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import HomePage from './components/HomePage';
+import Contact from "./components/HomePage/Contact";
+import About from "./components/HomePage/About";
 import Footer from "./components/Navigation/Footer"
 import ShoppingCart from "./components/ShoppingCarts"
 import OrderHistory from "./components/OrderHistory"
 import Products from "./components/Products"
-import GamesPage from "./components/Products/GamesPage"
-import PuzzlesPage from "./components/Products/PuzzlesPage"
-import ModelKitsPage from "./components/Products/ModelKitsPage"
 import ProductCategoryPage from "./components/Products/ProductCategoryPage";
 import CreateProductForm from "./components/Products/CreateProductForm";
 import UpdateProductForm from "./components/Products/UpdateProductForm";
@@ -36,10 +35,8 @@ function App() {
 
       {isLoaded && (
         <Switch>
-{/*
-          <Route exact path="/products/games" component={GamesPage} />
-          <Route exact path="/products/puzzles" component={PuzzlesPage} />
-          <Route exact path="/products/model-kits" component={ModelKitsPage} /> */}
+          <Route exact path="/about" component={About} />
+          <Route exact path="/contact" component={Contact} />
           <Route exact path="/history" component={OrderHistory} />
           <Route exact path="/favorite" component={Favorite} />
           <Route exact path="/shoppingcarts" component={ShoppingCart} />

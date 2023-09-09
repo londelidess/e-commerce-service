@@ -31,11 +31,11 @@ function Navigation({ isLoaded }) {
           <img className="logo" src={logo} alt="Home" />
         </NavLink>
         <div className="menu-links">
-          {/* <NavLink to="/about">About</NavLink>
-          <NavLink to="/sell">Sell</NavLink> */}
+          <NavLink to="/about">About</NavLink>
+          {/* <NavLink to="/sell">Sell</NavLink> */}
           <NavLink to="/products">Shop</NavLink>
-          {/* <NavLink to="/press">Press</NavLink>
-          <NavLink to="/contact">Contact</NavLink> */}
+          {/* <NavLink to="/press">Press</NavLink> */}
+          <NavLink to="/contact">Contact</NavLink>
         </div>
       </div>
       {isLoaded && (
