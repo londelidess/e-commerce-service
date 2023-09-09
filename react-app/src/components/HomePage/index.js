@@ -39,7 +39,7 @@ const HomePage = () => {
         </Link>
       </div>
 
-      <div className="as-seen-on-container">
+      <div className="our-toys-container">
       <h1 className="large-heading">Our Toys</h1>
       <div className="slider-wrapper">
         <div className="slider-container" style={{ transform: `translateX(${translateValue}%)` }}>

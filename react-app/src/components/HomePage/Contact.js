@@ -6,7 +6,8 @@ function Contact() {
         <div className="contact-page">
             <h1 className="contact-title">Contact Us</h1>
             <p className="contact-description">Whether you have comments, questions, suggestions, or just want to say hello, we’re here for fun, and you!</p>
-            <form className="contact-form">
+
+            <form className="contact-form" action="https://formspree.io/f/meqbkwey" method="POST">
                 <div className="form-group">
                     <label htmlFor="name">Name:</label>
                     <input type="text" id="name" name="name" />
@@ -21,8 +22,8 @@ function Contact() {
                 </div>
                 <button type="submit" className="submit-button">Submit</button>
             </form>
-
         </div>
     );
 }
+
 export default Contact;
