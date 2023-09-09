@@ -1,9 +1,8 @@
-import { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import React,{ useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
+import "./products.css";
 
-import './products.css';
-
-function CategoryNavigation({ description })  {
+function CategoryNavigation({ description }) {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
@@ -24,20 +23,30 @@ function CategoryNavigation({ description })  {
   }, []);
 
   return (
-     <div>
-    <nav className="product-navigation">
-      <NavLink to="/products" exact activeClassName="active">All</NavLink>
-      {categories.map(category => (
-        <NavLink
-          key={category.id}
-          to={`/products/category/${category.name}`}
-          activeClassName="active"
-        >
-          {category.name}
+    <div>
+      {/* {description && <p className="category-description">{description}</p>} */}
+      <div className="category-description">
+        {description && description.split('\n').map((line, index) => (
+          <React.Fragment key={index}>
+            {line}
+            <br />
+          </React.Fragment>
+        ))}
+      </div>
+      <nav className="product-navigation">
+        <NavLink to="/products" exact activeClassName="active">
+          All
         </NavLink>
-      ))}
-    </nav>
-    {description && <p className="category-description">{description}</p>}
+        {categories.map((category) => (
+          <NavLink
+            key={category.id}
+            to={`/products/category/${category.name}`}
+            activeClassName="active"
+          >
+            {category.name}
+          </NavLink>
+        ))}
+      </nav>
     </div>
   );
 }

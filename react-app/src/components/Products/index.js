@@ -18,7 +18,8 @@ function ProductLandingPage() {
 
   return (
       <section className="landing-page">
-      <h1>Unbox Together Play Forever</h1>
+      <h1 className="landing-page-centered-title">Unbox Together Play Forever</h1>
+      <p className="landing-page-centered-description">Find your toys!</p>
       <CategoryNavigation />
          <ul className="product-grid">
       {productsArray.map((product) => (
