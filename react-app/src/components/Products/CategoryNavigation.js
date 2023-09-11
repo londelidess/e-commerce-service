@@ -25,14 +25,14 @@ function CategoryNavigation({ description }) {
   return (
     <div>
       {/* {description && <p className="category-description">{description}</p>} */}
-      <div className="category-description">
+      <p className="category-description">
         {description && description.split('\n').map((line, index) => (
           <React.Fragment key={index}>
             {line}
             <br />
           </React.Fragment>
         ))}
-      </div>
+      </p>
       <nav className="product-navigation">
         <NavLink to="/products" exact activeClassName="active">
           All
