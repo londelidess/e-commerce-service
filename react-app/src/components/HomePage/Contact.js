@@ -16,17 +16,29 @@ function Contact() {
         action="https://formspree.io/f/meqbkwey"
         method="POST"
       >
+<div className="form-group">
+    <div className="name-group">
+        <div className="single-name">
+            <label htmlFor="firstName">First Name (required)</label>
+            <input type="text" id="firstName" name="firstName" required />
+        </div>
+        <div className="single-name">
+            <label htmlFor="lastName">Last Name (required)</label>
+            <input type="text" id="lastName" name="lastName" required />
+        </div>
+    </div>
+</div>
         <div className="form-group">
-          <label htmlFor="name">Name:</label>
-          <input type="text" id="name" name="name" />
+          <label htmlFor="email">Email Address (required)</label>
+          <input type="email" id="email" name="email" required />
         </div>
         <div className="form-group">
-          <label htmlFor="email">Email:</label>
-          <input type="email" id="email" name="email" />
+          <label htmlFor="subject">Subject (required)</label>
+          <input type="text" id="subject" name="subject" required />
         </div>
         <div className="form-group">
-          <label htmlFor="message">Message:</label>
-          <textarea id="message" name="message"></textarea>
+          <label htmlFor="message">Message (required)</label>
+          <textarea id="message" name="message" required></textarea>
         </div>
         <button type="submit" className="contact-submit-button">
           Submit

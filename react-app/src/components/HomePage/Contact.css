@@ -27,6 +27,21 @@
   gap: 20px;
 }
 
+.name-group {
+    display: flex;
+    justify-content: space-between;
+    /* width: 100%; */
+}
+
+.single-name {
+    width: 49%;
+}
+
+.single-name input {
+    width: 100%;
+    box-sizing: border-box;
+}
+
 .form-group {
   display: flex;
   flex-direction: column;
