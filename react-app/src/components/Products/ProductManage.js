@@ -5,6 +5,7 @@ import { fetchAllProducts } from "../../store/product";
 // import ProductItem from "./ProductItem";
 import ProductManageItem from "./ProductManageItem"
 import { Redirect } from "react-router-dom";
+import PacmanLoading from "../Loading";
 import './products.css';
 
 const ProductManage = () => {
@@ -35,12 +36,10 @@ const ProductManage = () => {
     //     return <Redirect to="/" />;
     //   }
 
-  if (!sessionUser) {
-      return <Redirect to="/" />;
-    }
-  if (isLoading) {
-    return <div className="centered">Loading...</div>;
-  }
+  if (!sessionUser) return <Redirect to="/" />;
+
+  if (isLoading ) return <PacmanLoading />;
+
   return (
     <section className="manage-section">
       <div className="manage-products">

@@ -6,7 +6,9 @@ import {
   fetchFavorites,
   removeProductFromFavorites,
 } from "../../store/favorite";
+import PacmanLoading from '../Loading';
 import "./favorite.css"
+
 
 function Favorite() {
   const dispatch = useDispatch();
@@ -32,7 +34,10 @@ function Favorite() {
   };
 
   if (!sessionUser) return <Redirect to="/" />;
-  if (deleting) return <div className="centered">Removing...</div>;
+//   if (deleting) return <div className="centered">Removing...</div>;
+  if (deleting) {
+    return <PacmanLoading />;
+}
 //   console.log(favoritesObj);
 //   const favorites = Object.values(favoritesObj);
 //   console.log(favorites);
@@ -48,7 +53,7 @@ return (
                             className="remove-favorite-item-button remove-cart-item-button"
                             onClick={() => handleRemove(product.id)}
                         >
-                         <FaX />
+                        <FaX />
                         </button>
                         <div className="product-preview" title={product.name}>
                             {product.images && product.images.length > 0 ? (
