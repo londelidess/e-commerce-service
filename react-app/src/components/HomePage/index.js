@@ -67,9 +67,6 @@ const HomePage = () => {
           SPECIAL PRIZE DRAW CREATED TO CELEBRATE THE PARTNERSHIP. HURRY,
           CLOSING SOON!
         </p>
-        {/* <button className="learn-more"
-        onClick={() => window.alert('Feature is coming soon!')}
-        >Learn More</button> */}
         <Link to="/about">
           <button className="learn-more">Learn More</button>
         </Link>

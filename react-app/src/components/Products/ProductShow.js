@@ -20,6 +20,7 @@ import {
   addProductToFavorites,
   removeProductFromFavorites,
 } from "../../store/favorite";
+import PacmanLoading from '../Loading';
 import "./products.css";
 
 const ProductShow = () => {
@@ -77,7 +78,7 @@ useEffect(() => {
 
   fetchFavoriteStatus();
 }, [dispatch, productId]);
-
+setTimeout(() => setIsLoading(false), 5000);
 
   const handleFavoriteButtonClick = async (e) => {
     e.preventDefault();
@@ -95,7 +96,10 @@ useEffect(() => {
   };
 
   if (error) return <div className="centered">An error occurred: {error.message}</div>;
-  if (isLoading || isFavoriteLoading) return <div className="centered">Loading...</div>;
+  // if (isLoading || isFavoriteLoading) return <div className="centered">Loading...</div>;
+  if (isLoading || isFavoriteLoading) {
+    return <PacmanLoading />;
+}
   if (!product) return null;
 
   return (

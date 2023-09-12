@@ -20,9 +20,9 @@ function Navigation({ isLoaded }) {
 
   useEffect(() => {
     if (sessionUser) {
-        dispatch(thunkGetCart());
+      dispatch(thunkGetCart());
     }
-}, [dispatch, sessionUser]);
+  }, [dispatch, sessionUser]);
 
   return (
     <div className="nav-container">
