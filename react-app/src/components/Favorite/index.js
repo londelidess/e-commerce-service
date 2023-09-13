@@ -35,9 +35,8 @@ function Favorite() {
 
   if (!sessionUser) return <Redirect to="/" />;
 //   if (deleting) return <div className="centered">Removing...</div>;
-  if (deleting) {
-    return <PacmanLoading />;
-}
+  if (deleting) return <PacmanLoading />;
+
 //   console.log(favoritesObj);
 //   const favorites = Object.values(favoritesObj);
 //   console.log(favorites);

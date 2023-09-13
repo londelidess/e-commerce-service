@@ -14,6 +14,19 @@ def get_all_products():
     products = Product.query.all()
     return jsonify([prod.to_dict() for prod in products])
 
+@product_routes.route('/user', methods=['GET'])
+@login_required
+def get_user_products():
+    """route to fetch and display all products added by the current user"""
+    user_products = Product.query.filter_by(added_by_user_id=current_user.id).all()
+    return jsonify([prod.to_dict() for prod in user_products])
+
+@product_routes.route('/categories', methods=['GET'])
+def get_categories():
+    """get all categories"""
+    categories = Category.query.all()
+    return jsonify([{"id": category.id, "name": category.name} for category in categories])
+
 @product_routes.route('/<int:product_id>', methods=['GET'])
 def get_product(product_id):
     """returns a single product by the given route param id"""
@@ -21,12 +34,6 @@ def get_product(product_id):
     if product:
         return jsonify(product.to_dict())
     return jsonify({"message": "Product not found"}), 404
-
-@product_routes.route('/categories', methods=['GET'])
-def get_categories():
-    """get all categories"""
-    categories = Category.query.all()
-    return jsonify([{"id": category.id, "name": category.name} for category in categories])
 
 @product_routes.route('/', methods=['POST'])
 @login_required

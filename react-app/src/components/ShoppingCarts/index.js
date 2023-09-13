@@ -10,6 +10,7 @@ import {
 } from "../../store/shoppingCart";
 import { Redirect } from "react-router-dom";
 import CheckoutCartModal from "./CheckoutCartModal";
+import PacmanLoading from "../Loading";
 import "./shoppingcart.css";
 
 function ShoppingCart() {
@@ -64,8 +65,9 @@ function ShoppingCart() {
   };
 
   if (!sessionUser) return <Redirect to="/" />;
-  if (updating) return <div className="centered">Whoop!! Whoop!!</div>;
-  if (deleting) return <div className="centered">Bye Bye!!</div>;
+  // if (updating) return <div className="centered">Whoop!! Whoop!!</div>;
+  // if (deleting) return <div className="centered">Bye Bye!!</div>;
+  if (updating || deleting) return <PacmanLoading />;
   return (
     <div className="cart-container">
         <h2>Your Toy Box</h2>
@@ -108,6 +110,7 @@ function ShoppingCart() {
                     ))}
                 </ul>
                 <div className="cart-summary">
+                  <h3 className="order-summary">Order Summary</h3>
                     <p>
                         <strong>Subtotal:</strong> ${cart.subtotal}
                     </p>
@@ -125,7 +128,7 @@ function ShoppingCart() {
                 </div>
                 <div className="checkout-button-container">
                     <OpenModalMenuItem
-                        itemText="Checkout Cart Items"
+                        itemText="Proceed to Checkout"
                         modalComponent={<CheckoutCartModal />}
 
                     />

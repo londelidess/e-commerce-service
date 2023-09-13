@@ -12,7 +12,7 @@ function ProductCategoryPage() {
   const { categoryName } = useParams();
   const productsObject = useSelector((state) => state.products.allProducts);
   const productsArray = Object.values(productsObject);
-  const { categories } = useLoading();
+  // const { categories } = useLoading();
 
   const categoryDescriptions = {
     "Games": "Dive into timeless classics and new favorites, perfect for kids and families.\nDiscover games that captivate, challenge, and bring us together.",

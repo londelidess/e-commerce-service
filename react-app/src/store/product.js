@@ -1,5 +1,6 @@
 // Constants
 const SET_ALL_PRODUCTS = "products/SET_ALL_PRODUCTS";
+const SET_USER_PRODUCTS = "products/SET_USER_PRODUCTS";
 const SET_PRODUCT = "products/SET_PRODUCT";
 const ADD_PRODUCT = "products/ADD_PRODUCT";
 const UPDATE_PRODUCT = "products/UPDATE_PRODUCT";
@@ -10,6 +11,12 @@ const setProducts = (products) => ({
   type: SET_ALL_PRODUCTS,
   products,
 });
+
+const setUserProducts = (products) => ({
+  type: SET_USER_PRODUCTS,
+  products,
+});
+
 
 const setProduct = (product) => ({
   type: SET_PRODUCT,
@@ -37,6 +44,14 @@ export const fetchAllProducts = () => async (dispatch) => {
   if (response.ok) {
     const products = await response.json();
     dispatch(setProducts(products));
+  }
+};
+
+export const fetchUserProducts = () => async (dispatch) => {
+  const response = await fetch("/api/products/user");
+  if (response.ok) {
+    const products = await response.json();
+    dispatch(setUserProducts(products));
   }
 };
 
@@ -115,6 +130,7 @@ export const deleteProductByIdThunk = (productId) => async (dispatch) => {
 // Reducer
 const initialState = {
   allProducts: {},
+  userProducts: [],
   singleProduct: [],
 };
 
@@ -126,16 +142,36 @@ export default function productsReducer(state = initialState, action) {
         allProducts[product.id] = product;
       });
       return { ...state, allProducts };
+
+    case SET_USER_PRODUCTS:
+      return { ...state, userProducts: action.products };
+
     case SET_PRODUCT:
-        return { ...state, singleProduct: action.product };
+      return { ...state, singleProduct: action.product };
+
     case ADD_PRODUCT:
-      return { ...state, allProducts: { ...state.allProducts, [action.product.id]: action.product } };
+      return {
+        ...state,
+        allProducts: {
+          ...state.allProducts,
+          [action.product.id]: action.product
+        }
+      };
+
     case UPDATE_PRODUCT:
-      return { ...state, allProducts: { ...state.allProducts, [action.product.id]: action.product } };
+      return {
+        ...state,
+        allProducts: {
+          ...state.allProducts,
+          [action.product.id]: action.product
+        }
+      };
+
     case REMOVE_PRODUCT:
-      const newState = { ...state.allProducts };
-      delete newState[action.productId];
-      return { ...state, allProducts: newState };
+      const newState = { ...state };
+      delete newState.allProducts[action.productId];
+      return newState;
+
     default:
       return state;
   }
