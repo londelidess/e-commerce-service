@@ -17,13 +17,19 @@ function ShoppingCart() {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.shoppingCart.cart);
   const sessionUser = useSelector((state) => state.session.user);
+  const [loading, setLoading] = useState(true);
   const [quantities, setQuantities] = useState({});
   const [updating, setUpdating] = useState(false);
   const [deleting, setDeleting] = useState(false);
+
   // const [checkout, setCheckout] = useState(false);
   // console.log(Object.values(cart))
   useEffect(() => {
-    dispatch(thunkGetCart());
+    const fetchData = async () => {
+      await dispatch(thunkGetCart());
+      setLoading(false);
+    };
+    fetchData();
   }, [dispatch]);
 
   useEffect(() => {
@@ -67,6 +73,7 @@ function ShoppingCart() {
   if (!sessionUser) return <Redirect to="/" />;
   // if (updating) return <div className="centered">Whoop!! Whoop!!</div>;
   // if (deleting) return <div className="centered">Bye Bye!!</div>;
+  if (loading) return <PacmanLoading />
   if (updating || deleting) return <PacmanLoading />;
   return (
     <div className="cart-container">
