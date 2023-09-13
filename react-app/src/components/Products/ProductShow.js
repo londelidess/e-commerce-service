@@ -98,7 +98,7 @@ const ProductShow = () => {
 
     setTimeout(() => {
       setShowAddedToCartMessage(false);
-    }, 1500);
+    }, 2000);
   };
 
   if (error)
@@ -111,11 +111,19 @@ const ProductShow = () => {
 
   return (
     <div className="detailed-page">
-      {showAddedToCartMessage && (
-        <div className="added-to-cart-popup">
-          <span>✓</span> {quantity} {product.name} has been added to your cart!
-        </div>
-      )}
+    {showAddedToCartMessage && (
+      <div className="added-to-cart-popup">
+          <span>✓</span> {quantity} {product.name}
+
+          {quantity == 1 &&
+              <span> has been added to your cart!</span>
+          }
+
+          {quantity > 1 &&
+              <span> have been added to your carts!</span>
+          }
+      </div>
+    )}
       <div className="product-image-section">
         <div className="product-image-container">
           {product.images[currentImageIndex]?.media_url?.endsWith("mp4") ? (
@@ -189,7 +197,8 @@ const ProductShow = () => {
             <button
               className="add-to-cart-button"
               onClick={handleAddItemToCart}
-            >Add to Cart
+            >
+              Add to Cart
               {/* <OpenModalMenuItem
                 itemText="Add to Cart"
                 modalComponent={<AddedToCartModal />}
@@ -198,6 +207,7 @@ const ProductShow = () => {
           </div>
         )}
       </div>
+
     </div>
   );
 };
