@@ -17,16 +17,6 @@ const ProductManage = () => {
   // const userProducts = sessionUser ? productsArray.filter(product => product?.added_by_user_id === sessionUser.id) : [];
   const userProducts = useSelector((state) => state.products.userProducts || []);
 
-// let userProducts = [];
-// if (sessionUser) {
-//     userProducts = productsArray.filter(product => {
-//         if (product && product.added_by_user_id === sessionUser.id) {
-//             return true;
-//         }
-//         return false;
-//     });
-// }
-
 useEffect(() => {
   const fetchProducts = async () => {
     await dispatch(fetchAllProducts());
