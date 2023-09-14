@@ -8,6 +8,7 @@ import {
   thunkReorderPastOrder,
   thunkGetCart,
 } from "../../store/shoppingCart";
+import PacmanLoading from "../Loading";
 import "./orderhistory.css";
 
 function OrderHistory() {
@@ -16,10 +17,16 @@ function OrderHistory() {
   const ordersObj = useSelector((state) => state.shoppingCart.orders);
   const orders = Object.values(ordersObj);
   const [reorderQuantities, setReorderQuantities] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
+
 
   useEffect(() => {
-    dispatch(thunkGetPastOrders());
-  }, [dispatch]);
+    async function fetchOrders() {
+        await dispatch(thunkGetPastOrders());
+        setIsLoading(false);  
+    }
+    fetchOrders();
+}, [dispatch]);
 
   const handleReorderQuantityChange = (productId, quantity) => {
     setReorderQuantities((prev) => ({ ...prev, [productId]: quantity }));
@@ -36,7 +43,7 @@ function OrderHistory() {
   };
 
   if (!sessionUser) return <Redirect to="/" />;
-
+  if (isLoading) return <PacmanLoading />;
   return (
     <div className="order-history-container">
       <h2>Your Order History</h2>

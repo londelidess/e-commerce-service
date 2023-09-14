@@ -1,7 +1,8 @@
 import React,{ useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ProductItem from "./ProductItem";
+import { fetchAllProducts } from "../../store/product";
 import CategoryNavigation from "./CategoryNavigation";
 import PacmanLoading from "../Loading";
 
@@ -9,10 +10,17 @@ import { LoadingContext, useLoading } from './LoadingContextLanding';
 import "./products.css";
 
 function ProductCategoryPage() {
+  const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState(true);
   const { categoryName } = useParams();
   const productsObject = useSelector((state) => state.products.allProducts);
   const productsArray = Object.values(productsObject);
-  const { categories } = useLoading();
+  // const { categories } = useLoading();
+
+  useEffect(() => {
+    dispatch(fetchAllProducts()).then(() => setIsLoading(false));
+  }, [dispatch]);
+
 
   const categoryDescriptions = {
     "Games": "Dive into timeless classics and new favorites, perfect for kids and families.\nDiscover games that captivate, challenge, and bring us together.",
@@ -22,6 +30,9 @@ function ProductCategoryPage() {
 
   const description = categoryDescriptions[categoryName];
   const filteredProducts = productsArray.filter(product => product.category_name === categoryName);
+
+
+  if (isLoading) return <PacmanLoading />;
 
   return (
     <section className="category-page">

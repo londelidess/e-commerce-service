@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { fetchAllProducts } from "../../store/product";
+import { fetchAllProducts, fetchUserProducts } from "../../store/product";
 // import ProductItem from "./ProductItem";
 import ProductManageItem from "./ProductManageItem"
 import { Redirect } from "react-router-dom";
@@ -12,33 +12,28 @@ const ProductManage = () => {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(true);
   const sessionUser = useSelector((state) => state.session?.user);
-  const productsObject = useSelector((state) => state.products.allProducts);
-  const productsArray = Object.values(productsObject);
-  const userProducts = sessionUser ? productsArray.filter(product => product?.added_by_user_id === sessionUser.id) : [];
+  // const productsObject = useSelector((state) => state.products.allProducts);
+  // const productsArray = Object.values(productsObject);
+  // const userProducts = sessionUser ? productsArray.filter(product => product?.added_by_user_id === sessionUser.id) : [];
+  const userProducts = useSelector((state) => state.products.userProducts || []);
 
-// let userProducts = [];
-// if (sessionUser) {
-//     userProducts = productsArray.filter(product => {
-//         if (product && product.added_by_user_id === sessionUser.id) {
-//             return true;
-//         }
-//         return false;
-//     });
-// }
-
-    useEffect(() => {
-        dispatch(fetchAllProducts()).then(() => {
-          setIsLoading(false);
-        });
-    }, [dispatch]);
+useEffect(() => {
+  const fetchProducts = async () => {
+    await dispatch(fetchAllProducts());
+    if (sessionUser) {
+      await dispatch(fetchUserProducts());
+    }
+    setIsLoading(false);
+  };
+  fetchProducts();
+}, [dispatch, sessionUser]);
 
     // if (!sessionUser || (sessionUser?.role !== 'editor' && sessionUser?.role !== 'admin')) {
     //     return <Redirect to="/" />;
     //   }
 
   if (!sessionUser) return <Redirect to="/" />;
-
-  if (isLoading ) return <PacmanLoading />;
+  if (isLoading) return <PacmanLoading />;
 
   return (
     <section className="manage-section">
@@ -60,7 +55,7 @@ const ProductManage = () => {
       </div>
       <section>
         <ul className="product-grid">
-          {userProducts.map(product => (
+          {Array.isArray(userProducts) && userProducts.map(product => (
             <ProductManageItem
               product={product}
               key={product.id}

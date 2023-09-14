@@ -15,7 +15,7 @@ function About() {
                 <li>Efficient shopping cart system, allowing users to add, view, or remove products, and finalize their purchases.</li>
                 <li>Interactive review system where users can post, edit, or delete their product reviews.</li>
                 <li>Favorites feature for users to mark and manage their most-loved products.</li>
-                <li>Enhanced visual experience with multiple images for product listings and user reviews.</li>
+                <li>Enhanced visual experience with multiple images for product listings.</li>
                 <li>Easy access to past orders with an added option to reorder.</li>
             </ul>
         </div>

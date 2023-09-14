@@ -20,7 +20,7 @@ import {
   addProductToFavorites,
   removeProductFromFavorites,
 } from "../../store/favorite";
-import PacmanLoading from '../Loading';
+import PacmanLoading from "../Loading";
 import "./products.css";
 
 const ProductShow = () => {
@@ -34,6 +34,7 @@ const ProductShow = () => {
   const product = useSelector((state) => state.products.singleProduct);
   const [isFavorite, setIsFavorite] = useState(false);
   const [isFavoriteLoading, setIsFavoriteLoading] = useState(true);
+  const [showAddedToCartMessage, setShowAddedToCartMessage] = useState(false);
   // console.log(isFavorite)
 
   useEffect(() => {
@@ -58,27 +59,26 @@ const ProductShow = () => {
     return () => {
       isMounted = false;
     };
-}, [dispatch, productId]);
+  }, [dispatch, productId]);
 
+  useEffect(() => {
+    const fetchFavoriteStatus = async () => {
+      setIsFavoriteLoading(true);
+      try {
+        const favorited = await dispatch(checkIsFavorite(productId));
+        // console.log("Favorited status from action:", favorited);
+        setIsFavorite(favorited);
+      } catch (error) {
+        console.error("Failed to fetch favorite status:", error);
+        setError(error);
+      } finally {
+        setIsFavoriteLoading(false);
+      }
+    };
 
-useEffect(() => {
-  const fetchFavoriteStatus = async () => {
-    setIsFavoriteLoading(true);
-    try {
-      const favorited = await dispatch(checkIsFavorite(productId));
-      // console.log("Favorited status from action:", favorited);
-      setIsFavorite(favorited);
-    } catch (error) {
-      console.error("Failed to fetch favorite status:", error);
-      setError(error);
-    } finally {
-      setIsFavoriteLoading(false);
-    }
-  };
-
-  fetchFavoriteStatus();
-}, [dispatch, productId]);
-setTimeout(() => setIsLoading(false), 5000);
+    fetchFavoriteStatus();
+  }, [dispatch, productId]);
+  setTimeout(() => setIsLoading(false), 5000);
 
   const handleFavoriteButtonClick = async (e) => {
     e.preventDefault();
@@ -93,17 +93,37 @@ setTimeout(() => setIsLoading(false), 5000);
   const handleAddItemToCart = () => {
     dispatch(thunkAddToCart(productId, Number(quantity)));
     dispatch(thunkGetCart());
+
+    setShowAddedToCartMessage(true);
+
+    setTimeout(() => {
+      setShowAddedToCartMessage(false);
+    }, 2000);
   };
 
-  if (error) return <div className="centered">An error occurred: {error.message}</div>;
+  if (error)
+    return <div className="centered">An error occurred: {error.message}</div>;
   // if (isLoading || isFavoriteLoading) return <div className="centered">Loading...</div>;
   if (isLoading || isFavoriteLoading) {
     return <PacmanLoading />;
-}
+  }
   if (!product) return null;
 
   return (
     <div className="detailed-page">
+    {showAddedToCartMessage && (
+      <div className="added-to-cart-popup">
+          <span>✓</span> {quantity} {product.name}
+
+          {quantity == 1 &&
+              <span> has been added to your cart!</span>
+          }
+
+          {quantity > 1 &&
+              <span> have been added to your carts!</span>
+          }
+      </div>
+    )}
       <div className="product-image-section">
         <div className="product-image-container">
           {product.images[currentImageIndex]?.media_url?.endsWith("mp4") ? (
@@ -178,14 +198,16 @@ setTimeout(() => setIsLoading(false), 5000);
               className="add-to-cart-button"
               onClick={handleAddItemToCart}
             >
-              <OpenModalMenuItem
+              Add to Cart
+              {/* <OpenModalMenuItem
                 itemText="Add to Cart"
                 modalComponent={<AddedToCartModal />}
-              />
+              /> */}
             </button>
           </div>
         )}
       </div>
+
     </div>
   );
 };

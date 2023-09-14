@@ -27,13 +27,13 @@ function ProductLandingPage() {
         From classics to the latest, we've got it all.
       </p>
       <CategoryNavigation />
-       : (
+
         <ul className="product-grid">
           {productsArray.map((product) => (
             <ProductItem product={product} key={product.id} />
           ))}
         </ul>
-      )}
+      
     </section>
   );
 }
