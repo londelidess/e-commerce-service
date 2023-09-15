@@ -11,6 +11,7 @@ from .api.product_routes import product_routes
 from .api.media_routes import media_routes
 from .api.favorite_routes import favorite_routes
 from .api.shoppingcartitem_routes import shoppingcartitem_routes
+from .api.review_routes import review_routes
 
 from .seeds import seed_commands
 from .config import Config
@@ -37,6 +38,7 @@ app.register_blueprint(product_routes, url_prefix='/api/products')
 app.register_blueprint(media_routes, url_prefix='/api/medias')
 app.register_blueprint(favorite_routes, url_prefix='/api/favorites')
 app.register_blueprint(shoppingcartitem_routes, url_prefix='/api/shoppingcarts')
+app.register_blueprint(review_routes, url_prefix='/api/reviews')
 
 
 
