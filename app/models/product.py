@@ -1,5 +1,8 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from datetime import datetime
+from .review import Review
+# from sqlalchemy import func
+
 
 class Product(db.Model):
     __tablename__ = 'products'
@@ -42,6 +45,9 @@ class Product(db.Model):
         }
         # if include_category and self.category:
         #     data['category_name'] = self.category.name
+        avg_rating = db.session.query(db.func.avg(Review.rating)).filter_by(product_id=self.id).scalar()
+        data['avgRating'] = round(float(avg_rating), 2) if avg_rating else None
+
         data['primary_image'] = self.get_primary_image()
 
         return data

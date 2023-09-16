@@ -19,9 +19,9 @@ function ProfileButton({ user }) {
   };
 
   useEffect(() => {
-    if (user) {
-      console.log(user?.profile_image_url);
-    }
+    // if (user) {
+    //   console.log(user?.profile_image_url);
+    // }
     if (!showMenu) return;
     const closeMenu = (e) => {
       if (ulRef.current && !ulRef.current.contains(e.target)) {
@@ -70,6 +70,10 @@ function ProfileButton({ user }) {
             <hr />
             <NavLink to="/favorite" style={{ cursor: "pointer" }}>
               Your Favorites
+            </NavLink>
+            <hr />
+            <NavLink to="/reviews" style={{ cursor: "pointer" }}>
+              Your Reviews
             </NavLink>
             <hr />
             <li>

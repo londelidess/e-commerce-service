@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import ClearCartModal from "./ClearCartModal";
+import { Link } from "react-router-dom";
 import { FaX } from 'react-icons/fa6';
 import {
   thunkGetCart,
@@ -77,9 +78,14 @@ function ShoppingCart() {
   if (updating || deleting) return <PacmanLoading />;
   return (
     <div className="cart-container">
-        <h2>Your Toy Box</h2>
+        <h2>Your Shopping Cart</h2>
         {cart?.items?.length === 0 ? (
+          <>
             <p>You can fill your toy box as much as you wish!</p>
+          <Link to="/products">
+          <button className="CONTINUE-SHOPPING">CONTINUE SHOPPING</button>
+          </Link>
+          </>
         ) : (
             <div>
                 <ul>

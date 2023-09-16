@@ -33,7 +33,7 @@ function ProductLandingPage() {
             <ProductItem product={product} key={product.id} />
           ))}
         </ul>
-      
+
     </section>
   );
 }

@@ -54,13 +54,11 @@ const HomePage = () => {
     </div>
 
       <div className="home-container">
-        <h2 className="centered-content">
-          PLAYBOX partners with chick-fil-a to celebrate diversity with kids
-          meal toys
-        </h2>
+        <h1 className="centered-content">
+        healthy toys for everyone
+        </h1>
         <p className="centered-content">
-          we had a blast making chick-fil-a kids meals extra special this
-          spring!
+        founded by a modern mom, upbounders® is an elevated toy brand with easily-accessible products that celebrate belonging and self-expression through play. 💫
         </p>
         <p className="centered-content">
           OUR COMMUNITY IS GROWING. CLICK BELOW TO LEARN MORE AND ENTER THE

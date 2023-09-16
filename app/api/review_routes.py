@@ -8,6 +8,17 @@ from flask import current_app as app
 
 review_routes = Blueprint('reviews', __name__)
 
+@review_routes.route('/user/<int:user_id>', methods=['GET'])
+@login_required
+def view_user_reviews(user_id):
+    """View reviews for a specific user."""
+    if user_id != current_user.id:
+        return jsonify({'errors': 'Not authorized to view these reviews'}), 403
+
+    reviews = Review.query.filter_by(user_id=user_id).all()
+    return jsonify([review.to_dict() for review in reviews]), 200
+
+
 @review_routes.route('/<int:product_id>', methods=['GET'])
 def view_product_reviews(product_id):
     """View reviews for a specific product."""
