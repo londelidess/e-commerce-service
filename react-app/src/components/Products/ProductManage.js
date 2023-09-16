@@ -5,7 +5,7 @@ import { fetchAllProducts, fetchUserProducts } from "../../store/product";
 // import ProductItem from "./ProductItem";
 import ProductManageItem from "./ProductManageItem"
 import { Redirect } from "react-router-dom";
-import PacmanLoading from "../Loading";
+import {PacmanLoading} from "../Loading";
 import './products.css';
 
 const ProductManage = () => {

@@ -8,6 +8,16 @@ from flask import current_app as app
 
 review_routes = Blueprint('reviews', __name__)
 
+@review_routes.route('/single/<int:review_id>', methods=['GET'])
+def get_single_review(review_id):
+    """Fetch a single review by its ID."""
+    review = Review.query.get(review_id)
+
+    if not review:
+        return jsonify({'errors': 'Review not found'}), 404
+
+    return jsonify(review.to_dict()), 200
+
 @review_routes.route('/user/<int:user_id>', methods=['GET'])
 @login_required
 def view_user_reviews(user_id):

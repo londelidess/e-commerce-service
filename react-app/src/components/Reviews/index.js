@@ -5,7 +5,7 @@ import { FaX } from "react-icons/fa6";
 import {
   fetchUserReviews,
 } from "../../store/review";
-import PacmanLoading from "../Loading";
+import {PacmanLoading} from "../Loading";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import UpdateReviewFormModal from "./UpdateReviewFormModal";
 import DeleteReviewFormModal from "./DeleteReviewFormModal";
@@ -45,7 +45,7 @@ function Reviews() {
               <div className="user-review-actions">
                 <OpenModalMenuItem
                   itemText={<FaX />}
-                  modalComponent={<DeleteReviewFormModal reviewId={review.id} />}
+                  modalComponent={<DeleteReviewFormModal reviewId={review.id} productId={review?.product.id} />}
                 />
               </div>
               <div className="user-review-details">
@@ -54,9 +54,9 @@ function Reviews() {
                 <div className="user-rating-details">{review.rating} stars</div>
                 <div className='user-update-review'>
                   <OpenModalMenuItem
-                    itemText="Update Review"
+                    itemText="Update Your Review"
                     modalComponent={
-                      <UpdateReviewFormModal reviewId={review.id} productId={review.product.id} />
+                      <UpdateReviewFormModal reviewId={review.id} productId={review?.product.id} />
                     }
                   />
                 </div>

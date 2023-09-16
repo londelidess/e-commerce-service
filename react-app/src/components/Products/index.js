@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchAllProducts } from "../../store/product";
 import ProductItem from "./ProductItem";
 import CategoryNavigation from "./CategoryNavigation";
-import PacmanLoading from "../Loading";
+import {PacmanLoading} from "../Loading";
 import { useLoading } from './LoadingContextLanding';
 import "./products.css";
 

@@ -8,7 +8,7 @@ import {
   thunkReorderPastOrder,
   thunkGetCart,
 } from "../../store/shoppingCart";
-import PacmanLoading from "../Loading";
+import {PacmanLoading} from "../Loading";
 import "./orderhistory.css";
 
 function OrderHistory() {
@@ -23,7 +23,7 @@ function OrderHistory() {
   useEffect(() => {
     async function fetchOrders() {
         await dispatch(thunkGetPastOrders());
-        setIsLoading(false);  
+        setIsLoading(false);
     }
     fetchOrders();
 }, [dispatch]);

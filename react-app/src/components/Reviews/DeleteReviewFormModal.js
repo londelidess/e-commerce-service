@@ -4,19 +4,22 @@ import { useModal } from "../../context/Modal";
 import { deleteReviewByIdThunk, fetchProductReviews, fetchUserReviews } from "../../store/review";
 import { fetchProductById } from "../../store/product";
 
-// function DeleteReviewFormModal({ reviewId, productId }) {
-  function DeleteReviewFormModal({ reviewId }) {
+function DeleteReviewFormModal({ reviewId, productId }) {
+  // function DeleteReviewFormModal({ reviewId }) {
   const dispatch = useDispatch();
   const { closeModal } = useModal();
   const sessionUser = useSelector((state) => state.session.user);
 
   const handleDelete = async () => {
     await dispatch(deleteReviewByIdThunk(reviewId));
-    // await dispatch(fetchProductReviews(productId));
+    // rerendering for reviews
+    await dispatch(fetchProductReviews(productId));
     await dispatch(fetchUserReviews(sessionUser.id))
+    // rerendering for avgrating
+    await dispatch(fetchProductById(productId))
     closeModal();
   };
-  // console.log('productId',productId)
+  console.log('productId',productId)
   // console.log('userId',sessionUser.id)
 
   const handleCancel = () => {

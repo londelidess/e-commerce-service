@@ -78,6 +78,7 @@
     position: absolute;
     top: 10px;
     right: 10px;
+    color:red;
 }
 
 .user-review-details {
@@ -118,7 +119,7 @@
     background-color: #0099cc;
 }
 
-/* star */
+/* psot and update review modal */
 .rating-input {
     display: flex;
     margin-right: 4px;
@@ -129,7 +130,7 @@
   }
 
   .rating-input .filled {
-    color: saddlebrown;
+    color: gold;
   }
 
   .rating-input .empty {
@@ -155,11 +156,11 @@
 
 
 .review-submit-button {
-    background-color: #ff0000;
+    background-color: #00bfff;
     color: white;
-    border: 3px solid black;
+    /* border: 3px solid black; */
     border-radius: 5px;
-    box-shadow: 4px 4px 4px black;
+    box-shadow: 1px 1px 1px black;
     padding: 10px 20px;
     font-size: 18px;
     cursor: pointer;

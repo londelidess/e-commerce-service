@@ -11,7 +11,7 @@ import {
 } from "../../store/shoppingCart";
 import { Redirect } from "react-router-dom";
 import CheckoutCartModal from "./CheckoutCartModal";
-import PacmanLoading from "../Loading";
+import {PacmanLoading} from "../Loading";
 import "./shoppingcart.css";
 
 function ShoppingCart() {

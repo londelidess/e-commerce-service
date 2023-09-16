@@ -17,14 +17,12 @@ import ProductReview from "./ProductReview"
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import PostReviewFormModal from "../Reviews/PostReviewFormModal";
 import UpdateReviewFormModal from "../Reviews/UpdateReviewFormModal";
-import PacmanLoading from "../Loading";
+import {PacmanLoading} from "../Loading";
 import "./products.css";
 
 const ProductShow = () => {
   const { productId } = useParams();
   const sessionUser = useSelector((state) => state.session.user);
-
-
   const dispatch = useDispatch();
   const productReviewsObj = useSelector((state) => state.reviews.productReviews);
   const productReviewsArray = Object.values(productReviewsObj);
@@ -82,7 +80,7 @@ const ProductShow = () => {
 
     fetchFavoriteStatus();
   }, [dispatch, productId]);
-  setTimeout(() => setIsLoading(false), 5000);
+  // setTimeout(() => setIsLoading(false), 5000);
 
   const handleFavoriteButtonClick = async (e) => {
     e.preventDefault();

@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { createReviewThunk, fetchProductReviews  } from "../../store/review";
 import { fetchProductById } from "../../store/product";
-import PacmanLoading from "../Loading";
+import { PacmanLoading, ScaleLoading } from '../Loading';
 import StarRatingInput from "./starRatingInput";
 import "./reviews.css";
 
@@ -20,37 +20,43 @@ function PostReviewFormModal({ productId }) {
     e.preventDefault();
     setIsLoading(true);
 
-    const formData = new FormData();
-    formData.append("review_text", comment);
-    formData.append("rating", stars);
-    if (mediaFile) {
-        formData.append("media_file", mediaFile);
-    }
+    try {
+      const formData = new FormData();
+      formData.append("review_text", comment);
+      formData.append("rating", stars);
+      if (mediaFile) {
+          formData.append("media_file", mediaFile);
+      }
 
-    const reviewResponse = await dispatch(createReviewThunk(productId, formData));
+      const reviewResponse = await dispatch(createReviewThunk(productId, formData));
 
-    if (reviewResponse.message) {
-      setError(reviewResponse.message);
-
-      return;
-    }
-    await dispatch(fetchProductById(productId));
-    setIsLoading(false);
-    closeModal();
-  };
+      if (reviewResponse && reviewResponse.message) {
+          setError(reviewResponse.message);
+          return;
+      }
+      await dispatch(fetchProductById(productId));
+      await dispatch(fetchProductReviews(productId));
+      setIsLoading(false);
+      closeModal();
+  } catch (error) {
+      setError("There was an unexpected error. Please try again.");
+      setIsLoading(false);
+  }
+};
 
   if (!productId) return null;
 
   const isCommentValid = comment.length > 3;
-  if (isLoading) return <PacmanLoading />;
+  // if (isLoading) return <ScaleLoading height={50} width={6} />;
+  console.log("Rendering PostReviewFormModal");
   return (
     <>
       <div className="review-form">
-        <h1>Give us opinion!</h1>
+        <h1>Give us Your Opinion!</h1>
         {error && <p className="error"> {error}</p>}
         <form onSubmit={handleSubmit}>
           <textarea
-            placeholder="Leave your review here..."
+            placeholder="Please type at least 3 characters..."
             value={comment}
             onChange={(e) => setComment(e.target.value)}
             rows="10"
@@ -66,7 +72,11 @@ function PostReviewFormModal({ productId }) {
               <h3>Stars</h3>
             </div>
           </div>
-          <input type="file" onChange={(e) => setMediaFile(e.target.files[0])} />
+          <input
+            type="file"
+            accept=".png, .jpg, .jpeg, .gif, .mp4"
+            onChange={(e) => setMediaFile(e.target.files[0])}
+            />
           <button
             className={`review-submit-button ${
               !isCommentValid || stars === 0 ? "disabled" : ""

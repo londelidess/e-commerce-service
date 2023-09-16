@@ -1,4 +1,5 @@
 // Constants
+const SET_SINGLE_REVIEW = "reviews/SET_SINGLE_REVIEW";
 const SET_USER_REVIEWS = "reviews/SET_USER_REVIEWS";
 const SET_PRODUCT_REVIEWS = "reviews/SET_PRODUCT_REVIEWS";
 const ADD_REVIEW = "reviews/ADD_REVIEW";
@@ -6,6 +7,11 @@ const UPDATE_REVIEW = "reviews/UPDATE_REVIEW";
 const REMOVE_REVIEW = "reviews/REMOVE_REVIEW";
 
 // Action Creators
+const setSingleReview = (review) => ({
+type: SET_SINGLE_REVIEW,
+review,
+});
+
 const setUserReviews = (reviews) => ({
   type: SET_USER_REVIEWS,
   reviews,
@@ -32,6 +38,19 @@ const removeReview = (reviewId) => ({
 });
 
 // Thunks
+export const fetchSingleReview = (reviewId) => async (dispatch) => {
+  const response = await fetch(`/api/reviews/single/${reviewId}`);
+
+  if (response.ok) {
+    const review = await response.json();
+    dispatch(setSingleReview(review));
+    return review
+  } else {
+    const errorData = await response.json();
+    throw new Error(errorData.message || "Failed to fetch the review.");
+  }
+};
+
 export const fetchUserReviews = (userId) => async (dispatch) => {
   const response = await fetch(`/api/reviews/user/${userId}`);
   if (response.ok) {
@@ -47,6 +66,7 @@ export const fetchProductReviews = (productId) => async (dispatch) => {
     dispatch(setProductReviews(reviews));
   }
 };
+
 
 export const createReviewThunk = (productId, formData) => async (dispatch) => {
   const response = await fetch(`/api/reviews/${productId}`, {
@@ -64,16 +84,15 @@ export const createReviewThunk = (productId, formData) => async (dispatch) => {
     }
     throw new Error(data.message || "Failed to create the review.");
   }
+  console.log('ok data in thunk',data)
   dispatch(addReview(data));
+  return data;
 };
 
-export const updateReviewThunk = (reviewId, reviewData) => async (dispatch) => {
+export const updateReviewThunk = (reviewId, formData) => async (dispatch) => {
   const response = await fetch(`/api/reviews/${reviewId}`, {
     method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(reviewData),
+    body: formData,
     credentials: 'include'
   });
 
@@ -84,6 +103,7 @@ export const updateReviewThunk = (reviewId, reviewData) => async (dispatch) => {
 
   const updatedReview = await response.json();
   dispatch(updateReview(updatedReview));
+  return updatedReview
 };
 
 export const deleteReviewByIdThunk = (reviewId) => async (dispatch) => {
@@ -107,6 +127,15 @@ const initialState = {
 
 export default function reviewsReducer(state = initialState, action) {
     switch (action.type) {
+        case SET_SINGLE_REVIEW:
+            return {
+                ...state,
+                allReviews: {
+                    ...state.allReviews,
+                    [action.review.id]: action.review
+                }
+            };
+
         case SET_USER_REVIEWS:
             const userReviewsObj = {};
             action.reviews.forEach(review => {
@@ -120,6 +149,7 @@ export default function reviewsReducer(state = initialState, action) {
                 productReviewsObj[review.id] = review;
             });
             return { ...state, productReviews: productReviewsObj };
+
 
         case ADD_REVIEW:
             return {

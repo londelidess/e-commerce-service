@@ -35,6 +35,12 @@
   transition: transform 0.3s ease;
   transform: scale(1.05);
   animation: popIn 0.3s forwards;
+  /* min-width: 460px;
+  min-height: 360px; */
+  display: flex;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
 }
 
 @keyframes popIn {
