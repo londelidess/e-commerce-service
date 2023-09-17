@@ -18,6 +18,8 @@ import UpdateProductForm from "./components/Products/UpdateProductForm";
 import ProductManage from "./components/Products/ProductManage"
 import ProductShow from "./components/Products/ProductShow";
 import Favorite from "./components/Favorite";
+import Reviews from "./components/Reviews";
+
 
 
 // import PrivateRoute from "./PrivateRoute"
@@ -40,6 +42,7 @@ function App() {
           <Route exact path="/history" component={OrderHistory} />
           <Route exact path="/favorite" component={Favorite} />
           <Route exact path="/shoppingcarts" component={ShoppingCart} />
+          <Route exact path="/reviews" component={Reviews} />
           <Route exact path="/products/new" component={CreateProductForm} />
           <Route exact path="/products/manage" component={ProductManage} />
           <Route exact path="/products/id/:productId" component={ProductShow} />

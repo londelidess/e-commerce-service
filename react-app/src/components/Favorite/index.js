@@ -6,7 +6,7 @@ import {
   fetchFavorites,
   removeProductFromFavorites,
 } from "../../store/favorite";
-import PacmanLoading from '../Loading';
+import {PacmanLoading} from '../Loading';
 import "./favorite.css"
 
 

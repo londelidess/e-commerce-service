@@ -27,10 +27,34 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   max-width: 800px;
   margin: 0 auto;
-  font-family: 'Arial', sans-serif;
 }
 
-.cart-container h2,
+.CONTINUE-SHOPPING{
+  border: none;
+  padding: 18px 38px;
+  color: white;
+  cursor: pointer;
+  text-decoration: 0.3s;
+  border-radius: 40px;
+  font-weight: Bold;
+  font-size: 18px;
+  background-color: #ff4262;
+  color: white;
+  transition: 0.3s;
+}
+
+.CONTINUE-SHOPPING:hover{
+  background-color: #ff7088;
+}
+
+
+
+.cart-container h2 {
+  color: #333;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
 .product-details h2 {
   color: #333;
   text-align: center;
@@ -176,7 +200,7 @@
 .delete-product-confirmation-container {
   padding: 30px;
   text-align: center;
-  border-radius: 8px; 
+  border-radius: 8px;
   background-color: #ffffff;
   margin: 20px 0;
 

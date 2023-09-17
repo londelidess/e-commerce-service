@@ -1,6 +1,5 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from datetime import datetime
-from .media import Media
 
 class Review(db.Model):
     __tablename__ = 'reviews'
@@ -14,34 +13,33 @@ class Review(db.Model):
     review_text = db.Column(db.String)
     rating = db.Column(db.Integer)
     review_date = db.Column(db.DateTime, default=datetime.utcnow)
+    media_url = db.Column(db.String, nullable=True)
 
     # Relationships - many side
     product = db.relationship("Product", back_populates="reviews")
     user = db.relationship("User", back_populates="reviews")
 
-def to_dict(self, include_user=False, include_product=False):
-    data = {
-        'id': self.id,
-        'product_id': self.product_id,
-        'user_id': self.user_id,
-        'review_text': self.review_text,
-        'rating': self.rating,
-        'review_date': self.review_date.strftime('%Y-%m-%d %H:%M:%S') if self.review_date else None,
-    }
-
-    if include_user and self.user:
-        data['user'] = {
-            'id': self.user.id,
-            'username': self.user.username,
+    def to_dict(self):
+        data = {
+            'id': self.id,
+            'product_id': self.product_id,
+            'user_id': self.user_id,
+            'review_text': self.review_text,
+            'rating': self.rating,
+            'review_date': self.review_date.strftime('%Y-%m-%d %H:%M:%S') if self.review_date else None,
+            'media_url': self.media_url
         }
 
-    if include_product and self.product:
-        data['product'] = {
-            'id': self.product.id,
-            'name': self.product.name,
-        }
+        if self.user:
+            data['user'] = {
+                'id': self.user.id,
+                'username': self.user.username,
+            }
 
-    if self.images:
-        data['images'] = [image.to_dict() for image in self.images]
+        if self.product:
+            data['product'] = {
+                'id': self.product.id,
+                'name': self.product.name,
+            }
 
-    return data
+        return data

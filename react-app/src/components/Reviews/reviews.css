@@ -1,0 +1,173 @@
+/* delete review */
+.delete-review-confirmation-container {
+    padding: 30px;
+    text-align: center;
+    border-radius: 8px;
+    background-color: #ffffff;
+    margin: 20px 0;
+  }
+
+  .delete-review-confirmation-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  .delete-review-confirmation-text {
+    font-size: 18px;
+    margin-bottom: 30px;
+  }
+
+  .delete-review-confirmation-button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .review-delete-button, .review-delete-cancel-button {
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 12px 25px;
+    font-size: 16px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 90%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .review-delete-button {
+    background-color: #e74c3c;
+  }
+
+  .review-delete-button:hover {
+    background-color: #c0392b;
+    transform: translateY(-2px);
+  }
+
+  .review-delete-cancel-button {
+    background-color: #7f8c8d;
+  }
+
+  .review-delete-cancel-button:hover {
+    background-color: #626e77;
+    transform: translateY(-2px);
+  }
+
+/* user review page */
+.reviews-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.user-review-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 10px;
+    border-bottom: 1px solid #e0e0e0;
+    background-color: #f9f9f9;
+    margin-bottom: 20px; /* To create a gap between each review */
+    position: relative; /* For the absolute positioning of the delete button */
+}
+
+.user-review-actions {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color:red;
+}
+
+.user-review-details {
+    flex: 1;
+}
+
+
+.user-review-details p {
+    font-size: 16px;
+    color: #555;
+    margin: 10px 0;
+}
+
+.user-rating-details {
+    color: #777;
+    margin-bottom: 10px;
+}
+
+.user-review-media {
+    max-width: 40%;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+/* Style for the Update Review button */
+.user-update-review {
+    background-color: #00bfff;
+    color: white;
+    border: none;
+    margin-top: 10px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.update-your-review:hover {
+    background-color: #0099cc;
+}
+
+/* psot and update review modal */
+.rating-input {
+    display: flex;
+    margin-right: 4px;
+  }
+
+  .review-item {
+    display: flex;
+  }
+
+  .rating-input .filled {
+    color: gold;
+  }
+
+  .rating-input .empty {
+    color: burlywood;
+  }
+
+.star-rating-input {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+  }
+
+  .star-input-container {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+  }
+
+  .star-input-container h3 {
+    margin-left: 5px;
+    font-size: 24px;
+  }
+
+
+.review-submit-button {
+    background-color: #00bfff;
+    color: white;
+    /* border: 3px solid black; */
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px black;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+
+  .review-submit-button:disabled {
+    background-color: gray;
+  }
