@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { useNavigate, Routes, Route } from 'react-router-dom';
 import { FaX } from 'react-icons/fa6';
 import {
   fetchFavorites,
@@ -12,6 +12,8 @@ import "./favorite.css"
 
 function Favorite() {
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
   const sessionUser = useSelector((state) => state.session.user);
 //   const favoritesObj = useSelector((state) => state.favorites);
   const favorites = useSelector((state) => state.favorites);
@@ -33,7 +35,10 @@ function Favorite() {
     }
   };
 
-  if (!sessionUser) return <Redirect to="/" />;
+  if (!sessionUser) {
+    navigate("/");
+    return null;
+}
 //   if (deleting) return <div className="centered">Removing...</div>;
   if (deleting) return <PacmanLoading />;
 

@@ -5,7 +5,8 @@ import {
   thunkAddMediaToProduct,
   thunkGetAllMediaByProductId,
 } from "../../store/media";
-import { useHistory, Redirect } from "react-router-dom";
+import { useNavigate, Routes, Route } from 'react-router-dom';
+
 import {
     FaUpload
   } from "react-icons/fa6";
@@ -13,7 +14,7 @@ import "./productform.css";
 
 const CreateProductForm = () => {
   const dispatch = useDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
   const sessionUser = useSelector((state) => state.session.user);
   const [errors, setErrors] = useState({});
   const [name, setName] = useState("");
@@ -154,7 +155,7 @@ const CreateProductForm = () => {
         }
       }
       dispatch(thunkGetAllMediaByProductId(productId));
-      history.push("/products/manage");
+      navigate("/products/manage");
     } catch (err) {
       setErrors({
         ...validationErrors,
@@ -164,8 +165,9 @@ const CreateProductForm = () => {
   };
 
   if (!sessionUser) {
-    return <Redirect to="/" />;
-  }
+    navigate("/");
+    return null;
+}
 
   // console.log("Errors:", errors);
   // console.log("Number of Errors:", Object.keys(errors).length);

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { useNavigate, Routes, Route } from 'react-router-dom';
 import { FaX } from "react-icons/fa6";
 import {
   fetchUserReviews,
@@ -13,6 +13,7 @@ import "./reviews.css";
 
 function Reviews() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const sessionUser = useSelector((state) => state.session.user);
   const userReviewsObj = useSelector((state) => state.reviews.userReviews);
   const userReviewsArray = Object.values(userReviewsObj);
@@ -29,7 +30,10 @@ function Reviews() {
   }, [dispatch, sessionUser]);
 
 
-  if (!sessionUser) return <Redirect to="/" />;
+  if (!sessionUser) {
+    navigate("/");
+    return null;
+}
   if (isLoading) return <PacmanLoading />;
 
   return (

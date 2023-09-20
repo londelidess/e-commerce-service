@@ -17,7 +17,7 @@ function ProductLandingPage() {
     dispatch(fetchAllProducts()).then(() => setIsLoading(false));
   }, [dispatch]);
 
-  if (isLoading ) return <PacmanLoading />;
+  if (isLoading) return <PacmanLoading />;
 
   return (
     <section className="landing-page">

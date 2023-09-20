@@ -1,5 +1,5 @@
 import React from 'react';
-// import { BubbleChat } from 'flowise-embed-react'
+import { BubbleChat } from 'flowise-embed-react'
 import "./ChatBot.css";
 
 function ChatBot() {

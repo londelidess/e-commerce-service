@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { useNavigate, Routes, Route } from 'react-router-dom';
 import { signUp } from "../../store/session";
 import { useModal } from "../../context/Modal";
 import {
@@ -10,6 +10,7 @@ import "./SignupForm.css";
 
 function SignupFormPage() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const sessionUser = useSelector((state) => state.session.user);
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
@@ -18,8 +19,6 @@ function SignupFormPage() {
   const [errors, setErrors] = useState([]);
   const { closeModal } = useModal();
   const [image, setImage] = useState(null);
-
-  if (sessionUser) return <Redirect to="/" />;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -40,6 +39,11 @@ function SignupFormPage() {
         ]);
     }
 };
+
+if (sessionUser) {
+  navigate("/");
+  return null;
+}
 
 const handleImageChange = (e) => {
   const file = e.target.files[0];

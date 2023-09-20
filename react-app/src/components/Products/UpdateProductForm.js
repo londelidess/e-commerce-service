@@ -9,7 +9,8 @@ import {
 import {
     FaUpload
   } from "react-icons/fa6";
-import { useHistory, useParams, Redirect } from "react-router-dom";
+import { useNavigate, Routes, Route, useParams } from 'react-router-dom';
+import {PacmanLoading} from "../Loading";
 import "./productform.css";
 
 const UpdateProductForm = () => {
@@ -17,7 +18,7 @@ const UpdateProductForm = () => {
   const sessionUser = useSelector((state) => state.session.user);
   // console.log("productId",productId)
   const dispatch = useDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
   const [product, setProduct] = useState(null);
   const [errors, setErrors] = useState({});
   const [name, setName] = useState("");
@@ -141,9 +142,10 @@ const UpdateProductForm = () => {
     fetchProduct();
 }, [dispatch, productId]);
 
-  if (!sessionUser) {
-    return <Redirect to="/" />;
-  }
+if (!sessionUser) {
+  navigate("/");
+  return null;
+}
 
   const renderMedia = (media, previewURL, setImageFunction, mediaId) => {
     if (media && typeof media.media_url === "string") {
@@ -209,7 +211,7 @@ const UpdateProductForm = () => {
         }
       }
       await dispatch(thunkGetAllMediaByProductId(productId));
-      history.push("/products/manage");
+      navigate("/products/manage");
     } catch (err) {
       setErrors({
         ...validationErrors,

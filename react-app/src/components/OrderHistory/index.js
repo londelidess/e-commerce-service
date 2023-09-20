@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+
+import { useNavigate, Routes, Route } from 'react-router-dom';
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import AddedToCartModal from "./AddedToCartModal";
 import {
@@ -13,6 +14,8 @@ import "./orderhistory.css";
 
 function OrderHistory() {
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
   const sessionUser = useSelector((state) => state.session.user);
   const ordersObj = useSelector((state) => state.shoppingCart.orders);
   const orders = Object.values(ordersObj);
@@ -42,7 +45,10 @@ function OrderHistory() {
     await dispatch(thunkGetCart());
   };
 
-  if (!sessionUser) return <Redirect to="/" />;
+  if (!sessionUser) {
+    navigate("/");
+    return null;
+}
   if (isLoading) return <PacmanLoading />;
   return (
     <div className="order-history-container">

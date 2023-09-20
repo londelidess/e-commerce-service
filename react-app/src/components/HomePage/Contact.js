@@ -38,7 +38,7 @@ const mapStyles = [
 function Contact() {
   const [showInfoWindow, setShowInfoWindow] = useState(false);
 
-
+console.log(process.env.REACT_APP_GOOGLE_MAPS_API_KEY)
   return (
 
         <div className="contact-page">

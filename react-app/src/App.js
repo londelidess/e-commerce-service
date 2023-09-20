@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { Route, Switch } from "react-router-dom";
+import { Routes, Route } from 'react-router-dom';
 import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
@@ -27,6 +27,7 @@ import ChatBot from "./components/ChatBot";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+
   useEffect(() => {
     dispatch(authenticate()).then(() => setIsLoaded(true));
   }, [dispatch]);
@@ -36,33 +37,28 @@ function App() {
       <Navigation isLoaded={isLoaded} />
 
       {isLoaded && (
-        <Switch>
-          <Route exact path="/about" component={About} />
-          <Route exact path="/contact" component={Contact} />
-          <Route exact path="/history" component={OrderHistory} />
-          <Route exact path="/favorite" component={Favorite} />
-          <Route exact path="/shoppingcarts" component={ShoppingCart} />
-          <Route exact path="/reviews" component={Reviews} />
-          <Route exact path="/products/new" component={CreateProductForm} />
-          <Route exact path="/products/manage" component={ProductManage} />
-          <Route exact path="/products/id/:productId" component={ProductShow} />
-          <Route exact path="/products/category/:categoryName" component={ProductCategoryPage} />
-          <Route exact path="/products/:productId/edit" component={UpdateProductForm} />
-          <Route exact path="/products" component={Products} />
-
-          <Route exact path="/login" >
-            <LoginFormPage />
-          </Route>
-          <Route path="/signup">
-            <SignupFormPage />
-          </Route>
-          <Route exact path="/" component={HomePage} />
-        </Switch>
+        <Routes>
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/history" element={<OrderHistory />} />
+          <Route path="/favorite" element={<Favorite />} />
+          <Route path="/shoppingcarts" element={<ShoppingCart />} />
+          <Route path="/reviews" element={<Reviews />} />
+          <Route path="/products/new" element={<CreateProductForm />} />
+          <Route path="/products/manage" element={<ProductManage />} />
+          <Route path="/products/id/:productId" element={<ProductShow />} />
+          <Route path="/products/category/:categoryName" element={<ProductCategoryPage />} />
+          <Route path="/products/:productId/edit" element={<UpdateProductForm />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/login" element={<LoginFormPage />} />
+          <Route path="/signup" element={<SignupFormPage />} />
+          <Route path="/" element={<HomePage />} />
+        </Routes>
       )}
+
       <Footer />
       <ChatBot />
     </>
   );
 }
-
 export default App;

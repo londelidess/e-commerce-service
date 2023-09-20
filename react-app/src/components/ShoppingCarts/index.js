@@ -9,13 +9,14 @@ import {
   thunkRemoveFromCart,
   thunkUpdateCartItemQuantity,
 } from "../../store/shoppingCart";
-import { Redirect } from "react-router-dom";
+import { useNavigate, Routes, Route } from 'react-router-dom';
 import CheckoutCartModal from "./CheckoutCartModal";
 import {PacmanLoading} from "../Loading";
 import "./shoppingcart.css";
 
 function ShoppingCart() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const cart = useSelector((state) => state.shoppingCart.cart);
   const sessionUser = useSelector((state) => state.session.user);
   const [loading, setLoading] = useState(true);
@@ -71,7 +72,11 @@ function ShoppingCart() {
     }
   };
 
-  if (!sessionUser) return <Redirect to="/" />;
+
+  if (!sessionUser) {
+    navigate("/");
+    return null;
+}
   // if (updating) return <div className="centered">Whoop!! Whoop!!</div>;
   // if (deleting) return <div className="centered">Bye Bye!!</div>;
   if (loading) return <PacmanLoading />

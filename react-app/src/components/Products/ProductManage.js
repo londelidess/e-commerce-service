@@ -4,12 +4,13 @@ import { NavLink } from "react-router-dom";
 import { fetchAllProducts, fetchUserProducts } from "../../store/product";
 // import ProductItem from "./ProductItem";
 import ProductManageItem from "./ProductManageItem"
-import { Redirect } from "react-router-dom";
+import { useNavigate, Routes, Route } from 'react-router-dom';
 import {PacmanLoading} from "../Loading";
 import './products.css';
 
 const ProductManage = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
   const sessionUser = useSelector((state) => state.session?.user);
   // const productsObject = useSelector((state) => state.products.allProducts);
@@ -32,7 +33,10 @@ useEffect(() => {
     //     return <Redirect to="/" />;
     //   }
 
-  if (!sessionUser) return <Redirect to="/" />;
+    if (!sessionUser) {
+      navigate("/");
+      return null;
+  }
   if (isLoading) return <PacmanLoading />;
 
   return (
