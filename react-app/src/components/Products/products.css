@@ -577,10 +577,11 @@
 }
 
 .avgrating-in-detail{
-    font-size: 1em;
+    font-size: 2em;
 }
 
 .reviews-count {
+    font-size: 2em;
     margin-left: 8px;
 }
 
