@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { FaX } from 'react-icons/fa6';
+import { FaRegTrashCan } from 'react-icons/fa6';
 import {
   fetchFavorites,
   removeProductFromFavorites,
@@ -47,12 +47,12 @@ return (
         <div>
             <ul>
                 {favorites.map((product) => (
-                    <li key={product.id} className="favorite-item cart-item">
+                    <li key={product.id} className="favorite-item">
                         <button
-                            className="remove-favorite-item-button remove-cart-item-button"
+                            className="remove-favorite-item-button"
                             onClick={() => handleRemove(product.id)}
                         >
-                        <FaX />
+                        <FaRegTrashCan />
                         </button>
                         <div className="product-preview" title={product.name}>
                             {product.images && product.images.length > 0 ? (
