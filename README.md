@@ -54,17 +54,51 @@ PLAYBOX, a [Upbounders](https://upbounders.com/) replica, is a platform where us
 8. **Past Orders & Reorder**
     - Users can view their past orders and reorder.
 
-9. **Production README**
 
-
+---
 
 10. **Bonus Features**
-    - **Search**: Users can search products by category.
 
-    - **Recommendations**: Based on user browsing and purchase history, recommend products they might like.
+## **PLAYBOX Chatbot**
 
-    - **Sale and Discounts**: Implement features for sales, discount codes, and special promotions.
+### Introduction
+**PLAYBOX Chatbot** is an intuitive assistant, designed to improve user experience. It answers FAQs and directs users to desired product categories.
+
+### Features
+- **User Queries**: Specifically trained on a PLAYBOX dataset to address unique user queries.
+- **Product Recommendations**: Suggests products based on user input.
+
+### Integration
+Available at the bottom right of each page, the chatbot is easily accessible for users seeking immediate help.
+
+### Interactivity
+The chatbot accepts text inputs. Voice functionality is planned for future updates.
+
+### Technology
+Crafted using **FlowiseAI** and powered by **GPT-3.5 Turbo** from **OpenAI API**. Integrated with the **Pinecone vector database** for accurate responses. Its proficiency is further enhanced with PLAYBOX-specific training.
+
+### Integration Details
+The chatbot widget is embedded in the site's HTML. It connects to a cloud-deployed custom Flowise instance, compatible with any Node-supporting server, like Render.
+
+
+```
+<script type="module">
+    import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js"
+    Chatbot.init({
+        chatflowid: "761007b0-4c69-4013-8b64-fb421b3fcca7",
+        apiHost: "https://flowise-ai-makoto.onrender.com",
+    })
+</script>
+```
+
+** Note: This code is tailored for PLAYBOX. Using it for other sites may not yield the desired results.
+
+---
+
+## Backend Database Schema.
 ![db-schema](https://github.com/londelidess/shopping-website/blob/main/images/db-schema.png)
+
+---
 
 ## Authentication
 
@@ -156,7 +190,7 @@ PLAYBOX, a [Upbounders](https://upbounders.com/) replica, is a platform where us
 
  
 ## Used Technology in this project 
-Flask/ React/ Redux/ sqlAlchemy/ postgresql/ AWS S3
+Flask/ React/ Redux/ sqlAlchemy/ PostgreSQL/ AWS S3 / FlowiseAI/ LungchainJS/ Pinecone/ OpenAI/ Google map
 
 [def]: ./images/home-page.png
 [def2]:./images/shop-page.png
