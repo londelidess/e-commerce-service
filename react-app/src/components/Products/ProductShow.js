@@ -215,10 +215,10 @@ const ProductShow = () => {
       {/* Reviews Section */}
       <div className="reviews-section">
         <div className="spot-rating-under-detailed-page">
-          <i className="fa-solid fa-star"></i>
-          {productReviewsArray.length > 0
-            ? product?.avgRating?.toFixed(1)
-            : "New"}
+        <i className="fa-solid fa-star"></i>
+        {productReviewsArray.length > 0
+          ? <span className="avgrating-in-detail">{product?.avgRating?.toFixed(1)}</span>
+          : "New"}
           {productReviewsArray.length > 0 && (
             <p className="reviews-count">
               {"· "}
@@ -229,7 +229,7 @@ const ProductShow = () => {
         </div>
         <div>
           {sessionUser && !userHasReview && !isProductOwner && (
-            <div className="post-your-review">
+            <div className="post-your-review-in-detail">
               <OpenModalMenuItem
                 itemText="Post Your Review"
                 modalComponent={<PostReviewFormModal productId={productId} />}

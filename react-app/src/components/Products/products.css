@@ -576,11 +576,15 @@
     margin-right: 8px;
 }
 
+.avgrating-in-detail{
+    font-size: 1em;
+}
+
 .reviews-count {
     margin-left: 8px;
 }
 
-.post-your-review {
+.post-your-review-in-detail {
     margin-top: 10px;
     background-color: #3498db;
     padding: 10px;
@@ -674,5 +678,5 @@
 }
 
 .review-delete:hover {
-    color: #c0392b; 
+    color: #c0392b;
 }
