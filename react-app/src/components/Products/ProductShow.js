@@ -13,18 +13,20 @@ import {
   removeProductFromFavorites,
 } from "../../store/favorite";
 import { fetchProductReviews } from "../../store/review";
-import ProductReview from "./ProductReview"
+import ProductReview from "./ProductReview";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import PostReviewFormModal from "../Reviews/PostReviewFormModal";
 import UpdateReviewFormModal from "../Reviews/UpdateReviewFormModal";
-import {PacmanLoading} from "../Loading";
+import { PacmanLoading } from "../Loading";
 import "./products.css";
 
 const ProductShow = () => {
   const { productId } = useParams();
   const sessionUser = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
-  const productReviewsObj = useSelector((state) => state.reviews.productReviews);
+  const productReviewsObj = useSelector(
+    (state) => state.reviews.productReviews
+  );
   const productReviewsArray = Object.values(productReviewsObj);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -34,7 +36,6 @@ const ProductShow = () => {
   const [isFavorite, setIsFavorite] = useState(false);
   const [isFavoriteLoading, setIsFavoriteLoading] = useState(true);
   const [showAddedToCartMessage, setShowAddedToCartMessage] = useState(false);
-
 
   // console.log(isFavorite)
 
@@ -118,108 +119,106 @@ const ProductShow = () => {
 
   return (
     <div className="detailed-page">
-        {showAddedToCartMessage && (
-            <div className="added-to-cart-popup">
-                <span>✓</span> {quantity} {product.name}
-                {quantity == 1 &&
-                    <span> has been added to your cart!</span>
-                }
-                {quantity > 1 &&
-                    <span> have been added to your carts!</span>
-                }
-            </div>
-        )}
+      {showAddedToCartMessage && (
+        <div className="added-to-cart-popup">
+          <span>✓</span> {quantity} {product.name}
+          {quantity == 1 && <span> has been added to your cart!</span>}
+          {quantity > 1 && <span> have been added to your carts!</span>}
+        </div>
+      )}
 
-        <div className="product-main-section">
-            {/* Product Image Section */}
-            <div className="product-image-section">
-                <div className="product-image-container">
-                    {product.images[currentImageIndex]?.media_url?.endsWith("mp4") ? (
-                        <video controls width="100%" height="100%">
-                            <source
-                                src={product.images[currentImageIndex]?.media_url}
-                                type="video/mp4"
-                            />
-                            Your browser does not support the video tag.
-                        </video>
-                    ) : (
-                        <img
-                            src={product.images[currentImageIndex]?.media_url}
-                            alt={product.name}
-                            className="product-image"
-                        />
-                    )}
-                </div>
-                <div className="preview-images">
-                    {product.images.map((image, index) => (
-                        <div
-                            key={index}
-                            className="preview-image"
-                            onClick={() => setCurrentImageIndex(index)}
-                        >
-                            {image.media_url?.endsWith("mp4") ? (
-                                <video width="100%" height="100%">
-                                    <source src={image.media_url} type="video/mp4" />
-                                </video>
-                            ) : (
-                                <img
-                                    src={image.media_url}
-                                    alt={`${product.name} preview ${index + 1}`}
-                                />
-                            )}
-                        </div>
-                    ))}
-                </div>
-            </div>
-
-            {/* Product Details Section */}
-            <div className="product-details">
-                <div className="product-header">
-                    <h1>{product.name}</h1>
-                    {sessionUser && (
-                        <button
-                            className={`favorite-button ${isFavorite ? "active" : ""}`}
-                            onClick={handleFavoriteButtonClick}
-                        >
-                            <div className="icon">
-                                <div className="star"></div>
-                            </div>
-                            <span>Favorite</span>
-                        </button>
-                    )}
-                </div>
-                <div className="product-description">{product.description}</div>
-                <div className="product-price">
-                    ${parseFloat(product.price).toFixed(2)}
-                </div>
-                {sessionUser && (
-                    <div className="product-order-section">
-                        <div className="quantity-section">
-                            <label htmlFor="quantity">Quantity:</label>
-                            <input
-                                type="number"
-                                id="quantity"
-                                value={quantity}
-                                onChange={(e) => setQuantity(e.target.value)}
-                                min="1"
-                            />
-                        </div>
-                        <button
-                            className="add-to-cart-button"
-                            onClick={handleAddItemToCart}
-                        >
-                            Add to Cart
-                        </button>
-                    </div>
+      <div className="product-main-section">
+        {/* Product Image Section */}
+        <div className="product-image-section">
+          <div className="product-image-container">
+            {product.images[currentImageIndex]?.media_url?.endsWith("mp4") ? (
+              <video controls width="100%" height="100%">
+                <source
+                  src={product.images[currentImageIndex]?.media_url}
+                  type="video/mp4"
+                />
+                Your browser does not support the video tag.
+              </video>
+            ) : (
+              <img
+                src={product.images[currentImageIndex]?.media_url}
+                alt={product.name}
+                className="product-image"
+              />
+            )}
+          </div>
+          <div className="preview-images">
+            {product.images.map((image, index) => (
+              <div
+                key={index}
+                className="preview-image"
+                onClick={() => setCurrentImageIndex(index)}
+              >
+                {image.media_url?.endsWith("mp4") ? (
+                  <video width="100%" height="100%">
+                    <source src={image.media_url} type="video/mp4" />
+                  </video>
+                ) : (
+                  <img
+                    src={image.media_url}
+                    alt={`${product.name} preview ${index + 1}`}
+                  />
                 )}
-            </div>
+              </div>
+            ))}
+          </div>
         </div>
 
-        {/* Reviews Section */}
-        <div className="reviews-section">
+        {/* Product Details Section */}
+        <div className="product-details">
+          <div className="product-header">
+            <h1>{product.name}</h1>
+            {sessionUser && (
+              <button
+                className={`favorite-button ${isFavorite ? "active" : ""}`}
+                onClick={handleFavoriteButtonClick}
+              >
+                <div className="icon">
+                  <div className="star"></div>
+                </div>
+                <span>Favorite</span>
+              </button>
+            )}
+          </div>
+          <div className="product-description">{product.description}</div>
+          <div className="product-price">
+            ${parseFloat(product.price).toFixed(2)}
+          </div>
+          {sessionUser && (
+            <div className="product-order-section">
+              <div className="quantity-section">
+                <label htmlFor="quantity">Quantity:</label>
+                <input
+                  type="number"
+                  id="quantity"
+                  value={quantity}
+                  onChange={(e) => setQuantity(e.target.value)}
+                  min="1"
+                />
+              </div>
+              <button
+                className="add-to-cart-button"
+                onClick={handleAddItemToCart}
+              >
+                Add to Cart
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Reviews Section */}
+      <div className="reviews-section">
         <div className="spot-rating-under-detailed-page">
           <i className="fa-solid fa-star"></i>
-          {product?.avgRating?.toFixed(1) || "0.0"}
+          {productReviewsArray.length > 0
+            ? product?.avgRating?.toFixed(1)
+            : "New"}
           {productReviewsArray.length > 0 && (
             <p className="reviews-count">
               {"· "}
@@ -233,9 +232,7 @@ const ProductShow = () => {
             <div className="post-your-review">
               <OpenModalMenuItem
                 itemText="Post Your Review"
-                modalComponent={
-                  <PostReviewFormModal productId={productId} />
-                }
+                modalComponent={<PostReviewFormModal productId={productId} />}
               />
             </div>
           )}

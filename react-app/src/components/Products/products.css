@@ -83,8 +83,6 @@
     border-radius: 5px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     z-index: 1001;
-
-
   }
 
 
@@ -566,6 +564,38 @@
 }
 
 /* review list */
+.spot-rating-under-detailed-page {
+    display: flex;
+    align-items: center;
+    font-size: 1.5em;
+}
+
+.spot-rating-under-detailed-page i.fa-solid {
+    color: gold;
+    font-size: 1em;
+    margin-right: 8px;
+}
+
+.reviews-count {
+    margin-left: 8px;
+}
+
+.post-your-review {
+    margin-top: 10px;
+    background-color: #3498db;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.post-your-review:hover {
+    background-color: #2980b9;
+}
+
 .product-reviews {
     display: flex;
     flex-direction: column;
@@ -617,9 +647,32 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.review-update {
+    margin-top: 10px;
+    background-color: #2ecc71;
+    padding: 8px 12px;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    display: inline-block;
+    transition: background-color 0.3s;
+}
+
+.review-update:hover {
+    background-color: #27ae60;
+}
+
+
 .review-delete {
     position: absolute;
     top: 10px;
     right: 10px;
     color: red;
+    transition: color 0.3s;
+}
+
+.review-delete:hover {
+    color: #c0392b; 
 }

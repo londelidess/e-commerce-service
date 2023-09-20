@@ -1,6 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import DeleteProductFormModal from "./DeleteProductFormModal";
+import { FaRegTrashCan,FaRegPenToSquare } from "react-icons/fa6";
 import "./products.css";
 
 const ProductManageItem = ({ product, sessionUser }) => {
@@ -44,12 +45,12 @@ const ProductManageItem = ({ product, sessionUser }) => {
                 cursor: "pointer"
               }}
             >
-              Update
+              <FaRegPenToSquare />
             </NavLink>
           )}
           <div className="delete-button-for-product">
             <OpenModalMenuItem
-              itemText="Delete"
+              itemText={<FaRegTrashCan />}
               modalComponent={<DeleteProductFormModal productId={product.id} />}
             />
           </div>

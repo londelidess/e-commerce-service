@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
-import { updateReviewThunk, fetchSingleReview, fetchProductReviews } from "../../store/review";
+import { updateReviewThunk, fetchSingleReview, fetchProductReviews, fetchUserReviews } from "../../store/review";
 import { fetchProductById } from "../../store/product";
 import { PacmanLoading, ScaleLoading } from '../Loading';
 import StarRatingInput from "./starRatingInput";
@@ -21,7 +21,7 @@ function UpdateReviewFormModal({ reviewId, productId }) {
   useEffect(() => {
     if (reviewId) {
       dispatch(fetchSingleReview(reviewId)).then(response => {
-        console.log(response)
+        // console.log(response)
         setComment(response.review_text);
         setStars(response.rating);
       });
@@ -47,8 +47,8 @@ function UpdateReviewFormModal({ reviewId, productId }) {
           setError(reviewResponse.message);
           return;
       }
-
-
+      // console.log(reviewResponse)
+      await dispatch(fetchUserReviews(reviewResponse?.user.id))
       await dispatch(fetchProductById(productId));
       await dispatch(fetchProductReviews(productId));
       setIsLoading(false);

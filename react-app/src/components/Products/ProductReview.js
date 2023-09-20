@@ -5,10 +5,11 @@ import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import DeleteReviewFormModal from "../Reviews/DeleteReviewFormModal";
 import UpdateReviewFormModal from "../Reviews/UpdateReviewFormModal";
 
-import { FaX } from "react-icons/fa6";
+import { FaRegTrashCan } from "react-icons/fa6";
+
 const ProductReview = ({ review }) => {
     const sessionUser = useSelector((state) => state.session.user);
-    console.log(review)
+    // console.log(review)
     return (
         <li className="review-item">
             <div className="review-content">
@@ -28,7 +29,7 @@ const ProductReview = ({ review }) => {
                 </div>
                 <div className="review-delete">
                 <OpenModalMenuItem
-                  itemText={<FaX />}
+                  itemText={<FaRegTrashCan />}
                   modalComponent={
                   <DeleteReviewFormModal reviewId={review.id} productId={review?.product.id}
                   />}
