@@ -19,7 +19,7 @@ import ProductManage from "./components/Products/ProductManage"
 import ProductShow from "./components/Products/ProductShow";
 import Favorite from "./components/Favorite";
 import Reviews from "./components/Reviews";
-
+import ChatBot from "./components/ChatBot";
 
 
 // import PrivateRoute from "./PrivateRoute"
@@ -60,6 +60,7 @@ function App() {
         </Switch>
       )}
       <Footer />
+      <ChatBot />
     </>
   );
 }
