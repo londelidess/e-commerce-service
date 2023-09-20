@@ -54,31 +54,27 @@ PLAYBOX, a [Upbounders](https://upbounders.com/) replica, is a platform where us
 8. **Past Orders & Reorder**
     - Users can view their past orders and reorder.
 
+9.  **Bonus Feature**
+    
+ ### **Chatbot**
 
----
-
-10. **Bonus Features**
-
-## **PLAYBOX Chatbot**
-
-### Introduction
 **PLAYBOX Chatbot** is an intuitive assistant, designed to improve user experience. It answers FAQs and directs users to desired product categories.
 
-### Features
+ Features
 - **User Queries**: Specifically trained on a PLAYBOX dataset to address unique user queries.
 - **Product Recommendations**: Suggests products based on user input.
 
-### Integration
-Available at the bottom right of each page, the chatbot is easily accessible for users seeking immediate help.
+ Integration
+- Available at the bottom right of each page, the chatbot is easily accessible for users seeking immediate help.
 
-### Interactivity
-The chatbot accepts text inputs. Voice functionality is planned for future updates.
+ Interactivity
+- The chatbot accepts text inputs. Voice functionality is planned for future updates.
 
-### Technology
-Crafted using **FlowiseAI** and powered by **GPT-3.5 Turbo** from **OpenAI API**. Integrated with the **Pinecone vector database** for accurate responses. Its proficiency is further enhanced with PLAYBOX-specific training.
+ Technology
+- Crafted using **FlowiseAI** and powered by **GPT-3.5 Turbo** from **OpenAI API**. Integrated with the **Pinecone vector database** for accurate responses. Its proficiency is further enhanced with PLAYBOX-specific training.
 
-### Integration Details
-The chatbot widget is embedded in the site's HTML. It connects to a cloud-deployed custom Flowise instance, compatible with any Node-supporting server, like Render.
+ Integration Details
+- The chatbot widget is embedded in the site's HTML. It connects to a cloud-deployed custom Flowise instance, compatible with any Node-supporting server, like Render.
 
 
 ```
