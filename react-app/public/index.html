@@ -3,6 +3,21 @@
   <head>
     <meta charset="utf-8" />
     <title>PLAYBOX</title>
+    <!-- Google Tag Manager -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-KQ6TSBRV");
+    </script>
+    <!-- End Google Tag Manager -->
+
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
       rel="icon"
@@ -18,11 +33,23 @@
     ></script>
     <link rel="stylesheet" href="index.css" />
   </head>
+
   <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-KQ6TSBRV"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <div id="root"></div>
+
     <script type="module">
-        import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js"
-    Chatbot.init({
+      import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js";
+      Chatbot.init({
         chatflowid: "761007b0-4c69-4013-8b64-fb421b3fcca7",
         apiHost: "https://flowise-ai-makoto.onrender.com",
         theme: {
@@ -30,15 +57,17 @@
             backgroundColor: "gold",
           },
           chatWindow: {
-            welcomeMessage:"Hello! Welcome to PLAYBOX! I am an AI assistant. How can I assist you today? You can ask me about our products, hours of operation, or any other inquiries you might have.",
-            botMessage:{
+            welcomeMessage:
+              "Hello! Welcome to PLAYBOX! I am an AI assistant. How can I assist you today? You can ask me about our products, hours of operation, or any other inquiries you might have.",
+            botMessage: {
               showAvatar: true,
-              avatarSrc: "https://64.media.tumblr.com/1b92dccaf54b1bed9599a2e97167760d/a8a000f166be391d-d8/s540x810/26bdc54fd0f2c8b556032a871fd43a678d7dd3ed.jpg",
+              avatarSrc:
+                "https://64.media.tumblr.com/1b92dccaf54b1bed9599a2e97167760d/a8a000f166be391d-d8/s540x810/26bdc54fd0f2c8b556032a871fd43a678d7dd3ed.jpg",
             },
-            userMessage:{
+            userMessage: {
               backgroundColor: "gold",
-              textColor:'black',
-               },
+              textColor: "black",
+            },
             textInput: {
               placeholder: "Please type your question🤖",
               sendButtonColor: "gold",
