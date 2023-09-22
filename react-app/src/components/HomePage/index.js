@@ -8,21 +8,10 @@ const HomePage = () => {
   const dispatch = useDispatch();
   const productsObject = useSelector((state) => state.products.allProducts);
   const productsArray = Object.values(productsObject);
-  const [translateValue, setTranslateValue] = useState(0);
 
   useEffect(() => {
     dispatch(fetchAllProducts());
-    const interval = setInterval(() => {
-      if (translateValue <= -100 * productsArray.length) {
-        setTranslateValue(0);
-      } else {
-        setTranslateValue((prevValue) => prevValue - 5);
-      }
-    }, 500);
-
-    return () => clearInterval(interval);
-  }, [dispatch, productsArray.length])
-
+  }, [dispatch]);
 
   return (
     <div>
@@ -40,25 +29,30 @@ const HomePage = () => {
       </div>
 
       <div className="our-toys-container">
-      <h1 className="large-heading">Our Toys</h1>
-      <div className="slider-wrapper">
-        <div className="slider-container" style={{ transform: `translateX(${translateValue}%)` }}>
-          {productsArray.map((product) => (
-            <img key={product.id} src={product.images[0]?.media_url} alt={product.name} />
-          ))}
-          {productsArray.map((product) => (
-            <img key={product.id + '-duplicate'} src={product.images[0]?.media_url} alt={product.name} />
-          ))}
+        <h1 className="large-heading">Our Toys</h1>
+        <div className="slider">
+          <div className="slide-track">
+            {productsArray.map((product) => {
+              const imageUrl = product.images[0]?.media_url;
+              if (imageUrl) {
+                return (
+                  <div className="slide" key={product.id}>
+                    <img src={imageUrl} alt={product.name} />
+                  </div>
+                );
+              }
+              return null;
+            })}
+          </div>
         </div>
       </div>
-    </div>
 
       <div className="home-container">
         <h1 className="centered-content">
-        healthy toys for everyone
+          healthy toys for everyone
         </h1>
         <p className="centered-content">
-        founded by a modern mom, upbounders® is an elevated toy brand with easily-accessible products that celebrate belonging and self-expression through play. 💫
+          founded by a modern mom, upbounders® is an elevated toy brand with easily-accessible products that celebrate belonging and self-expression through play. 💫
         </p>
         <p className="centered-content">
           OUR COMMUNITY IS GROWING. CLICK BELOW TO LEARN MORE AND ENTER THE
