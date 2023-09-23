@@ -106,17 +106,17 @@ def seed_products():
     )
 
     model4 = Product(
-        name='Keroro & Keroro Robot Mk-II Anniversary Special Ver.',
-        description="""To celebrate the 20th anniversary of "Sgt. Frog" (Keroro Gunsou) Bandai is bringing back the Sgt. Frog Plamo Collection! This kit builds into Sergeant Keroro along with the Keroro Robot Mk-II, and features special packaging to commemorate the series' anniversary. It also comes with the Kero Ball, a beam rifle, and a shield.""",
-        price=9.56,
+        name='Digimon Figure-rise Standard Amplified Machinedramon',
+        description="""The largest kit in the series! The extremely popular machine-type Digimon joins the lineup! It's a massive 9.8 inches long kit when extended to its limits. The kit comes with two wires, and one set of foil stickers""",
+        price=74.99,
         added_by_user_id=2,
         category_id=model_kit_id
     )
 
     model5 = Product(
-        name='Sergeant Keroro & Keroro Robot Mk-II Anniversary Special Ver.',
+        name='Batman, Bandai Spirits Figure-Rise Standard Amplified Model Kit',
         description="""The cape can be expanded to recreate the iconic Batman silhouette. He comes with a batarang as well as a hand to hold it. Part of the cape can be removed and attached to the arm to form a shield. The cape is made of PP material to create a texture that's both hard and soft. The base of the cape is separated so it won't get in the way of posing.""",
-        price=9.56,
+        price=76.77,
         added_by_user_id=2,
         category_id=model_kit_id
     )
