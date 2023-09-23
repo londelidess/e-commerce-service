@@ -208,6 +208,25 @@ def seed_medias():
         media_url='https://m.media-amazon.com/images/I/71g-X76Xq-L._AC_SL1500_.jpg',
     )
 
+    #Keroro
+    media32= Media(
+        product_id=15,
+        media_type='image',
+        media_url='https://www.hlj.com/productimages/ban/bans57072_1.png',
+    )
+
+    media33= Media(
+        product_id=15,
+        media_type='image',
+        media_url='https://www.hlj.com/productimages/ban/bans57072_2.png',
+    )
+
+    media34= Media(
+        product_id=15,
+        media_type='image',
+        media_url='https://www.hlj.com/productimages/ban/bans57072_6.jpg',
+    )
+
 
 
     db.session.add(media1)
@@ -241,6 +260,9 @@ def seed_medias():
     db.session.add(media29)
     db.session.add(media30)
     db.session.add(media31)
+    db.session.add(media32)
+    db.session.add(media33)
+    db.session.add(media34)
 
     db.session.commit()
 
