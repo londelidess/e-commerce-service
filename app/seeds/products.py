@@ -121,7 +121,15 @@ def seed_products():
         category_id=model_kit_id
     )
 
-    db.session.add_all([game1, game2, puzzle1, model1, game3, game4, game5, puzzle2, puzzle3, puzzle4, model2, model3, model4, model5])
+    model6 = Product(
+        name='Keroro & Keroro Robot Mk-II Anniversary Special Ver.',
+        description="""To celebrate the 20th anniversary of "Sgt. Frog" (Keroro Gunsou) Bandai is bringing back the Sgt. Frog Plamo Collection! This kit builds into Sergeant Keroro along with the Keroro Robot Mk-II, and features special packaging to commemorate the series' anniversary. It also comes with the Kero Ball, a beam rifle, and a shield.""",
+        price=9.56,
+        added_by_user_id=2,
+        category_id=model_kit_id
+    )
+
+    db.session.add_all([game1, game2, puzzle1, model1, game3, game4, game5, puzzle2, puzzle3, puzzle4, model2, model3, model4, model5, model6])
     db.session.commit()
 
 def undo_products():
