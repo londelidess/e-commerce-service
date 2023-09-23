@@ -64,8 +64,64 @@ def seed_products():
         category_id=games_id
     )
 
+    puzzle2 = Product(
+        name="""Rubik's 3x3""",
+        description="""There are... wait for it... 43,252,003,274,489,856,000 ways of arranging the squares, and only one of these is the solution. Turn and twist away – can you solve it? The new and improved Rubik’s Cube features a mechanism that results in a smoother, faster and more reliable play.""",
+        price=10.99,
+        added_by_user_id=2,
+        category_id=puzzles_id
+    )
 
-    db.session.add_all([game1, game2, puzzle1, model1, game3, game4, game5])
+
+    puzzle3 = Product(
+        name="""Starry Night Orrery Mechanical Music Box""",
+        description="""This is vintage orrery DIY music box. It is inspired by the solar system model, made of colorful acrylic and circles while tunes playing. Have fun building this creative music box 3D wooden puzzle!""",
+        price=31.99,
+        added_by_user_id=2,
+        category_id=puzzles_id
+    )
+
+    puzzle4 = Product(
+        name="""Blokus""",
+        description="""Perfect strategy game for the whole family – less than a minute to learn with fun challenges for all ages! The game ends when no more pieces can be placed down, and the player with the lowest number remaining wins!""",
+        price=19.99,
+        added_by_user_id=2,
+        category_id=puzzles_id
+    )
+
+    model2 = Product(
+        name='Black Pearl Model Ship',
+        description="""Jack Sparrow ship - Pirates of the Caribbean. This crucifix is absolutely beautiful! We hung it in a very prominent place in our home in a room with a cathedral ceiling. You have to look up on it... and when you do, feels like you're at the foot of the cross. An heirloom!""",
+        price=337.50,
+        added_by_user_id=2,
+        category_id=model_kit_id
+    )
+
+    model3 = Product(
+        name='RX-78F00 GUNDAM & G-DOCK',
+        description="""Limited edition of the moving full-scale Gundam of "GUNDAM FACTORY YOKOHAMA"! The behavior of a moving Gundam with a G dock can be reproduced on a 1/144 scale. ■ A range of motion that can reproduce the behavior of a moving Gundam such as walking, raising the right arm, and raising both arms!""",
+        price=32.00,
+        added_by_user_id=2,
+        category_id=model_kit_id
+    )
+
+    model4 = Product(
+        name='Keroro & Keroro Robot Mk-II Anniversary Special Ver.',
+        description="""To celebrate the 20th anniversary of "Sgt. Frog" (Keroro Gunsou) Bandai is bringing back the Sgt. Frog Plamo Collection! This kit builds into Sergeant Keroro along with the Keroro Robot Mk-II, and features special packaging to commemorate the series' anniversary. It also comes with the Kero Ball, a beam rifle, and a shield.""",
+        price=9.56,
+        added_by_user_id=2,
+        category_id=model_kit_id
+    )
+
+    model5 = Product(
+        name='Sergeant Keroro & Keroro Robot Mk-II Anniversary Special Ver.',
+        description="""The cape can be expanded to recreate the iconic Batman silhouette. He comes with a batarang as well as a hand to hold it. Part of the cape can be removed and attached to the arm to form a shield. The cape is made of PP material to create a texture that's both hard and soft. The base of the cape is separated so it won't get in the way of posing.""",
+        price=9.56,
+        added_by_user_id=2,
+        category_id=model_kit_id
+    )
+
+    db.session.add_all([game1, game2, puzzle1, model1, game3, game4, game5, puzzle2, puzzle3, puzzle4, model2, model3, model4, model5])
     db.session.commit()
 
 def undo_products():
