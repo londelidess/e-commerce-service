@@ -88,6 +88,127 @@ def seed_medias():
         media_url='https://m.media-amazon.com/images/I/817CxBbK3PL._AC_SL1500_.jpg',
 
     )
+    #Rubic Cube
+    media14= Media(
+        product_id=8,
+        media_type='image',
+        media_url='https://cdn.spinmasterstudios.com/products/rubiks/us/778988419533/full1.jpg',
+    )
+
+    media15= Media(
+        product_id=8,
+        media_type='image',
+        media_url='https://cdn.spinmasterstudios.com/products/rubiks/us/778988419533/full2.jpg',
+    )
+
+    media16= Media(
+        product_id=8,
+        media_type='image',
+        media_url='https://img.fantaskycdn.com/b8e2d57ac71debc776f9e5976b8e41fd_750x.jpeg',
+    )
+
+    #3D puzzles
+    media16= Media(
+        product_id=9,
+        media_type='image',
+        media_url='https://cdn.spinmasterstudios.com/products/rubiks/us/778988419533/full3.jpg',
+    )
+
+    media17= Media(
+        product_id=9,
+        media_type='image',
+        media_url='https://img.staticdj.com/00fb62c5b6e9d673a2364cd9ddcc6687_1080x.jpeg',
+    )
+
+    #Blokus
+    media18= Media(
+        product_id=10,
+        media_type='image',
+        media_url='https://m.media-amazon.com/images/I/61Z3aiZqlYL._AC_SL1000_.jpg',
+    )
+
+    media19= Media(
+        product_id=10,
+        media_type='image',
+        media_url='https://m.media-amazon.com/images/I/51xAczkCIjL._AC_.jpg',
+    )
+    #Black Pearl
+    media20= Media(
+        product_id=11,
+        media_type='image',
+        media_url='https://i.etsystatic.com/20300755/r/il/37c870/4336246912/il_794xN.4336246912_cifu.jpg',
+    )
+
+    media21= Media(
+        product_id=11,
+        media_type='image',
+        media_url='https://i.etsystatic.com/20300755/r/il/abc664/4381651161/il_794xN.4381651161_i3qb.jpg',
+    )
+
+    media22= Media(
+        product_id=11,
+        media_type='image',
+        media_url='https://i.etsystatic.com/20300755/r/il/4689da/4381651287/il_794xN.4381651287_orvc.jpg',
+    )
+
+    #Gundum
+    media23= Media(
+        product_id=12,
+        media_type='image',
+        media_url='https://p-bandai.com/img/us/p/m/N2519562001001_001.jpg',
+    )
+
+    media24= Media(
+        product_id=12,
+        media_type='image',
+        media_url='https://p-bandai.com/img/us/p/m/N2519562001001_002.jpg',
+    )
+
+    media25= Media(
+        product_id=12,
+        media_type='image',
+        media_url='https://p-bandai.com/img/us/p/m/N2519562001001_003.jpg',
+    )
+
+    #Keroro
+    media26= Media(
+        product_id=13,
+        media_type='image',
+        media_url='https://www.hlj.com/productimages/ban/bans57072_1.png',
+    )
+
+    media27= Media(
+        product_id=13,
+        media_type='image',
+        media_url='https://www.hlj.com/productimages/ban/bans57072_2.png',
+    )
+
+    media28= Media(
+        product_id=13,
+        media_type='image',
+        media_url='https://www.hlj.com/productimages/ban/bans57072_6.jpg',
+    )
+
+    #Batman
+    media26= Media(
+        product_id=14,
+        media_type='image',
+        media_url='https://m.media-amazon.com/images/I/61JiiG8eYvL._AC_SL1500_.jpg',
+    )
+
+    media27= Media(
+        product_id=14,
+        media_type='image',
+        media_url='https://m.media-amazon.com/images/I/61YstDXchDL._AC_SL1500_.jpg',
+    )
+
+    media28= Media(
+        product_id=14,
+        media_type='image',
+        media_url='https://m.media-amazon.com/images/I/71g-X76Xq-L._AC_SL1500_.jpg',
+    )
+
+
 
     db.session.add(media1)
     db.session.add(media2)
@@ -102,10 +223,21 @@ def seed_medias():
     db.session.add(media11)
     db.session.add(media12)
     db.session.add(media13)
-
-
-
-
+    db.session.add(media14)
+    db.session.add(media15)
+    db.session.add(media16)
+    db.session.add(media17)
+    db.session.add(media18)
+    db.session.add(media19)
+    db.session.add(media20)
+    db.session.add(media21)
+    db.session.add(media22)
+    db.session.add(media23)
+    db.session.add(media24)
+    db.session.add(media25)
+    db.session.add(media26)
+    db.session.add(media27)
+    db.session.add(media28)
 
     db.session.commit()
 
