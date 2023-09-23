@@ -104,14 +104,14 @@ def seed_medias():
     media16= Media(
         product_id=8,
         media_type='image',
-        media_url='https://img.fantaskycdn.com/b8e2d57ac71debc776f9e5976b8e41fd_750x.jpeg',
+        media_url='https://cdn.spinmasterstudios.com/products/rubiks/us/778988419533/full3.jpg',
     )
 
     #3D puzzles
     media16= Media(
         product_id=9,
         media_type='image',
-        media_url='https://cdn.spinmasterstudios.com/products/rubiks/us/778988419533/full3.jpg',
+        media_url='https://img.fantaskycdn.com/b8e2d57ac71debc776f9e5976b8e41fd_750x.jpeg',
     )
 
     media17= Media(
@@ -170,23 +170,23 @@ def seed_medias():
         media_url='https://p-bandai.com/img/us/p/m/N2519562001001_003.jpg',
     )
 
-    #Keroro
+    #Machinedramon
     media26= Media(
         product_id=13,
         media_type='image',
-        media_url='https://www.hlj.com/productimages/ban/bans57072_1.png',
+        media_url='https://gundamplacestore.com/cdn/shop/products/image_72eee360-a9e0-4126-a53c-0f42ee87a647.jpg?v=1661793281&width=750',
     )
 
     media27= Media(
         product_id=13,
         media_type='image',
-        media_url='https://www.hlj.com/productimages/ban/bans57072_2.png',
+        media_url='https://gundamplacestore.com/cdn/shop/products/image_bb72c263-f4c0-4b27-86c0-827dd9c6ba6c.jpg?v=1661793282&width=750',
     )
 
     media28= Media(
         product_id=13,
         media_type='image',
-        media_url='https://www.hlj.com/productimages/ban/bans57072_6.jpg',
+        media_url='https://gundamplacestore.com/cdn/shop/products/image_cd9e3c4b-7b81-477c-b704-874bb270bf27.jpg?v=1661793280&width=750',
     )
 
     #Batman
