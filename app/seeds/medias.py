@@ -190,19 +190,19 @@ def seed_medias():
     )
 
     #Batman
-    media26= Media(
+    media29= Media(
         product_id=14,
         media_type='image',
         media_url='https://m.media-amazon.com/images/I/61JiiG8eYvL._AC_SL1500_.jpg',
     )
 
-    media27= Media(
+    media30= Media(
         product_id=14,
         media_type='image',
         media_url='https://m.media-amazon.com/images/I/61YstDXchDL._AC_SL1500_.jpg',
     )
 
-    media28= Media(
+    media31= Media(
         product_id=14,
         media_type='image',
         media_url='https://m.media-amazon.com/images/I/71g-X76Xq-L._AC_SL1500_.jpg',
@@ -238,6 +238,9 @@ def seed_medias():
     db.session.add(media26)
     db.session.add(media27)
     db.session.add(media28)
+    db.session.add(media29)
+    db.session.add(media30)
+    db.session.add(media31)
 
     db.session.commit()
 
