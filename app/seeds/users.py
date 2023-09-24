@@ -14,7 +14,7 @@ def seed_users():
         username ='Demo',
         email ='demo@aa.io',
         password ='password',
-        profile_image_url = 'https://www.alaska.edu/_resources/images/placeholders/profile.png',
+        profile_image_url = 'https://64.media.tumblr.com/0103e0a1d7aacd0038a15184b12c1d96/6a42cd1700c72e7f-50/s540x810/1799372488017d56fce50c3db13ba0215e936018.pnj',
         role='editor'
     )
     marnie = User(

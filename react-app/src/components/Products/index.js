@@ -21,7 +21,7 @@ function ProductLandingPage() {
 
   return (
     <section className="landing-page">
-      <h1 className="landing-page-centered-title">Unbox Together Play Forever</h1>
+      <h1 className="landing-page-centered-title">Unbox Together, Play Forever</h1>
       <p className="landing-page-centered-description">
         Find your toys!<br />
         From classics to the latest, we've got it all.

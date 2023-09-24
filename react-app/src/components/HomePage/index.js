@@ -52,7 +52,7 @@ const HomePage = () => {
           healthy toys for everyone
         </h1>
         <p className="centered-content">
-          founded by a modern mom, upbounders® is an elevated toy brand with easily-accessible products that celebrate belonging and self-expression through play. 💫
+          PLAYBOX is an elevated toy website with easily-accessible products that celebrate belonging and self-expression through play. 💫
         </p>
         <p className="centered-content">
           OUR COMMUNITY IS GROWING. CLICK BELOW TO LEARN MORE AND ENTER THE
