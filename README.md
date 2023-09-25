@@ -116,7 +116,7 @@ PLAYBOX, a [Upbounders](https://upbounders.com/) replica, is a platform where us
 ## Session
 
 * Users can view all users.
-  - `GET api/posts`
+  - `GET api/users`
 
 * Users can retrieve a specific user by their ID.
   - `GET api/users/<id>`
@@ -128,6 +128,9 @@ PLAYBOX, a [Upbounders](https://upbounders.com/) replica, is a platform where us
 
 * Users can view all products.
   - `GET api/products`
+ 
+* Fetch and display products added by the current user.
+  - `GET api/products/user`
 
 * Users can retrieve a specific product by its ID.
   - `GET api/products/<product_id>`
@@ -143,7 +146,21 @@ PLAYBOX, a [Upbounders](https://upbounders.com/) replica, is a platform where us
 
 * Users can delete a specific product by its ID.
   - `DELETE api/products/<product_id>`
+  - 
+---
 
+## Media
+
+* Fetch all media for a product:
+  - `GET api/medias/<product_id>`
+
+* Add media to a product:
+  - `POST api/medias/<product_id>`
+
+* Delete a media item:
+  - `DELETE api/medias/<media_id>`
+
+---
 
 ## Shopping Cart
 
@@ -165,8 +182,6 @@ PLAYBOX, a [Upbounders](https://upbounders.com/) replica, is a platform where us
 * Users can complete a transaction/purchase.
   - `POST api/shoppingcarts/checkout`
 
-
-
 ---
 
 ## Past Orders
@@ -178,10 +193,46 @@ PLAYBOX, a [Upbounders](https://upbounders.com/) replica, is a platform where us
 * Users can view all their past orders.
   - `GET api/shoppingcarts/orders`
 
+---
+
+## Favorites
+
+* View favorite products:
+  - `GET api/favorites/my-favorites`
+
+* Check if a product is a favorite:
+  - `GET api/favorites/is-favorite/<product_id>`
+
+* Add a product to favorites:
+  - `POST api/favorites/<product_id>`
+
+* Remove a product from favorites:
+  - `DELETE api/favorites/<product_id>`
+
 
 ---
 
+## Reviews
 
+* Fetch a single review:
+  - `GET api/reviews/single/<review_id>`
+
+* View user reviews:
+  - `GET api/reviews/user/<user_id>`
+
+* View reviews for a product:
+  - `GET api/reviews/<product_id>`
+
+* Post a review for a product:
+  - `POST api/reviews/<product_id>`
+
+* Edit a review:
+  - `PUT api/reviews/<review_id>`
+
+* Delete a review:
+  - `DELETE api/reviews/<review_id>`
+
+---
  
 ## Used Technology in this project 
 Flask/ React/ Redux/ sqlAlchemy/ PostgreSQL/ AWS S3 / FlowiseAI/ LungchainJS/ Pinecone/ OpenAI/ Google map
