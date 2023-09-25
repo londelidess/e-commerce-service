@@ -6,7 +6,7 @@ import { fetchAllProducts } from "../../store/product";
 import CategoryNavigation from "./CategoryNavigation";
 import {PacmanLoading} from "../Loading";
 
-import { LoadingContext, useLoading } from './LoadingContextLanding';
+import { LoadingContext, useLoading } from '../../context/LoadingContextLanding';
 import "./products.css";
 
 function ProductCategoryPage() {

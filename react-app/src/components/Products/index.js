@@ -4,7 +4,7 @@ import { fetchAllProducts } from "../../store/product";
 import ProductItem from "./ProductItem";
 import CategoryNavigation from "./CategoryNavigation";
 import {PacmanLoading} from "../Loading";
-import { useLoading } from './LoadingContextLanding';
+import { useLoading } from '../../context/LoadingContextLanding';
 import "./products.css";
 
 function ProductLandingPage() {
