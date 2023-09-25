@@ -54,10 +54,8 @@ PLAYBOX, a [Upbounders](https://upbounders.com/) replica, is a platform where us
 8. **Past Orders & Reorder**
     - Users can view their past orders and reorder.
 
-9.  **Bonus Feature**
+9.  **Bonus Feature** --- **Chatbot**
     
- ### **Chatbot**
-
 **PLAYBOX Chatbot** is an intuitive assistant, designed to improve user experience. It answers FAQs and directs users to desired product categories.
 
  Features
