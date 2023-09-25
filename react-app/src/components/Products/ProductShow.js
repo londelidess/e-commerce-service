@@ -5,9 +5,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProductById } from "../../store/product";
 import { thunkAddToCart, thunkGetCart } from "../../store/shoppingCart";
-import AddedToCartModal from "./AddedToCartModal";
 import {
-  fetchFavorites,
   checkIsFavorite,
   addProductToFavorites,
   removeProductFromFavorites,
@@ -16,7 +14,6 @@ import { fetchProductReviews } from "../../store/review";
 import ProductReview from "./ProductReview";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import PostReviewFormModal from "../Reviews/PostReviewFormModal";
-import UpdateReviewFormModal from "../Reviews/UpdateReviewFormModal";
 import { PacmanLoading } from "../Loading";
 import "./products.css";
 
