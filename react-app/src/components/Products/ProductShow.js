@@ -21,9 +21,7 @@ const ProductShow = () => {
   const { productId } = useParams();
   const sessionUser = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
-  const productReviewsObj = useSelector(
-    (state) => state.reviews.productReviews
-  );
+  const productReviewsObj = useSelector((state) => state.reviews.productReviews);
   const productReviewsArray = Object.values(productReviewsObj);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
