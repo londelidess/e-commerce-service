@@ -8,7 +8,7 @@
 ![orderhistorypage][def4]
 
 ## Link to website 
-[https://bv-group-project.onrender.com](https://omocha-no-chachacha.onrender.com)
+[PLAYBOX](https://omocha-no-chachacha.onrender.com)
 
 PLAYBOX, a [Upbounders](https://upbounders.com/) replica, is a platform where users can buy toys.
 
