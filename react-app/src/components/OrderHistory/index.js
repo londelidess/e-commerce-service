@@ -51,55 +51,60 @@ function OrderHistory() {
       {orders && orders.length === 0 ? (
         <p className="no-orders-msg">You have no past orders.</p>
       ) : (
-        <div className="orders-list">
-          {orders
-            .slice()
-            .reverse()
-            .map((order) => (
-              <div key={order.id} className="single-order">
-                <p className="order-timestamp">Timestamp: {order.timestamp}</p>
-                <p className="order-total">Total: ${order.total_amount}</p>
-                <ul className="order-items">
-                  {order.items.map((item) => (
-                    <li key={item.product_id} className="order-item">
-                      <strong className="order-item-name">
-                        {item.product_name}
-                      </strong>
-                      <br />
-                      Quantity:
-                      <input
-                        type="number"
-                        className="order-item-quantity"
-                        defaultValue={item.quantity}
-                        onChange={(e) =>
-                          handleReorderQuantityChange(
-                            item.product_id,
-                            parseInt(e.target.value)
-                          )
-                        }
-                      />
-                      <br />
-                      <p className="order-item-price">
-                        Single Price: ${item.price_at_time_of_purchase}
-                      </p>
-                      <br />
-                    </li>
-                  ))}
-                </ul>
-                <button
-                  className="reorder-button"
-                  onClick={() => handleReorder(order.id, order.items)}
-                >
-                  <OpenModalMenuItem
-                    itemText="Reorder this Toy"
-                    modalComponent={<AddedToCartModal />}
-                  />
-                </button>
-              </div>
-            ))}
-        </div>
+        <>
+          <div className="orders-list">
+            <h2>Newer</h2>
+            {orders
+              .slice()
+              .reverse()
+              .map((order) => (
+                <div key={order.id} className="single-order">
+                  <p className="order-total">Total: ${order.total_amount}</p>
+                  <ul className="order-items">
+                    {order.items.map((item) => (
+                      <li key={item.product_id} className="order-item">
+                        <strong className="order-item-name">
+                          {item.product_name}
+                        </strong>
+                        <br />
+                        Quantity:
+                        <input
+                          type="number"
+                          className="order-item-quantity"
+                          defaultValue={item.quantity}
+                          onChange={(e) =>
+                            handleReorderQuantityChange(
+                              item.product_id,
+                              parseInt(e.target.value)
+                            )
+                          }
+                        />
+                        <br />
+                        <p className="order-item-price">
+                          Single Price: ${item.price_at_time_of_purchase}
+                        </p>
+                        <br />
+                      </li>
+                    ))}
+                  </ul>
+                  <button
+                    className="reorder-button"
+                    onClick={() => handleReorder(order.id, order.items)}
+                  >
+                    <OpenModalMenuItem
+                      itemText="Reorder this Toy"
+                      modalComponent={<AddedToCartModal />}
+                    />
+                  </button>
+                </div>
+              ))}
+          </div>
+          <h2>Older</h2>
+        </>
       )}
     </div>
   );
-}
+};
+
+
 export default OrderHistory;

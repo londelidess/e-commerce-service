@@ -38,7 +38,7 @@ export const fetchFavorites = () => async (dispatch) => {
         throw new Error("Failed to fetch favorites");
       }
       const favorites = await response.json();
-	  console.log(favorites)
+	  // console.log(favorites)
       dispatch(setFavorites(favorites));
     } catch (error) {
       console.error(error);
@@ -56,7 +56,7 @@ export const fetchFavorites = () => async (dispatch) => {
         return data.is_favorite;
     } catch (error) {
         console.error(error);
-        return false; 
+        return false;
     }
 };
 
